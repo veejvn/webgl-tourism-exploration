@@ -57,7 +57,7 @@ export default function MapPage() {
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/navigation-dark-v1',
+      style: 'mapbox://styles/mapbox/navigation-day-v1',
       center: MAPBOX_DEFAULT_CENTER,
       zoom: MAPBOX_DEFAULT_ZOOM - 6,
     });

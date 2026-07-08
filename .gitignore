@@ -155,3 +155,4 @@ $RECYCLE.BIN/
 *.njsproj
 *.sln
 *.sw?
+.codegraph/
