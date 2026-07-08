@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  VISITOR
+  USER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Destination {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  latitude    Float
+  longitude   Float
+  coverImage  String
+  modelUrl    String?    // Đường dẫn file .glb 3D Scene của địa danh
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  landmarks   Landmark[]
+}
+
+model Landmark {
+  id            String      @id @default(uuid())
+  destinationId String
+  title         String
+  description   String
+  latitude      Float
+  longitude     Float
+  modelUrl      String?     // Đường dẫn file .glb của riêng landmark/hiện vật này
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
