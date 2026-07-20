@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(@Inject('PRISMA_SERVICE') private readonly prisma: PrismaService) {}
 
   async findOneByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({
