@@ -156,3 +156,5 @@ $RECYCLE.BIN/
 *.sln
 *.sw?
 .codegraph/
+
+.worktrees/
