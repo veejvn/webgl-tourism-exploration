@@ -98,7 +98,7 @@ export default function MapPage() {
 
       {/* Title Panel */}
       <div className="absolute top-4 left-4 z-10 p-4 bg-gray-900/90 border border-gray-800 rounded-xl max-w-sm shadow-2xl backdrop-blur-md">
-        <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+        <h1 className="text-xl font-bold bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
           Bản đồ Di sản Du lịch 3D
         </h1>
         <p className="text-xs text-gray-400 mt-1">
@@ -125,7 +125,7 @@ export default function MapPage() {
           <div className="flex gap-2 mt-4">
             <button
               onClick={() => router.push(`/explore?id=${selectedDest.id}`)}
-              className="flex-1 py-2 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-lg shadow-blue-500/20 active:scale-95 transition-transform"
+              className="flex-1 py-2 px-4 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-lg shadow-blue-500/20 active:scale-95 transition-transform"
             >
               🚀 Khám phá 3D
             </button>

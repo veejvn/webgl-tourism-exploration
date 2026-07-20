@@ -35,6 +35,15 @@ Dự án được xây dựng dưới dạng Monorepo sử dụng **Turborepo** 
   - Khắc phục lỗi TypeScript Sky turbidity và Next.js Static render Suspense trên route `/explore`.
   - Toàn bộ monorepo (`@project/types`, `@project/constants`, `apps/api`, `apps/web`) biên dịch (build) thành công 100% không có cảnh báo hay lỗi.
 
+- **Phiên làm việc ngày 09/07/2026 (Phiên làm việc hiện tại)**:
+  - **Điều chỉnh cấu hình port**: Thiết lập cổng mặc định cố định cho dự án. Ép buộc **Frontend (Next.js)** chạy cổng `3000` thông qua `"dev": "next dev -p 3000"` trong `apps/web/package.json`, và cấu hình **Backend (NestJS)** chạy cổng `3001` qua `PORT=3001` trong `apps/api/.env`.
+  - **Khắc phục triệt để lỗi nạp hạt DB (Prisma Seeding) trên Windows**:
+    1. Thiết lập file `prisma.config.ts` ở NestJS Backend, cấu hình đường dẫn `seed: "ts-node ./prisma/seed.ts"` khớp chuẩn cấu hình mới của Prisma v6/v7.
+    2. Giải quyết lỗi không thể khởi tạo `PrismaClient` trong các file chạy trực tiếp `ts-node` trên môi trường Windows bằng việc tạo Junction Symlink thư mục ảo `.prisma/client` từ thư mục `.pnpm` gốc vào cục bộ `apps/api/node_modules/.prisma`.
+    3. Nạp `dotenv/config` đồng bộ trước khi gọi constructor của `PrismaClient` giúp hạt giống dữ liệu (`npx prisma db seed`) hoạt động 100% thành công không có lỗi.
+  - **Tạo tài liệu chỉ dẫn Agent (`AGENTS.md`)**: Biên soạn cẩm nang tóm tắt các lệnh quan trọng, kiến trúc di động và cách khắc phục lỗi symlink/seed nhanh gọn dành riêng cho các phiên Agent làm việc tiếp theo trong repository.
+  - Kiểm thử, commit và push toàn bộ mã nguồn lên Git repository từ nhánh `main` thành công.
+
 ## 3. Kế hoạch cho phiên làm việc tiếp theo
 - **Bước 1**: Kết nối API Next.js frontend với NestJS backend qua Axios/TanStack Query thay vì dùng dữ liệu Mock tĩnh hoàn toàn.
 - **Bước 2**: Tải mô hình 3D thực tế dạng `.glb`/`.gltf` từ Supabase Storage vào WorldScene thay thế cho Mesh Capsule hình hộp tượng trưng.

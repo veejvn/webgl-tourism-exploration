@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 // Dynamically import WorldScene with SSR disabled to prevent hydration failures
-const WorldScene = dynamic(() => import('../../three/scene/WorldScene'), {
+const WorldScene = dynamic(() => import('../../../three/scene/WorldScene'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 text-white font-sans">
