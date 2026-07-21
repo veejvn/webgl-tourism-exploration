@@ -14,76 +14,156 @@ async function main() {
   console.log('Cleared database.');
 
   // Create Destinations & Landmarks
-  const hanoi = await prisma.destination.create({
+  const sam = await prisma.destination.create({
     data: {
-      title: 'Hanoi',
-      description: 'The capital of Vietnam, known for its centuries-old architecture and a rich culture with Southeast Asian, Chinese and French influences.',
-      latitude: 21.0285,
-      longitude: 105.8542,
-      coverImage: '/images/destinations/hanoi.jpg',
-      modelUrl: '/models/scenes/hanoi_scene.glb',
+      id: 'nui-sam',
+      title: 'Núi Sam - Bà Chúa Xứ',
+      description: 'Trung tâm du lịch tâm linh nổi tiếng bậc nhất miền Tây với Miếu Bà Chúa Xứ, Chùa Tây An và Lăng Tôn Đức Thắng.',
+      latitude: 10.7000,
+      longitude: 105.1167,
+      coverImage: 'https://images.unsplash.com/photo-1555861496-0666c8981751?w=600&auto=format&fit=crop',
       landmarks: {
         create: [
           {
-            title: 'Hoan Kiem Lake',
-            description: 'A lake in the historical center of Hanoi, the capital of Vietnam. The lake is one of the major scenic spots in the city and serves as a focal point for its public life.',
-            latitude: 21.0285,
-            longitude: 105.8520,
-            modelUrl: '/models/landmarks/hoan_kiem_lake.glb',
+            id: 'ba-chua-xu',
+            title: 'Miếu Bà Chúa Xứ',
+            description: 'Tượng Bà Chúa Xứ cao 2.7m trên đỉnh núi Sam.',
+            latitude: 10.6989,
+            longitude: 105.1131,
           },
           {
-            title: 'One Pillar Pagoda',
-            description: 'A historic Buddhist temple in Hanoi, the capital of Vietnam. It is regarded alongside the Perfume Temple, as one of Vietnam\'s two most iconic temples.',
-            latitude: 21.0358,
-            longitude: 105.8331,
-            modelUrl: '/models/landmarks/one_pillar_pagoda.glb',
+            id: 'chua-tay-an',
+            title: 'Chùa Tây An',
+            description: 'Ngôi chùa cổ kính với kiến trúc đặc sắc.',
+            latitude: 10.7012,
+            longitude: 105.1145,
           }
         ]
       }
     }
   });
 
-  const hue = await prisma.destination.create({
+  const cam = await prisma.destination.create({
     data: {
-      title: 'Hue',
-      description: 'A city in central Vietnam that was the seat of Nguyen Dynasty emperors and the capital of Vietnam from 1802 to 1945.',
-      latitude: 16.4637,
-      longitude: 107.5909,
-      coverImage: '/images/destinations/hue.jpg',
-      modelUrl: '/models/scenes/hue_scene.glb',
+      id: 'nui-cam',
+      title: 'Núi Cấm',
+      description: 'Đỉnh núi cao nhất trong vùng Bảy Núi (710m) với chùa Vạn Linh và tượng Phật Di Lặc khổng lồ.',
+      latitude: 10.4667,
+      longitude: 105.1833,
+      coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop',
       landmarks: {
         create: [
           {
-            title: 'Imperial City',
-            description: 'A walled enclosure within the citadel of the city of Hue, the former imperial capital of Vietnam.',
-            latitude: 16.4637,
-            longitude: 107.5780,
-            modelUrl: '/models/landmarks/imperial_city.glb',
+            id: 'dinh-nui-cam',
+            title: 'Đỉnh Núi Cấm',
+            description: 'Đỉnh cao 710m với view toàn cảnh.',
+            latitude: 10.4689,
+            longitude: 105.1856,
+          },
+          {
+            id: 'chua-van-linh',
+            title: 'Chùa Vạn Linh',
+            description: 'Ngôi chùa lớn trên núi Cấm.',
+            latitude: 10.4656,
+            longitude: 105.1823,
           }
         ]
       }
     }
   });
 
-  const hoian = await prisma.destination.create({
+  const phutu = await prisma.destination.create({
     data: {
-      title: 'Hoi An',
-      description: 'A city on Vietnam\'s central coast known for its well-preserved Ancient Town, cut through with canals.',
-      latitude: 15.8801,
-      longitude: 108.3380,
-      coverImage: '/images/destinations/hoian.jpg',
-      modelUrl: '/models/scenes/hoian_scene.glb',
+      id: 'hon-phu-tu',
+      title: 'Hòn Phụ Tử',
+      description: 'Hai hòn đảo đá vôi sừng sững giữa biển Hà Tiên, hình dáng giống người cha bế con.',
+      latitude: 10.3833,
+      longitude: 104.5500,
+      coverImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop',
+    }
+  });
+
+  const phuquoc = await prisma.destination.create({
+    data: {
+      id: 'phu-quoc',
+      title: 'Phú Quốc',
+      description: 'Đảo ngọc với biển Sao trong vắt, cáp treo Hòn Thơm dài nhất thế giới và làng chài Hàm Ninh.',
+      latitude: 10.2231,
+      longitude: 103.9572,
+      coverImage: 'https://images.unsplash.com/photo-1537956965359-7573183d1f57?w=600&auto=format&fit=crop',
       landmarks: {
         create: [
           {
-            title: 'Ancient Town',
-            description: 'An exceptionally well-preserved example of a Southeast Asian trading port from the 15th to the 19th century.',
-            latitude: 15.8801,
-            longitude: 108.3268,
-            modelUrl: '/models/landmarks/ancient_town.glb',
+            id: 'bien-sao',
+            title: 'Biển Sao',
+            description: 'Bãi biển đẹp nhất Phú Quốc với cát trắng mịn.',
+            latitude: 10.2156,
+            longitude: 103.9756,
+          },
+          {
+            id: 'cap-treo-hon-thom',
+            title: 'Cáp treo Hòn Thơm',
+            description: 'Dây cáp treo dài nhất thế giới (8km).',
+            latitude: 10.1895,
+            longitude: 103.9234,
           }
         ]
       }
+    }
+  });
+
+  const hatien = await prisma.destination.create({
+    data: {
+      id: 'ha-tien',
+      title: 'Hà Tiên',
+      description: 'Vùng đất biên giới với Thập cảnh Hà Tiên, biển Mũi Nai và di tích lịch sử Mạc Cửu.',
+      latitude: 10.3833,
+      longitude: 104.4833,
+      coverImage: 'https://images.unsplash.com/photo-1501436513145-30f24e197862?w=600&auto=format&fit=crop',
+      landmarks: {
+        create: [
+          {
+            id: 'mui-nai',
+            title: 'Biển Mũi Nai',
+            description: 'Bãi biển hoang sơ với tượng cá voi khổng lồ.',
+            latitude: 10.3723,
+            longitude: 104.4612,
+          }
+        ]
+      }
+    }
+  });
+
+  const rachgia = await prisma.destination.create({
+    data: {
+      id: 'rach-gia',
+      title: 'Rạch Giá',
+      description: 'Trung tâm hành chính tỉnh An Giang với cảng biển sầm uất và khu du lịch Hòn Đất.',
+      latitude: 10.0125,
+      longitude: 105.0800,
+      coverImage: 'https://images.unsplash.com/photo-1516690561799-49d528a6e179?w=600&auto=format&fit=crop',
+    }
+  });
+
+  const chaudoc = await prisma.destination.create({
+    data: {
+      id: 'chau-doc',
+      title: 'Châu Đốc',
+      description: 'Thành phố biên giới với cửa khẩu Vĩnh Xương, làng Chăm văn hóa và rừng tràm Trà Sư.',
+      latitude: 10.7000,
+      longitude: 105.1167,
+      coverImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop',
+    }
+  });
+
+  const uminhthuong = await prisma.destination.create({
+    data: {
+      id: 'u-minh-thuong',
+      title: 'Khu bảo tồn U Minh Thượng',
+      description: 'Vườn quốc gia với hệ sinh thái rừng ngập mặn độc đáo, chim muông phong phú.',
+      latitude: 9.9500,
+      longitude: 105.0000,
+      coverImage: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop',
     }
   });
 
@@ -97,7 +177,7 @@ async function main() {
     }
   });
 
-  console.log({ hanoi, hue, hoian, admin });
+  console.log({ sam, cam, phutu, phuquoc, hatien, rachgia, chaudoc, uminhthuong, admin });
   console.log('Database seeded successfully!');
 }
 
