@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../generated/prisma-sqlite/index';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class SqlitePrismaService
 {
   constructor() {
     const adapter = new PrismaBetterSqlite3({
-      url: 'file::memory:?cache=shared',
+      url: 'file:./dev-sqlite.db',
     });
     super({ adapter });
   }
