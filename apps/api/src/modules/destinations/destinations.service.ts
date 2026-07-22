@@ -4,7 +4,9 @@ import { DestinationDTO } from '@project/types';
 
 @Injectable()
 export class DestinationsService {
-  constructor(@Inject('PRISMA_SERVICE') private readonly prisma: PrismaService) {}
+  constructor(
+    @Inject('PRISMA_SERVICE') private readonly prisma: PrismaService,
+  ) {}
 
   async findAll(): Promise<DestinationDTO[]> {
     const destinations = await this.prisma.destination.findMany({

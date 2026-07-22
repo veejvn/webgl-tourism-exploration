@@ -71,7 +71,18 @@ Dự án được xây dựng dưới dạng Monorepo sử dụng **Turborepo** 
   - **Đánh giá tổng quan dự án và đồng bộ hóa tri thức**:
     - Thực hiện kiểm tra toàn bộ mã nguồn của Monorepo, cấu trúc các tệp tin mới tích hợp (Axios, React Query, Zustand, router proxy, form validations).
     - Biên dịch và build toàn bộ Monorepo thành công 100% không gặp bất kỳ lỗi logic hay typescript nào (`pnpm build`).
-    - Cập nhật nhật ký thực thi chi tiết vào Memory Bank (`MEMORY_BANK.md`) để làm cơ sở vững chắc cho các nhiệm vụ tiếp theo.
+  - **Thiết lập và Triển khai Kịch Bản Kiểm Thử E2E toàn diện bằng Playwright MCP**:
+    1. Cài đặt `@playwright/test` và tải các bản build Chromium tương thích với kiểm thử WebGL (`swiftshader`).
+    2. Viết cấu hình `playwright.config.ts` chia tách webServer chạy độc lập `api` (cổng 3001) và `web` (cổng 3000), loại bỏ xung đột treo luồng Turborepo trên môi trường Windows.
+    3. Cấu hình kiểm thử chạy đơn luồng (`workers: 1`) ngăn ngừa triệt để các lỗi SQLite write lock khi ghi dữ liệu kiểm thử đồng thời.
+    4. Sửa lỗi TS5103 trong `apps/api/tsconfig.json` do thuộc tính deprecated `"ignoreDeprecations": "6.0"`.
+    5. Khắc phục lỗi `SQLITE_CANTOPEN` trên Windows bằng việc chuyển kết nối SQLite in-memory sang tệp tin SQLite cục bộ tự vá đường dẫn `apps/api/dev.db` độc lập với working directory (`SqlitePrismaService`).
+    6. Tạo `apps/api/prisma.config.ts` liên kết động tới schema SQLite và khởi chạy thành công nạp đồng bộ cơ sở dữ liệu (`prisma db push`).
+    7. Tối ưu hóa component `map/page.tsx` giúp nạp Markers ngay lập tức không cần đợi Mapbox style load hoàn thành, cải thiện đáng kể UX thực tế và độ ổn định kiểm thử.
+    8. Triển khai kịch bản kiểm thử `auth.spec.ts` (validate form, đăng ký tài khoản ngẫu nhiên, đăng nhập, kiểm tra localStorage, đăng xuất) - **Đạt tỷ lệ thành công 100%**.
+    9. Triển khai kịch bản kiểm thử `route-protection.spec.ts` (bảo vệ các tuyến `/explore`, tự động chuyển hướng người dùng đã login khỏi `/login`/`/register`, kiểm tra rehydrate trạng thái đăng nhập) - **Đạt tỷ lệ thành công 100%**.
+    10. Triển khai kịch bản kiểm thử `map.spec.ts` (kiểm tra map container, markers đếm đủ 8 địa danh, click marker hiển thị card chi tiết, đóng card chi tiết thông qua DOM event dispatch) - **Đạt tỷ lệ thành công 100%**.
+    11. Cập nhật nhật ký thực thi chi tiết vào Memory Bank (`MEMORY_BANK.md`) để làm cơ sở vững chắc cho các nhiệm vụ tiếp theo.
 
 ## 3. Kế hoạch cho phiên làm việc tiếp theo
 - **Bước 1**: Tải mô hình 3D thực tế dạng `.glb`/`.gltf` từ Supabase Storage hoặc thư mục local vào WorldScene trong `apps/web/three/scene/WorldScene.tsx` thay thế cho Capsule mesh hình hộp tạm thời.

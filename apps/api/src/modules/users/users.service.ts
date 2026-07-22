@@ -4,7 +4,9 @@ import { User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
-  constructor(@Inject('PRISMA_SERVICE') private readonly prisma: PrismaService) {}
+  constructor(
+    @Inject('PRISMA_SERVICE') private readonly prisma: PrismaService,
+  ) {}
 
   async findOneByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({

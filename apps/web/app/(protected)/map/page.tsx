@@ -16,14 +16,16 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 export default function MapPage() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const markersRef = useRef<mapboxgl.Marker[]>([]);
   const router = useRouter();
   const [selectedDest, setSelectedDest] = useState<DestinationDTO | null>(null);
   
   const { data: destinations, isLoading, error } = useDestinations();
   const { user, logout } = useAuth();
 
+  // 1. Initialize Mapbox Map once on mount
   useEffect(() => {
-    if (!mapContainerRef.current || !destinations) return;
+    if (!mapContainerRef.current) return;
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
@@ -34,37 +36,48 @@ export default function MapPage() {
 
     mapRef.current = map;
 
-    map.on('load', () => {
-      destinations.forEach((dest) => {
-        const el = document.createElement('div');
-        el.className = 'w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform';
-        el.innerHTML = '📍';
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
 
-        el.addEventListener('click', () => {
-          setSelectedDest(dest);
-          map.flyTo({
-            center: [dest.longitude, dest.latitude],
-            zoom: MAPBOX_DEFAULT_ZOOM - 2,
-            essential: true,
-          });
+  // 2. Render and update Markers when destinations load or change
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !destinations) return;
+
+    // Clear old markers first
+    markersRef.current.forEach((marker) => marker.remove());
+    markersRef.current = [];
+
+    // Add new markers
+    destinations.forEach((dest) => {
+      const el = document.createElement('div');
+      el.className = 'w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform';
+      el.innerHTML = '📍';
+
+      el.addEventListener('click', () => {
+        setSelectedDest(dest);
+        map.flyTo({
+          center: [dest.longitude, dest.latitude],
+          zoom: MAPBOX_DEFAULT_ZOOM - 2,
+          essential: true,
         });
-
-        new mapboxgl.Marker(el)
-          .setLngLat([dest.longitude, dest.latitude])
-          .addTo(map);
       });
+
+      const marker = new mapboxgl.Marker(el)
+        .setLngLat([dest.longitude, dest.latitude])
+        .addTo(map);
+
+      markersRef.current.push(marker);
     });
 
-    return () => map.remove();
+    return () => {
+      markersRef.current.forEach((marker) => marker.remove());
+      markersRef.current = [];
+    };
   }, [destinations]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <p className="text-white text-lg font-semibold animate-pulse">Đang tải dữ liệu bản đồ An Giang...</p>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -77,6 +90,12 @@ export default function MapPage() {
   return (
     <div className="relative w-full h-screen overflow-hidden font-sans bg-gray-900 text-white">
       <div ref={mapContainerRef} className="w-full h-full" />
+
+      {isLoading && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-gray-900/80 backdrop-blur-xs">
+          <p className="text-white text-lg font-semibold animate-pulse">Đang tải dữ liệu bản đồ An Giang...</p>
+        </div>
+      )}
 
       {user ? (
         <div className="absolute top-4 right-4 z-10 p-3 bg-gray-900/90 border border-gray-800 rounded-xl max-w-xs shadow-2xl backdrop-blur-md">
