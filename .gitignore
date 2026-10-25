@@ -158,3 +158,10 @@ $RECYCLE.BIN/
 .codegraph/
 
 .worktrees/
+
+# Test artifacts & local databases
+test-results/
+**/test-results/
+playwright-report/
+**/playwright-report/
+*.db

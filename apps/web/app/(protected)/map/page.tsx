@@ -21,7 +21,7 @@ export default function MapPage() {
   const [selectedDest, setSelectedDest] = useState<DestinationDTO | null>(null);
   
   const { data: destinations, isLoading, error } = useDestinations();
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
 
   // 1. Initialize Mapbox Map once on mount
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function MapPage() {
     // Add new markers
     destinations.forEach((dest) => {
       const el = document.createElement('div');
-      el.className = 'w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform';
+      el.className = 'w-8 h-8 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center cursor-pointer shadow-lg';
       el.innerHTML = '📍';
 
       el.addEventListener('click', () => {
@@ -148,7 +148,13 @@ export default function MapPage() {
           </p>
           <div className="flex gap-2 mt-4">
             <Button
-              onClick={() => router.push(`/explore?id=${selectedDest.id}`)}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  router.push(`/login?redirect=${encodeURIComponent(`/explore?id=${selectedDest.id}`)}`);
+                } else {
+                  router.push(`/explore?id=${selectedDest.id}`);
+                }
+              }}
               className="flex-1 py-2 px-4 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-lg shadow-blue-500/20 active:scale-95 transition-transform"
             >
               🚀 Khám phá 3D
@@ -164,7 +170,7 @@ export default function MapPage() {
                   });
                 }
               }}
-              className="h-8 rounded-xl text-xs"
+              className="h-8 rounded-xl text-xs text-black"
             >
               🔍 Phóng to
             </Button>

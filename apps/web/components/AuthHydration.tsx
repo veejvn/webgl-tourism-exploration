@@ -5,7 +5,6 @@ import { useAuthStore } from '@/store/auth.store';
 import { usePathname, useRouter } from 'next/navigation';
 
 const protectedRoutes = ['/explore', '/profile', '/dashboard'];
-const authPages = ['/login', '/register'];
 
 export function AuthHydration({ children }: { children: React.ReactNode }) {
   const { hydrate, isAuthenticated, isLoading } = useAuthStore();
@@ -16,16 +15,22 @@ export function AuthHydration({ children }: { children: React.ReactNode }) {
     hydrate();
   }, [hydrate]);
 
+  // Simplified auth check - only redirect on explore page if not authenticated
   useEffect(() => {
     if (isLoading) return;
-
-    const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
-    const isAuthPage = authPages.includes(pathname);
-
-    if (isProtectedRoute && !isAuthenticated) {
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
-    } else if (isAuthPage && isAuthenticated) {
+    
+    // Prevent authenticated users from accessing login/register
+    if ((pathname === '/login' || pathname === '/register') && isAuthenticated) {
       router.push('/map');
+      return;
+    }
+    
+    // Check only for /explore routes
+    if (pathname.startsWith('/explore') && !isAuthenticated) {
+      const destinationId = new URLSearchParams(window.location.search).get('id');
+      const redirectPath = destinationId ? `/explore?id=${destinationId}` : '/explore';
+
+      router.push(`/login?redirect=${encodeURIComponent(redirectPath)}`);
     }
   }, [isAuthenticated, isLoading, pathname, router]);
 

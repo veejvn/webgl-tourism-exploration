@@ -5,6 +5,14 @@ import { useAuthStore } from '@/store/auth.store';
 import { LoginRequest, RegisterRequest } from '@/types/api.types';
 import { toast } from 'sonner';
 
+// Only allow relative in-app paths as post-login redirect targets
+function sanitizeRedirect(raw: string | null): string {
+  if (raw && raw.startsWith('/') && !raw.startsWith('//')) {
+    return raw;
+  }
+  return '/map';
+}
+
 export function useAuth() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -14,8 +22,7 @@ export function useAuth() {
     mutationFn: (data: LoginRequest) => authApi.login(data),
     onSuccess: (response) => {
       login(response.user, response.token);
-      const redirect = searchParams.get('redirect') || '/map';
-      router.push(redirect);
+      router.push(sanitizeRedirect(searchParams.get('redirect')));
     },
     onError: (error: any) => {
       const message = error.response?.data?.message || 'Đăng nhập thất bại. Vui lòng thử lại.';
@@ -27,7 +34,7 @@ export function useAuth() {
     mutationFn: (data: RegisterRequest) => authApi.register(data),
     onSuccess: (response) => {
       login(response.user, response.token);
-      router.push('/map');
+      router.push(sanitizeRedirect(searchParams.get('redirect')));
     },
     onError: (error: any) => {
       const message = error.response?.data?.message || 'Đăng ký thất bại. Vui lòng thử lại.';

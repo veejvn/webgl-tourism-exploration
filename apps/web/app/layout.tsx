@@ -32,9 +32,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-          <AuthHydration>
-            {children}
-          </AuthHydration>
+          <AuthHydration>{children}</AuthHydration>
           <Toaster position="top-right" richColors />
         </QueryProvider>
       </body>

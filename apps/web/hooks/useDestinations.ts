@@ -6,6 +6,7 @@ export function useDestinations() {
   const query = useQuery({
     queryKey: ['destinations'],
     queryFn: () => destinationsApi.getAll(),
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   if (query.error) {

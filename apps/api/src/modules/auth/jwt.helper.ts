@@ -1,10 +1,23 @@
 import * as crypto from 'crypto';
 
-const JWT_SECRET =
-  process.env.JWT_SECRET || 'tourism-3d-secret-key-super-secure';
+// Fail fast at startup when the secret is missing instead of silently
+// falling back to a publicly-known key
+function getSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error(
+      'JWT_SECRET is not set. Add it to apps/api/.env before starting the server.',
+    );
+  }
+  return secret;
+}
+
+const JWT_SECRET = getSecret();
+
+const TOKEN_TTL_SECONDS = 86400; // 24h
 
 export class JwtHelper {
-  static sign(payload: any, expiresInSeconds: number = 86400): string {
+  static sign(payload: any, expiresInSeconds: number = TOKEN_TTL_SECONDS): string {
     const header = { alg: 'HS256', typ: 'JWT' };
     const exp = Math.floor(Date.now() / 1000) + expiresInSeconds;
     const fullPayload = { ...payload, exp };
@@ -35,13 +48,21 @@ export class JwtHelper {
         .update(`${encodedHeader}.${encodedPayload}`)
         .digest('base64url');
 
-      if (signature !== expectedSignature) return null;
+      const sigBuf = Buffer.from(signature);
+      const expectedBuf = Buffer.from(expectedSignature);
+      if (sigBuf.length !== expectedBuf.length) return null;
+      if (!crypto.timingSafeEqual(sigBuf, expectedBuf)) return null;
 
       const payload = JSON.parse(
         Buffer.from(encodedPayload, 'base64url').toString('utf8'),
       );
-      if (payload.exp && Date.now() / 1000 > payload.exp) {
-        return null; // Expired
+
+      // Tokens without an expiry claim are rejected
+      if (
+        typeof payload.exp !== 'number' ||
+        Date.now() / 1000 > payload.exp
+      ) {
+        return null;
       }
 
       return payload;

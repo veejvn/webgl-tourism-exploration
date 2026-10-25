@@ -5,7 +5,12 @@ import {
   Inject,
 } from '@nestjs/common';
 import { JwtHelper } from './jwt.helper';
-import * as crypto from 'crypto';
+import {
+  hashPassword,
+  isScryptHash,
+  legacyVerify,
+  verifyPassword,
+} from './password.helper';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
@@ -13,10 +18,6 @@ export class AuthService {
   constructor(
     @Inject('PRISMA_SERVICE') private readonly prisma: PrismaService,
   ) {}
-
-  private hashPassword(password: string): string {
-    return crypto.createHash('sha256').update(password).digest('hex');
-  }
 
   async register(email: string, password: string, name: string) {
     const existing = await this.prisma.user.findUnique({
@@ -26,7 +27,7 @@ export class AuthService {
       throw new ConflictException('Email already in use');
     }
 
-    const hashedPassword = this.hashPassword(password);
+    const hashedPassword = hashPassword(password);
     const user = await this.prisma.user.create({
       data: {
         email,
@@ -59,8 +60,16 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const hashedPassword = this.hashPassword(password);
-    if (user.password !== hashedPassword) {
+    // Legacy unsalted SHA-256 accounts: verify then upgrade to scrypt
+    if (!isScryptHash(user.password)) {
+      if (!legacyVerify(password, user.password)) {
+        throw new UnauthorizedException('Invalid credentials');
+      }
+      await this.prisma.user.update({
+        where: { id: user.id },
+        data: { password: hashPassword(password) },
+      });
+    } else if (!verifyPassword(password, user.password)) {
       throw new UnauthorizedException('Invalid credentials');
     }
 

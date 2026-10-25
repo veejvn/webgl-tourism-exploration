@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ import {
   CardContent,
 } from '@/components/ui/card';
 
-export default function RegisterPage() {
+function RegisterForm() {
   const { register: registerUser, isRegistering } = useAuth();
 
   const {
@@ -104,5 +104,19 @@ export default function RegisterPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-indigo-900">
+          <p className="text-white text-sm font-medium animate-pulse">Đang tải...</p>
+        </div>
+      }
+    >
+      <RegisterForm />
+    </Suspense>
   );
 }
