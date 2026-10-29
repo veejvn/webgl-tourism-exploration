@@ -1,7 +1,7 @@
 # Báo cáo đánh giá bảo mật — Hệ thống Authentication
 
 > Đánh giá ngày 25/10/2026 — phạm vi: module Auth của `apps/api`, luồng token/phiên trên `apps/web`.
-> Trạng thái: các mục **[ĐÃ SỬA]** được xử lý trong đợt này; **[KHUYẾN NGHỊ]** chưa làm, kèm trade-off.
+> Trạng thái: đây là báo cáo theo thời điểm 2026-10-25. Mã nguồn auth có một số bằng chứng tương ứng với các mục **[ĐÃ SỬA]**; các khuyến nghị chưa được tái đánh giá trong lần đồng bộ tài liệu 2026-10-29. Không xem đây là chứng nhận bảo mật hoặc kết quả kiểm thử mới.
 
 ## Tóm tắt điều hành
 

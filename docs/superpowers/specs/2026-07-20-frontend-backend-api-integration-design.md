@@ -3,7 +3,9 @@
 **Created:** 2026-07-20
 **Author:** OpenCode Agent
 **Status:** Draft
-**Related:** MEMORY_BANK.md, AGENTS.md
+
+> **Lưu ý trạng thái (2026-10-29):** Đây là bản nháp lịch sử về tích hợp frontend/backend tại thời điểm 2026-07-20, không phải mô tả hiện trạng. Tài liệu từng giả định SQLite in-memory và proxy bảo vệ /profile, /dashboard; mã hiện lưu SQLite vào file apps/api/dev.db, không có proxy file, và frontend chỉ redirect khách khỏi /explore. Dùng ../../PRODUCT_SCOPE_AND_DOMAIN.md, ../../SYSTEM_ARCHITECTURE.md và ../../API_REFERENCE.md để xem trạng thái hiện tại.
+
 
 ---
 

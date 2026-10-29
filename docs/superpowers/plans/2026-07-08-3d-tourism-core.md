@@ -8,6 +8,8 @@
 
 **Tech Stack:** Next.js 15, NestJS 11, Prisma ORM, PostgreSQL (PostGIS), Redis, Mapbox GL JS, Three.js, React Three Fiber (R3F), Zustand, Tailwind CSS v4, Docker.
 
+> **Lưu ý trạng thái (2026-10-29):** Đây là kế hoạch khởi tạo lịch sử ngày 2026-07-08. PostGIS/Redis trong nội dung này là mục tiêu cấu hình; schema hiện tại lưu tọa độ Float và API chưa dùng Redis. Dùng ../../PRODUCT_SCOPE_AND_DOMAIN.md và ../../TECHNOLOGY_ARCHITECTURE.md làm nguồn hiện trạng/mục tiêu mới.
+
 ---
 
 ### Task 1: Thiết lập Cơ sở dữ liệu & Docker (PostGIS, Redis & Prisma Schema)

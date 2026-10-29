@@ -1,568 +1,108 @@
-# System Architecture (C4 Model)
+# Kiến trúc hệ thống — hiện tại và mục tiêu
 
-## 3D Tourism Explorer Platform
+> Cập nhật: 2026-10-29
+> Trạng thái: mô tả code hiện hành dựa trên source/config; kiến trúc nghiệp vụ mục tiêu được tách riêng. Không khẳng định runtime đã được kiểm thử trong lần cập nhật tài liệu này.
 
-**Phiên bản:** 1.0
-**Kiến trúc:** C4 Model
-**Mục tiêu:** Xây dựng nền tảng quảng bá du lịch thông qua trải nghiệm khám phá không gian 3D trên trình duyệt.
+## 1. Current Architecture
 
----
+Repository là monorepo pnpm/Turborepo gồm Next.js web, NestJS API và hai shared packages. API dùng Fastify adapter. Không có bằng chứng về microservices; các module API hiện tại là `auth`, `users` và `destinations`.
 
-# 1. Mục tiêu hệ thống
-
-Hệ thống cho phép người dùng:
-
-* Khám phá các địa điểm du lịch trên bản đồ.
-* Điều khiển nhân vật trong môi trường 3D.
-* Tương tác với các công trình, hiện vật và NPC.
-* Đọc hoặc nghe thông tin lịch sử, văn hóa.
-* Trao đổi với AI Guide.
-* Quản trị toàn bộ dữ liệu thông qua CMS.
-
----
-
-# Level 1 — System Context
-
-## Các tác nhân
-
-### Visitor
-
-Người truy cập chưa đăng nhập.
-
-Có thể:
-
-* Xem trang chủ
-* Xem bản đồ
-* Khám phá địa điểm
-* Xem thông tin du lịch
-
----
-
-### Registered User
-
-Có thêm quyền:
-
-* Đăng nhập
-* Lưu địa điểm yêu thích
-* Theo dõi tiến trình khám phá
-* Đặt câu hỏi cho AI
-* Tham gia nhiệm vụ
-
----
-
-### Administrator
-
-Quản lý:
-
-* Địa điểm
-* Nội dung văn hóa
-* Hình ảnh
-* Video
-* Audio
-* Model 3D
-* NPC
-* Quest
-* Người dùng
-
----
-
-### Gemini API
-
-Cung cấp:
-
-* AI Tour Guide
-* Hỏi đáp
-* Gợi ý hành trình
-* Sinh nội dung hỗ trợ
-
----
-
-### Supabase Storage
-
-Lưu:
-
-* Images
-* Videos
-* Audio
-* GLB Models
-
----
-
-## Context Diagram
-
-```text
-                    Visitor
-                       │
-                       │
-                       ▼
-             3D Tourism Platform
-                       ▲
-                       │
-            Registered User
-                       │
-                       ▼
-                 Administrator
-
-External Systems
-
-Gemini API
-Supabase Storage
-Mapbox API
-OAuth Providers
+```mermaid
+flowchart LR
+  Visitor[Browser / visitor] --> Web[Next.js 16 web]
+  Web --> Map[Mapbox page]
+  Map --> Query[TanStack Query]
+  Query --> Client[Axios API client]
+  Client --> API[NestJS 11 / Fastify]
+  API --> Auth[Auth module]
+  API --> Dest[Destinations controller/service]
+  Auth --> DB
+  Dest --> DB[Prisma provider]
+  DB --> PG[(PostgreSQL)]
+  DB -. USE_SQLITE=true .-> SQLite[(SQLite file)]
+  Web --> Explore[Explore page]
+  Explore --> Scene[React Three Fiber scene]
+  Scene --> Player[WASD player]
+  Player --> Store[Zustand player state]
 ```
 
----
+### Frontend
 
-# Level 2 — Container Diagram
+- Route hiện có: `/`, `/login`, `/register`, `/map`, `/explore`.
+- `/map` lấy dữ liệu qua `useDestinations` → `destinationsApi` → Axios → `GET /destinations`; destination có thể mở panel và điều hướng sang `/explore?id=...`.
+- `NEXT_PUBLIC_API_URL` cấu hình API base URL; Mapbox token đọc từ `NEXT_PUBLIC_MAPBOX_TOKEN`.
+- `/explore` tải `WorldScene` động với SSR tắt. Scene dùng bầu trời, grid, sàn, hình khối mẫu, player capsule và OrbitControls.
+- PlayerController cập nhật tọa độ vào Zustand; chưa có persistence hoặc đồng bộ API tiến trình.
+- Query destination `id` hiện dùng cho tiêu đề; `WorldScene` không nhận destination data và không tải scene theo id.
+- Trang `/` hiện là placeholder “Hello World”.
 
-## Frontend
+### Authentication và quyền truy cập
 
-### Next.js Web Application
+- `POST /auth/register` và `POST /auth/login` trả thông tin user đã rút gọn cùng JWT.
+- Frontend lưu token trong localStorage và Axios gửi `Authorization: Bearer`.
+- JWT được ký HS256 bằng Node `crypto`, TTL mặc định 24 giờ; `JWT_SECRET` bắt buộc có khi khởi động API.
+- AuthHydration hiện chỉ chuyển khách chưa đăng nhập khỏi `/explore`; map vẫn truy cập công khai. Có `AuthGuard` ở API nhưng chưa được áp dụng lên endpoint hiện tại.
+- Target nghiệp vụ cho phép anonymous exploration và lưu tiến trình cục bộ; hiện `/explore` yêu cầu đăng nhập và chưa có progress storage. Đây là gap cần xử lý khi triển khai.
 
-Chức năng:
+### API và dữ liệu
 
-* Landing Page
-* Authentication
-* Map
-* Explore
-* 3D Scene
-* AI Guide
-* CMS
+- `AppModule` đăng ký Prisma, Auth, Users và Destinations.
+- Controller hiện có: auth register/login; destination list/detail.
+- `UsersModule` hiện chỉ có service, chưa có users controller.
+- Prisma provider mặc định PostgreSQL; khi `USE_SQLITE=true` chọn SQLite service lưu trong `apps/api/dev.db` và seed dữ liệu mẫu khi danh sách destination còn trống.
+- Compose khai báo PostGIS và Redis. Schema có User, Destination, Landmark; tọa độ là Float. Không thấy PostGIS geometry/query hoặc Redis client tích hợp.
+- Chi tiết schema hiện tại và ERD khái niệm mục tiêu: [Product Scope & Domain](./PRODUCT_SCOPE_AND_DOMAIN.md).
 
-Công nghệ:
+## 2. Runtime Flow có trong code
 
-* Next.js
-* Tailwind
-* Zustand
-* TanStack Query
-
----
-
-## Three.js Engine
-
-Chức năng
-
-* Render Scene
-* Character
-* Animation
-* Physics
-* Interaction
-* Camera
-
-Công nghệ
-
-* Three.js
-* React Three Fiber
-* Drei
-* Rapier
-
----
-
-## NestJS API
-
-Các module
-
-* Auth
-* User
-* Destination
-* Landmark
-* Story
-* Media
-* NPC
-* Quest
-* AI
-* Analytics
-
----
-
-## PostgreSQL
-
-Lưu
-
-* Users
-* Destinations
-* Stories
-* NPC
-* Quest
-* Interaction
-
----
-
-## PostGIS
-
-Quản lý dữ liệu không gian
-
-* Latitude
-* Longitude
-* Nearby Search
-* Route
-
----
-
-## Redis
-
-Cache
-
-* Destination
-* Session
-* Ranking
-* Statistics
-
----
-
-## Supabase Storage
-
-Lưu
-
-* Image
-* Video
-* Audio
-* Model
-
----
-
-## Container Diagram
+### Map → API
 
 ```text
-+------------------------------------------------------+
-|                  Next.js Application                  |
-|------------------------------------------------------|
-| Landing | Map | Explore | 3D | AI | CMS | Auth       |
-+-----------------------------+------------------------+
-                              |
-                              |
-                              ▼
-                     NestJS REST API
-                              |
-      +-----------+-----------+-----------+
-      |           |           |           |
-      ▼           ▼           ▼           ▼
- PostgreSQL     Redis     Supabase    Gemini API
-      │                     Storage
-      ▼
-   PostGIS
+MapPage
+  → useDestinations()
+  → destinationsApi.getAll()
+  → Axios GET /destinations
+  → DestinationsController.findAll()
+  → DestinationsService.findAll()
+  → Prisma destination.findMany(include: landmarks)
 ```
 
----
-
-# Level 3 — Component Diagram
-
-## Frontend
-
-### Landing Module
-
-* Hero
-* Featured Destinations
-* Categories
-* Search
-
----
-
-### Map Module
-
-* Mapbox
-* Marker
-* Route
-* Search
-* Filter
-
----
-
-### Explore Module
-
-* Scene Loader
-* Character Loader
-* Camera
-* Lighting
-
----
-
-### Character Module
-
-* Movement
-* Animation
-* Collision
-* Interaction
-
----
-
-### NPC Module
-
-* Conversation
-* Trigger
-* Quest
-* Audio
-
----
-
-### Story Module
-
-* Popup
-* Timeline
-* Gallery
-* Audio Guide
-
----
-
-### AI Guide Module
-
-* Chat
-* Voice
-* Suggested Questions
-
----
-
-### CMS Module
-
-* Dashboard
-* CRUD Destination
-* CRUD Landmark
-* CRUD NPC
-* Upload Model
-* Upload Media
-
----
-
-## Backend
-
-### Auth Module
-
-* JWT
-* OAuth
-* Refresh Token
-
----
-
-### User Module
-
-* Profile
-* Favorite
-* Progress
-
----
-
-### Destination Module
-
-* CRUD
-* Category
-* Search
-* Nearby
-
----
-
-### Landmark Module
-
-* Historical Information
-* Story
-* Gallery
-
----
-
-### Media Module
-
-* Upload
-* Image
-* Audio
-* Video
-* GLB
-
----
-
-### NPC Module
-
-* NPC
-* Dialogue
-* Position
-
----
-
-### Quest Module
-
-* Mission
-* Reward
-* Progress
-
----
-
-### AI Module
-
-* Gemini
-* Prompt Builder
-* Chat History
-
----
-
-### Analytics Module
-
-* Views
-* Popular Destination
-* Active Users
-
----
-
-# Level 4 — Code Organization
-
-## Frontend
+### Auth
 
 ```text
-apps/web
-│
-├── app
-│
-├── components
-│   ├── ui
-│   ├── layout
-│   ├── map
-│   ├── destination
-│   ├── character
-│   ├── npc
-│   ├── quest
-│   ├── ai
-│   └── cms
-│
-├── three
-│   ├── scene
-│   ├── camera
-│   ├── lighting
-│   ├── controls
-│   ├── physics
-│   ├── character
-│   ├── npc
-│   ├── environment
-│   └── interaction
-│
-├── services
-├── hooks
-├── store
-├── types
-└── utils
+Login/Register form
+  → useAuth mutation
+  → authApi
+  → POST /auth/login | POST /auth/register
+  → AuthService + Prisma User
+  → { user: { id, email, name, role }, token }
+  → Zustand/localStorage
 ```
 
----
-
-## Backend
+### 3D demo
 
 ```text
-apps/api
-│
-├── auth
-├── users
-├── destinations
-├── landmarks
-├── media
-├── npc
-├── quests
-├── ai
-├── analytics
-├── common
-└── prisma
+/explore?id={destinationId}
+  → dynamic import WorldScene (ssr: false)
+  → PlayerController reads keyboard events
+  → useFrame moves capsule mesh
+  → Zustand stores [x, y, z]
 ```
 
----
+Các flow trên là đường đi trong source; tài liệu này không xác nhận chúng vừa được chạy end-to-end.
 
-# Luồng xử lý chính
+## 3. Target Architecture — nghiệp vụ đã chốt, code chưa có
 
-## Khám phá địa điểm
+Target là nền tảng Cù Lao Giêng với anonymous browse/progress, nội dung biên tập Việt/Anh có nguồn, scene versioned, itinerary và moderated community submissions. Bounded Context mục tiêu là:
 
-```text
-Visitor
+- Destination & Heritage
+- Editorial & Knowledge
+- 3D Exploration
+- Itinerary & Discovery
+- Visitor Progress
+- Community Submissions
+- Editorial Administration
 
-↓
+Các context là ranh giới nghiệp vụ mục tiêu; chúng chưa tương ứng một-một với NestJS modules hiện có. Modular monolith là hướng tổ chức để xem xét, không phải kiến trúc đã triển khai. AI Guide và nhiệm vụ/huy hiệu thuộc giai đoạn sau; NPC nâng cao không bắt buộc nếu chưa có quyết định mới.
 
-Landing Page
-
-↓
-
-Map
-
-↓
-
-Chọn địa điểm
-
-↓
-
-Load Scene 3D
-
-↓
-
-Điều khiển nhân vật
-
-↓
-
-Tương tác Landmark
-
-↓
-
-Hiển thị thông tin
-
-↓
-
-Lưu tiến trình
-```
-
----
-
-## AI Tour Guide
-
-```text
-User
-
-↓
-
-Chat
-
-↓
-
-NestJS API
-
-↓
-
-Gemini API
-
-↓
-
-Response
-
-↓
-
-Hiển thị trong Chat Panel
-```
-
----
-
-## Upload nội dung
-
-```text
-Administrator
-
-↓
-
-CMS
-
-↓
-
-NestJS
-
-↓
-
-Supabase Storage
-
-↓
-
-PostgreSQL
-
-↓
-
-Hoàn tất
-```
-
----
-
-# Nguyên tắc kiến trúc
-
-* Frontend và Backend tách biệt hoàn toàn.
-* Mọi dữ liệu được truy cập thông qua REST API.
-* Mô hình 3D tải theo nhu cầu (lazy loading) để giảm thời gian tải.
-* Nội dung (ảnh, video, âm thanh, mô hình 3D) được lưu ngoài hệ thống ứng dụng.
-* Các module được thiết kế độc lập, dễ mở rộng và bảo trì.
-* Hệ thống ưu tiên hiệu năng phía trình duyệt để đảm bảo trải nghiệm WebGL mượt mà.
+Xem [Product Scope & Domain](./PRODUCT_SCOPE_AND_DOMAIN.md) về quy tắc nghiệp vụ, vòng đời, ERD mục tiêu và roadmap.

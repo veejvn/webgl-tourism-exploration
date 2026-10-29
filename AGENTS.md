@@ -1,66 +1,56 @@
-# 🤖 Hướng dẫn dành cho OpenCode Agent (OpenCode Agent Guide)
+# Hướng dẫn dành cho agent — Cù Lao Giêng 3D Explorer
 
-Nội dung dưới đây đúc kết các điểm mấu chốt, cấu trúc đặc thù, và các lỗi dễ gặp nhất (Gotchas) của dự án này nhằm giúp các AI Session sau không mắc sai lầm và tăng tốc công việc ngay lập tức.
+Cập nhật 2026-10-29. Mã nguồn/cấu hình là căn cứ cho hiện trạng; Product Scope xác nhận hướng nghiệp vụ mục tiêu. Chỉ mô tả tính năng là hiện hành khi tìm được bằng chứng trong code.
 
----
+## 1. Khảo sát code
 
-## 🚀 0. Nguyên Tắc Điều Tra Code Siêu Tốc (Code Investigation Priority)
-*   **Sử Dụng CodeGraph MCP Đầu Tiên**: Dự án đã được thiết lập chỉ mục tri thức hoàn chỉnh. Khi cần tìm hiểu logic, cấu trúc code, hoặc tìm file/symbol, **BẮT BUỘC ưu tiên sử dụng công cụ `codegraph_explore`** thay vì thực hiện các vòng lặp `glob`, `grep`, `read` thủ công một cách tốn token và thời gian.
-*   Một lượt gọi `codegraph_explore` có khả năng phân tích AST, hiển thị mã nguồn trực tiếp cùng sơ đồ liên kết động đầy đủ (được xem như đã `Read` tệp tin đó, không cần dùng tool `Read` lại).
+- Ưu tiên công cụ CodeGraph codegraph_explore để tìm symbol, luồng gọi và source trước khi dùng grep/read thủ công.
+- Nếu CodeGraph không có index hoặc chưa bao phủ loại file cần xem, dùng công cụ file phù hợp.
+- Đọc hướng dẫn tại apps/web/AGENTS.md trước khi sửa code Next.js 16; làm theo hướng dẫn phiên bản trong node_modules/next/dist/docs/ khi cần.
+- Tài liệu nghiệp vụ: docs/PRODUCT_SCOPE_AND_DOMAIN.md. Hiện trạng API: docs/API_REFERENCE.md. Kiến trúc hiện tại: docs/SYSTEM_ARCHITECTURE.md.
 
----
+## 2. Workspace và lệnh
 
-## 🛠️ 1. Lệnh Phát Triển & Kiểm Thử Quan Trọng (Developer Commands)
+Repository dùng pnpm 9/Turborepo 2; workspace hiện có apps/web, apps/api, packages/types, packages/constants.
 
-Dự án là một Monorepo quản lý bởi **pnpm workspaces** và **Turborepo**. Tuyệt đối không giả định các lệnh chạy tiêu chuẩn của npm/yarn.
+- Chạy cả web và API: **pnpm dev**.
+- Chạy riêng web/API: **pnpm --filter web dev**, **pnpm --filter api dev**.
+- Web dùng cổng Next.js mặc định 3000 (script next dev không ghim cổng).
+- API nghe PORT, mặc định 3001; CORS hiện chỉ cho http://localhost:3000.
+- Build: **pnpm build**.
+- Lint: **pnpm lint**. Lưu ý script lint của API có --fix và có thể sửa file.
+- API unit test: **pnpm --filter api test**.
+- API E2E: **pnpm --filter api test:e2e**.
+- Web E2E: **pnpm --filter web test:e2e**. Root pnpm test không gọi script test:e2e này.
 
-### 🚀 Khởi động (Development)
-*   **Chạy toàn bộ Monorepo** (từ thư mục gốc): `pnpm dev`
-    *   **Frontend (FE)**: cổng `3000` (được cấu hình cứng `next dev -p 3000` trong `apps/web/package.json`).
-    *   **Backend (BE)**: cổng `3001` (định nghĩa qua `PORT=3001` trong `apps/api/.env`).
-*   **Chạy riêng lẻ từng app**:
-    *   Chỉ Frontend: `pnpm --filter web dev`
-    *   Chỉ Backend: `pnpm --filter api dev`
+## 3. Biến môi trường và database
 
-### 🗄️ Database & Prisma (Trọng Tâm Dễ Lỗi)
-*   **Khởi động Postgres & Redis (Docker)**: `docker compose -f docker/docker-compose.yml up -d`
-*   **Đồng bộ DB Schema**: `npx prisma db push` (chạy bên trong `apps/api`).
-*   **Nạp dữ liệu mẫu (Seeding)**: Do Prisma v7 trong Monorepo này không dùng cấu hình `seed` trong `package.json` mà quản lý tập trung, quy trình seed chuẩn như sau:
-    1. Chuyển vào thư mục backend: `cd apps/api`
-    2. Chạy lệnh seed trực tiếp qua ts-node với module CommonJS để tránh xung đột ES Modules:
-       ```powershell
-       npx ts-node -O '{\"module\":\"commonjs\"}' prisma/seed.ts
-       ```
-    3. *(Lưu ý: Nếu gặp lỗi Symlink của `@prisma/client` trong môi trường Windows pnpm, chạy lệnh trên để nạp CommonJS trực tiếp)*.
+Web đọc NEXT_PUBLIC_API_URL và NEXT_PUBLIC_MAPBOX_TOKEN. apps/web/.env.example hiện chỉ có tên biến Mapbox; cấu hình URL API trong .env.local.
 
-### 🧪 Biên dịch & Kiểm thử (Build & Verification)
-*   **Biên dịch toàn bộ Monorepo** (luôn chạy trước khi commit thay đổi): `pnpm build`
-*   **Chạy Linter**: `pnpm lint`
-*   **Chạy Jest Unit Tests (Backend)**: `pnpm --filter api test`
-*   **Chạy NestJS E2E Tests**: Do cấu hình Jest E2E cần nạp Prisma Client, hãy tạo liên kết Junction của thư mục `.prisma` trong Windows nếu gặp lỗi khởi tạo Prisma Client:
-    ```powershell
-    node -e "const fs = require('fs'); const path = require('path'); const target = path.resolve('node_modules/.pnpm/@prisma+client@7.8.0_prisma@7.8.0_@types+react-dom@19.2.3_@types+react@19.2.17__@types+react@_o5aw2iyjagqoc3ivcm7v2hblvq/node_modules/.prisma'); const link = path.resolve('apps/api/node_modules/.prisma'); if(!fs.existsSync(link)) fs.symlinkSync(target, link, 'junction');"
-    pnpm --filter api test:e2e
-    ```
+API cần JWT_SECRET; PostgreSQL mode đọc DATABASE_URL. PORT và USE_SQLITE là tùy chọn. Không ghi giá trị secret, password hay token vào tài liệu hoặc commit.
 
----
+PostgreSQL là mặc định. Lệnh docker compose -f docker/docker-compose.yml up -d tạo PostgreSQL với image PostGIS và Redis; API hiện chưa dùng Redis và Prisma schema chưa dùng geometry/PostGIS query.
 
-## 🏗️ 2. Kiến Trúc Dự Án (System Architecture)
+Prisma config chọn schema.prisma theo mặc định hoặc schema.sqlite.prisma khi USE_SQLITE=true. SQLite lưu tại apps/api/dev.db (file bền vững, không phải in-memory) và service tự seed điểm đến/landmark khi bảng destination rỗng. Đồng bộ schema bằng npx prisma db push từ thư mục apps/api.
 
-*   **`apps/web` (Next.js 15 - App Router)**:
-    *   Cần đặc biệt lưu ý quy tắc Next.js 15 (Agent Rules): có nhiều thay đổi lớn so với Next.js cũ.
-    *   Môi trường 3D (`WorldScene.tsx`) được import động (`dynamic` với `ssr: false`) để tránh lỗi Hydration WebGL.
-    *   Tọa độ nhân vật 3D được đồng bộ thời gian thực qua Zustand store (`apps/web/store/player.store.ts`).
-*   **`apps/api` (NestJS)**:
-    *   Dùng **Fastify** làm Adapter nền tảng thay vì Express truyền thống để tối ưu hiệu năng.
-    *   Module `Auth` xác thực bằng JWT tự sinh chữ ký bảo mật (chuẩn mã hóa HS256 sử dụng module `crypto` thuần của Node.js, không phụ thuộc vào thư viện ngoài).
-*   **`packages/` (Shared Modules)**:
-    *   `@project/types` và `@project/constants` là các local workspace packages được chia sẻ chung. Khi thay đổi thuộc tính, bắt buộc phải chạy `pnpm build` để cập nhật lại file khai báo `dist/index.d.ts`.
+### Seed PostgreSQL
 
----
+apps/api/prisma/seed.ts dùng PrismaPg và xóa toàn bộ User, Destination, Landmark trước khi tạo dữ liệu mẫu. Chỉ chạy với PostgreSQL/database có thể làm mới; không chạy khi có dữ liệu cần giữ và không dùng cho SQLite mode. Seed hiện chứa dataset mẫu An Giang/khu vực lân cận, chưa phải nội dung Cù Lao Giêng đã được xác minh.
 
-## ⚠️ 3. Những Điểm Đặc Thù & Cạm Bẫy (Gotchas & Quirks)
+Nếu phát sinh lỗi Prisma client/Junction trên Windows, xác định đúng client trong pnpm store hiện tại trước khi tạo junction; không dùng đường dẫn chứa phiên bản pnpm store cố định từ tài liệu cũ.
 
-*   **Lỗi Khởi Tạo PrismaClient trên Windows (pnpm v9)**: Do pnpm cài đặt các gói trong thư mục ảo `.pnpm`, đường dẫn tương đối tới `.prisma/client` trong `apps/api/node_modules` có thể bị hỏng trên Windows. Luôn tạo Junction Symlink từ thư mục `.prisma/client` của thư mục `.pnpm` gốc vào `apps/api/node_modules/.prisma` khi thiết lập môi trường mới.
-*   **Lỗi TypeScript của `@react-three/drei` (Sky Component)**: Thuộc tính `turbidity` trong component `<Sky>` nhận giá trị số, tuyệt đối không chỉnh sửa cấu hình gây lỗi ép kiểu TypeScript.
-*   **Môi Trường Biến (Environment Variables)**: File `.env` của NestJS nằm trong `apps/api/.env`, cần khai báo chính xác `DATABASE_URL` dạng PostGIS `postgresql://postgres:postgres@localhost:5432/3d_tourism_db?schema=public` và `PORT=3001`.
+## 4. Hiện trạng sản phẩm
+
+- API hiện có register/login và đọc destination list/detail; API reference không được thêm route chưa tồn tại.
+- AuthGuard chưa gắn vào controller hiện hành. AuthHydration hiện redirect khách khỏi /explore; đừng mô tả đây là bảo vệ server-side.
+- WorldScene là demo hình khối; destination id chưa chọn scene riêng.
+- Homepage hiện là placeholder. AI, CMS, translations/sources, itinerary, progress, community, NPC và quest chưa có luồng sản phẩm hoàn chỉnh.
+- Bounded Context và ERD trong Product Scope là mục tiêu/khái niệm, không phải module hoặc Prisma schema hiện hành.
+- Khi sửa packages/types hoặc packages/constants, build package liên quan để cập nhật dist.
+
+## 5. Các lưu ý kỹ thuật đã xác minh
+
+- JWT_SECRET thiếu sẽ làm API dừng khi load JWT helper.
+- Prisma PostgreSQL và SQLite dùng schema riêng; thay đổi schema phải xét cả hai nếu tính năng cần hỗ trợ cả hai.
+- WorldScene dùng Sky của drei; thuộc tính turbidity có kiểu số.
+- Không chạy seed PostgreSQL chỉ để kiểm tra vì script xóa dữ liệu trước.

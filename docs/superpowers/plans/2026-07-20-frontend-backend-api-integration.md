@@ -8,6 +8,8 @@
 
 **Tech Stack:** NestJS, Prisma, SQLite, Next.js 16, React Query, Zustand, React Hook Form, Zod, Axios
 
+> **Lưu ý trạng thái (2026-10-29):** Đây là implementation plan lịch sử từ 2026-07-20; không dùng checkbox hoặc mô tả trong file này làm checklist hiện hành. Một số giả định (SQLite in-memory, proxy route protection) khác code hiện tại. Xem ../../PRODUCT_SCOPE_AND_DOMAIN.md và ../../SYSTEM_ARCHITECTURE.md.
+
 ---
 
 ## Phase 1: Backend SQLite Setup

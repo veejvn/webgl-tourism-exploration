@@ -1,508 +1,92 @@
-# Monorepo Structure
+# Cấu trúc repository hiện tại
 
-## 3D Tourism Explorer Platform
+> Cập nhật: 2026-10-29
+> Phạm vi: cây thư mục và package có trong repository. Đây không phải cấu trúc kiến trúc mục tiêu.
 
-**Monorepo Tool:** Turborepo
+## Workspace
 
-**Package Manager:** pnpm
-
----
-
-# Mục tiêu
-
-- Quản lý Frontend và Backend trong cùng một repository.
-- Chia sẻ code (types, config, utils) giữa các ứng dụng.
-- Dễ mở rộng thêm mobile app hoặc microservices trong tương lai.
-- Tối ưu build và CI/CD.
-
----
-
-# Cấu trúc tổng thể
+`pnpm-workspace.yaml` khai báo `apps/*` và `packages/*`; Turborepo điều phối build, dev, lint và test.
 
 ```text
-3d-tourism-platform/
-│
+repository/
 ├── apps/
-│   ├── web/                # Next.js Application
-│   ├── api/                # NestJS API
-│   └── docs/               # Tài liệu dự án (tuỳ chọn)
-│
+│   ├── web/
+│   └── api/
 ├── packages/
-│   ├── ui/
 │   ├── types/
-│   ├── constants/
-│   ├── utils/
-│   ├── config/
-│   └── eslint-config/
-│
-├── scripts/
-│
+│   └── constants/
 ├── docker/
-│
-├── .github/
-│
-├── turbo.json
-├── pnpm-workspace.yaml
+├── docs/
 ├── package.json
-└── README.md
+├── pnpm-workspace.yaml
+└── turbo.json
 ```
 
----
-
-# apps/
-
-## web/
-
-Ứng dụng chính dành cho người dùng và CMS.
+## Web — `apps/web`
 
 ```text
-apps/web
-│
+apps/web/
 ├── app/
-│
+│   ├── (auth)/
+│   │   ├── login/page.tsx
+│   │   └── register/page.tsx
+│   ├── (protected)/
+│   │   ├── map/page.tsx
+│   │   └── explore/page.tsx
+│   ├── layout.tsx
+│   └── page.tsx
 ├── components/
-││
-├── features/
-│
-├── three/
-│
+│   ├── AuthHydration.tsx
+│   └── ui/
 ├── hooks/
-│
-├── services/
-│
-├── store/
-│
+│   ├── useAuth.ts
+│   └── useDestinations.ts
 ├── lib/
-│
+│   ├── axios.ts
+│   └── token.ts
 ├── providers/
-│
-├── middleware.ts
-│
-├── public/
-│
-├── styles/
-│
+├── services/api/
+├── store/
+├── three/
+│   ├── character/PlayerController.tsx
+│   └── scene/WorldScene.tsx
 ├── types/
-│
-└── utils/
+├── validations/
+├── e2e/
+└── package.json
 ```
 
----
+Tên route group trong ngoặc không tạo segment URL: các route tương ứng là `/login`, `/register`, `/map`, `/explore`. Tên `(protected)` không tự tạo bảo vệ route; kiểm tra hiện tại nằm trong `AuthHydration` và chỉ chuyển khách chưa đăng nhập khỏi `/explore`.
 
-# app/
-
-```text
-app/
-│
-├── (public)/
-│   ├── page.tsx
-│   ├── about/
-│   ├── destinations/
-│   └── contact/
-│
-├── explore/
-│
-├── map/
-│
-├── ai-guide/
-│
-├── auth/
-│
-├── dashboard/
-│
-├── profile/
-│
-├── api/
-│
-└── layout.tsx
-```
-
----
-
-# components/
-
-Component thuần.
+## API — `apps/api`
 
 ```text
-components/
-│
-├── ui/
-│
-├── common/
-│
-├── layout/
-│
-├── navigation/
-│
-├── map/
-│
-├── destination/
-│
-├── character/
-│
-├── npc/
-│
-├── ai/
-│
-├── gallery/
-│
-└── quest/
-```
-
----
-
-# features/
-
-Mỗi tính năng quản lý độc lập.
-
-```text
-features/
-│
-├── auth/
-│
-├── destination/
-│
-├── map/
-│
-├── explore/
-│
-├── ai-guide/
-│
-├── profile/
-│
-├── dashboard/
-│
-└── quest/
-```
-
----
-
-# three/
-
-Toàn bộ logic WebGL.
-
-```text
-three/
-│
-├── core/
-│
-├── scene/
-│
-├── camera/
-│
-├── controls/
-│
-├── physics/
-│
-├── character/
-│
-├── npc/
-│
-├── interaction/
-│
-├── lighting/
-│
-├── environment/
-│
-├── loaders/
-│
-├── animations/
-│
-├── audio/
-│
-└── shaders/
-```
-
----
-
-# store/
-
-```text
-store/
-│
-├── auth.store.ts
-├── destination.store.ts
-├── player.store.ts
-├── map.store.ts
-├── ai.store.ts
-└── ui.store.ts
-```
-
----
-
-# api/
-
-NestJS Backend
-
-```text
-apps/api
-│
+apps/api/
+├── prisma/
+│   ├── schema.prisma
+│   ├── schema.sqlite.prisma
+│   └── seed.ts
 ├── src/
-│
-├── prisma/
-│
+│   ├── modules/
+│   │   ├── auth/
+│   │   ├── users/
+│   │   └── destinations/
+│   ├── prisma/
+│   ├── app.module.ts
+│   └── main.ts
 ├── test/
-│
-├── uploads/
-│
-└── Dockerfile
+├── prisma.config.ts
+└── package.json
 ```
 
----
+`AuthGuard` có trong module auth nhưng các controller hiện có chưa gắn guard. `UsersModule` có service truy vấn/tạo user, nhưng chưa có users controller. Prisma migration directory hiện không có file migration; schema được quản lý từ hai file Prisma nêu trên.
 
-# src/
+## Shared packages và hạ tầng
 
-```text
-src/
-│
-├── modules/
-│
-├── common/
-│
-├── config/
-│
-├── prisma/
-│
-├── guards/
-│
-├── interceptors/
-│
-├── filters/
-│
-├── decorators/
-│
-├── middleware/
-│
-├── strategies/
-│
-├── interfaces/
-│
-├── types/
-│
-└── main.ts
-```
+- `packages/types/`: `Role`, `UserDTO`, `DestinationDTO`, `LandmarkDTO`.
+- `packages/constants/`: tâm/zoom mặc định Mapbox, prompt AI mẫu và hằng số đường dẫn API.
+- `docker/docker-compose.yml`: service PostgreSQL/PostGIS và Redis. Việc khai báo Redis trong Compose chưa đồng nghĩa API đã dùng Redis.
 
----
+## Không có trong cây hiện tại
 
-# modules/
-
-Mỗi nghiệp vụ là một module độc lập.
-
-```text
-modules/
-│
-├── auth/
-│
-├── user/
-│
-├── destination/
-│
-├── landmark/
-│
-├── media/
-│
-├── npc/
-│
-├── quest/
-│
-├── ai/
-│
-├── analytics/
-│
-└── map/
-```
-
-Ví dụ:
-
-```text
-destination/
-│
-├── controllers/
-├── services/
-├── repositories/
-├── dto/
-├── entities/
-├── interfaces/
-├── validators/
-└── destination.module.ts
-```
-
----
-
-# prisma/
-
-```text
-prisma/
-│
-├── schema.prisma
-│
-├── migrations/
-│
-└── seed.ts
-```
-
----
-
-# packages/
-
-Các package dùng chung.
-
-```text
-packages/
-│
-├── ui/
-│
-├── types/
-│
-├── constants/
-│
-├── utils/
-│
-├── config/
-│
-└── eslint-config/
-```
-
----
-
-## ui/
-
-Các component dùng chung giữa:
-
-- Website
-- Dashboard CMS
-
-Ví dụ:
-
-```text
-Button
-Card
-Modal
-Dialog
-Badge
-DataTable
-Pagination
-```
-
----
-
-## types/
-
-```text
-User
-
-Destination
-
-Landmark
-
-Quest
-
-NPC
-
-Media
-
-Story
-```
-
-Frontend và Backend sử dụng cùng một định nghĩa TypeScript để tránh trùng lặp.
-
----
-
-## constants/
-
-```text
-UserRole
-
-DestinationCategory
-
-QuestType
-
-MediaType
-
-OAuthProvider
-```
-
----
-
-## utils/
-
-```text
-Date Formatter
-
-Distance Calculator
-
-Geo Utils
-
-String Utils
-
-Validation Utils
-```
-
----
-
-## config/
-
-```text
-Axios
-
-Mapbox
-
-Gemini
-
-Environment
-
-Logger
-```
-
----
-
-# docker/
-
-```text
-docker/
-│
-├── nginx/
-│
-├── postgres/
-│
-├── redis/
-│
-└── compose/
-```
-
----
-
-# scripts/
-
-```text
-scripts/
-│
-├── seed.ts
-├── backup.ts
-├── generate-model.ts
-└── import-destination.ts
-```
-
----
-
-# CI/CD
-
-```text
-.github/
-│
-└── workflows/
-    ├── lint.yml
-    ├── test.yml
-    └── deploy.yml
-```
-
----
-
-# Nguyên tắc tổ chức
-
-- **Feature-first:** Mỗi nghiệp vụ (Destination, Quest, AI...) được tổ chức thành một module độc lập.
-- **Shared Packages:** Mọi kiểu dữ liệu, hằng số và tiện ích dùng chung được đặt trong `packages/`.
-- **Tách biệt giao diện và logic:** `components/` chỉ chứa UI, còn `features/` chứa logic của từng chức năng.
-- **3D độc lập:** Toàn bộ mã nguồn liên quan đến Three.js được cô lập trong thư mục `three/`, giúp dễ bảo trì và thay thế.
-- **Backend module hóa:** NestJS tuân theo kiến trúc module chuẩn, mỗi module có controller, service, repository và DTO riêng.
-- **Sẵn sàng mở rộng:** Có thể bổ sung thêm `apps/mobile` (React Native hoặc Expo), `apps/admin` (nếu tách CMS thành ứng dụng riêng) hoặc các microservice mà không cần thay đổi cấu trúc gốc.
+Các đường dẫn từng được mô tả trong tài liệu thiết kế cũ như `apps/docs`, `packages/ui`, `packages/utils`, `apps/web/features`, middleware/proxy, các module `ai`, `npc`, `quest`, `media` và CMS chưa tồn tại trong workspace hiện tại. Có thể bổ sung nếu được triển khai; không xem đây là cấu trúc code hiện hành.

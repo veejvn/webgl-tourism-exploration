@@ -1,6 +1,21 @@
+# Nền tảng Cù Lao Giêng 3D Explorer — Memory Bank
+
+> Snapshot hiện hành cập nhật 2026-10-29. Các mục tổng hợp và nhật ký cũ phía dưới được giữ làm lịch sử; chúng có thể phản ánh giả định/tên sản phẩm trước đây. Dùng README.md và docs/PRODUCT_SCOPE_AND_DOMAIN.md làm nguồn sự thật hiện tại.
+
+## Snapshot hiện hành
+
+- Giai đoạn: Prototype tích hợp nền tảng / MVP cốt lõi.
+- Có bằng chứng trong source về Mapbox → API destinations, register/login và demo Three.js điều khiển player. Lần cập nhật tài liệu này không chạy app/test suite để xác nhận runtime.
+- Web là Next.js 16.2.10; backend là NestJS 11/Fastify, Prisma 7.8; workspace pnpm/Turborepo.
+- Prisma hiện có User, Destination, Landmark; PostgreSQL mặc định, SQLite lưu file theo cờ USE_SQLITE. Redis/PostGIS chưa được API/schema sử dụng.
+- Dataset hiện tại là mẫu An Giang/khu vực lân cận, chưa phải nội dung Cù Lao Giêng chính thức có nguồn.
+- Homepage, CMS, song ngữ/nguồn tư liệu, scene 3D theo destination, itinerary, visitor progress, community moderation và AI chưa hoàn thiện/chưa thấy luồng triển khai.
+- Hướng nghiệp vụ, DDD mục tiêu, lifecycle, ERD khái niệm và roadmap: docs/PRODUCT_SCOPE_AND_DOMAIN.md.
+
+---
 # Nền tảng Du lịch 3D (3D Tourism Platform) - Memory Bank
 
-## 1. Tổng hợp tài liệu dự án
+## Tổng hợp cũ — snapshot lịch sử, không phải trạng thái hiện hành
 Dự án được xây dựng dưới dạng Monorepo sử dụng **Turborepo** và **pnpm**, cho phép quản lý Frontend và Backend trong cùng một repository. Mục tiêu là xây dựng nền tảng quảng bá du lịch 3D bằng WebGL.
 
 ### Kiến trúc thư mục (Monorepo)
@@ -84,7 +99,7 @@ Dự án được xây dựng dưới dạng Monorepo sử dụng **Turborepo** 
     10. Triển khai kịch bản kiểm thử `map.spec.ts` (kiểm tra map container, markers đếm đủ 8 địa danh, click marker hiển thị card chi tiết, đóng card chi tiết thông qua DOM event dispatch) - **Đạt tỷ lệ thành công 100%**.
     11. Cập nhật nhật ký thực thi chi tiết vào Memory Bank (`MEMORY_BANK.md`) để làm cơ sở vững chắc cho các nhiệm vụ tiếp theo.
 
-## 3. Kế hoạch cho phiên làm việc tiếp theo
+## Kế hoạch cũ — giữ để tham khảo lịch sử
 - **Bước 1**: Tải mô hình 3D thực tế dạng `.glb`/`.gltf` từ Supabase Storage hoặc thư mục local vào WorldScene trong `apps/web/three/scene/WorldScene.tsx` thay thế cho Capsule mesh hình hộp tạm thời.
 - **Bước 2**: Triển khai hệ thống NPC hội thoại thông minh (tích hợp Gemini AI để trả lời các câu hỏi về địa danh) và hệ thống nhiệm vụ (Quest) khám phá di tích.
 - **Bước 3**: Thiết kế trang Hồ sơ cá nhân (`/profile`) và Bảng quản lý hành trình (`/dashboard`) hiển thị thông số tham quan, các huy hiệu di sản đã tích lũy.
