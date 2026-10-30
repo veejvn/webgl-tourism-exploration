@@ -1,0 +1,493 @@
+{
+  "datasetName": "Cù Lao Giêng — Destination Research",
+  "generatedAt": "2026-10-30",
+  "purpose": "Bản chụp nghiên cứu để rà soát; không phải danh mục sản phẩm hoặc dữ liệu vận hành.",
+  "administrativeScope": {
+    "currentUnit": "Xã Cù Lao Giêng, tỉnh An Giang",
+    "basis": "Nghị quyết 1654/NQ-UBTVQH15 (metadata ngày 2025-06-16) và báo cáo địa phương nêu xã hiện hành gồm toàn bộ Tấn Mỹ, Mỹ Hiệp, Bình Phước Xuân.",
+    "sources": [
+      "SRC-001",
+      "SRC-002",
+      "SRC-003"
+    ],
+    "officialBoundaryPolygonAvailable": false,
+    "referenceBoundaryPolygonAvailable": true,
+    "referenceBoundarySource": "https://www.tinhthanhpho.com/data/wards-91.geojson",
+    "referenceBoundaryVersion": "2026.10.8",
+    "referenceBoundaryAttribution": "© tinhthanhpho.com, CC BY 4.0",
+    "note": "Đã lưu polygon tham khảo bên thứ ba cho xã Cù Lao Giêng (mã 30643). Đây không phải hồ sơ địa giới chính thức; điểm sát ranh và phạm vi từng địa điểm vẫn cần xác minh."
+  },
+  "summary": {
+    "candidateCount": 10,
+    "inScope": 10,
+    "scopeUnclear": 0,
+    "inReview": 10,
+    "verified": 0,
+    "missingCoordinates": 8,
+    "registeredSources": 12,
+    "notionViewCount": 7
+  },
+  "verificationRules": [
+    "VERIFIED chỉ khi đã xác nhận danh tính, phạm vi, nguồn trực tiếp, tọa độ có nguồn và không còn mâu thuẫn quan trọng.",
+    "Không tự điền tọa độ, giờ mở cửa, quyền tham quan, danh hiệu di tích hoặc tên tiếng Anh chính thức.",
+    "Nguồn tìm kiếm chưa mở được chỉ là manh mối; phải giữ accessStatus và limitations.",
+    "Ưu tiên 3D là đề xuất nghiên cứu, không phải xác nhận giá trị di sản, quyền scan hoặc cam kết sản phẩm."
+  ],
+  "sources": [
+    {
+      "id": "SRC-001",
+      "title": "Nghị quyết 1654/NQ-UBTVQH15 về sắp xếp đơn vị hành chính cấp xã của tỉnh An Giang năm 2025",
+      "url": "https://vanban.chinhphu.vn/?docid=214010&pageid=27160",
+      "publisher": "Ủy ban Thường vụ Quốc hội",
+      "type": "LEGAL_DOCUMENT",
+      "publicationDate": "2025-06-16",
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Căn cứ pháp lý chính thức về sắp xếp đơn vị hành chính cấp xã tại An Giang năm 2025; metadata ghi ngày 16/06/2025.",
+      "limitations": "Đã mở trang metadata chính phủ; PDF ký số được mở nhưng bộ đọc không trích xuất được văn bản. Dùng kèm nguồn chính quyền/báo cáo địa phương để diễn giải thành phần xã Cù Lao Giêng."
+    },
+    {
+      "id": "SRC-002",
+      "title": "Giới thiệu chung — xã Cù Lao Giêng",
+      "url": "https://culaogieng.angiang.gov.vn/gioi-thieu-chung",
+      "publisher": "UBND xã Cù Lao Giêng",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": null,
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Mô tả xã Cù Lao Giêng hiện hành là cù lao trên sông Tiền, các hướng tiếp giáp qua sông và diện tích 68,92 km².",
+      "limitations": "Trang giới thiệu không thay thế bản đồ địa giới/GIS; không đủ để xác định điểm nằm trong xã nếu thiếu địa chỉ hoặc tọa độ."
+    },
+    {
+      "id": "SRC-003",
+      "title": "Phát triển cây ăn trái xã Cù Lao Giêng: Cơ hội và thách thức — tài liệu tham luận",
+      "url": "https://svhtt.angiang.gov.vn/sites/default/files/2025-10/6.2%20Cac%20Tham%20luan.pdf",
+      "publisher": "Đảng ủy xã Cù Lao Giêng; lưu trữ trên cổng Sở Văn hóa và Thể thao An Giang",
+      "type": "GOVERNMENT_REPORT",
+      "publicationDate": null,
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Nêu xã Cù Lao Giêng thành lập theo Nghị quyết 1654 từ toàn bộ diện tích và dân số của Tấn Mỹ, Mỹ Hiệp, Bình Phước Xuân; diện tích 68,92 km²; đề cập Cồn Én 6,7 ha.",
+      "limitations": "PDF tham luận của Đảng ủy xã, không phải phụ lục pháp lý hay GIS. Đường dẫn thư mục có 2025-10 nhưng chưa xác minh ngày phát hành chính xác."
+    },
+    {
+      "id": "SRC-004",
+      "title": "Thăm Cù Lao Giêng",
+      "url": "https://baoangiang.com.vn/tham-cu-lao-gieng-a461748.html",
+      "publisher": "Báo An Giang Online",
+      "type": "PRESS",
+      "publicationDate": null,
+      "accessedAt": "2026-10-29",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Dẫn tên các địa điểm: Nhà thờ Cù Lao Giêng, Tu viện Chúa Quan Phòng, Tu viện Phanxicô, Đình Tấn Mỹ, Phủ thờ Nguyễn Tộc, Dương Công Phủ, Thành Hoa Tự, Chùa Phước Thành, Cồn Én; bài nêu một số mốc lịch sử/xếp hạng.",
+      "limitations": "Bài báo địa phương không thay thế hồ sơ di tích, bản đồ hoặc xác nhận của chủ thể quản lý. Ngày phát hành không hiển thị trong bản trang đã mở; các mốc năm và danh hiệu cần đối chiếu quyết định gốc."
+    },
+    {
+      "id": "SRC-005",
+      "title": "An Giang: Bảo tồn văn hóa dân tộc gắn với phát triển du lịch tín ngưỡng",
+      "url": "https://bvhttdl.gov.vn/Pages/chi-tiet.aspx?url=%2Fan-giang-bao-ton-van-hoa-dan-toc-gan-voi-phat-trien-du-lich-tin-nguong-20251125144913274.htm",
+      "publisher": "Bộ Văn hóa, Thể thao và Du lịch",
+      "type": "GOVERNMENT_MEDIA",
+      "publicationDate": "2025-11-25",
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Đặt Cù Lao Giêng trong bối cảnh tuyến/khu du lịch; nêu cụm nhà thờ Cù Lao Giêng, tu viện Phanxicô và Chúa Quan Phòng; đề cập nghi thức thờ tổ tiên ở Phủ thờ Nguyễn Tộc và họ Dương.",
+      "limitations": "Bài thông tin chính sách/văn hóa, không phải hồ sơ kiểm kê từng điểm; không cung cấp tọa độ hay quyết định công nhận cụ thể."
+    },
+    {
+      "id": "SRC-006",
+      "title": "Cù Lao Giêng khám bệnh, cấp thuốc miễn phí, trao quà Tết trên 100 triệu đồng",
+      "url": "https://culaogieng.angiang.gov.vn/cu-lao-gieng-kham-benh-cap-thuoc-mien-phi-trao-qua-tet-tren-100-trieu-dong",
+      "publisher": "UBND xã Cù Lao Giêng",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": "2026-02-02",
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Ghi nhận sự kiện cộng đồng diễn ra tại Chùa Thành Hoa, xã Cù Lao Giêng.",
+      "limitations": "Chứng minh tên gọi và việc sử dụng cộng đồng tại thời điểm bài viết; không xác nhận giờ tham quan, quyền tiếp cận hay tình trạng xếp hạng."
+    },
+    {
+      "id": "SRC-007",
+      "title": "Sở Văn hóa, Thể thao và Du lịch triển khai khảo sát tình hình phát triển du lịch ba xã Cù Lao",
+      "url": "https://svhtt.angiang.gov.vn/so-van-hoa-thao-va-du-lich-trien-khai-cong-tac-khao-sat-tinh-hinh-phat-trien-du-lich-ba-xa-cu-lao",
+      "publisher": "Sở Văn hóa, Thể thao và Du lịch An Giang",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": "2024-03-27",
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Ghi nhận khảo sát du lịch ở địa bàn ba xã cũ, trong đó có Tấn Mỹ, Tu viện Chúa Quan Phòng và Điểm du lịch Cồn Én.",
+      "limitations": "Nguồn trước sắp xếp hành chính năm 2025; dùng như manh mối lịch sử du lịch, không tự chứng minh ranh giới xã hiện hành."
+    },
+    {
+      "id": "SRC-008",
+      "title": "Điểm du lịch Cồn Én đậm chất hoài niệm ở xã Cù Lao Giêng",
+      "url": "https://apc.angiang.gov.vn/m/169/2694/Diem-du-lich-Con-En-dam-chat-hoai-niem-o-xa-Cu-Lao-Gieng.html",
+      "publisher": "Trung tâm Xúc tiến Đầu tư, Thương mại và Du lịch An Giang",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": "2026-04-15",
+      "accessedAt": "2026-10-29",
+      "reliability": "HIGH",
+      "accessStatus": "SEARCH_RESULT_ONLY",
+      "claims": "Đoạn trích kết quả tìm kiếm ghi Cồn Én ở ấp Tấn Long, xã Cù Lao Giêng; dùng làm manh mối địa bàn.",
+      "limitations": "Trang gốc chỉ trả về vỏ trang do tải nội dung bằng JavaScript. Chưa xác minh địa chỉ từ trang gốc; không dùng riêng nguồn này để xác minh."
+    },
+    {
+      "id": "SRC-009",
+      "title": "Dòng văn nghệ chảy suốt chiều dài lịch sử",
+      "url": "https://vannghe.angiang.gov.vn/dong-van-nghe-chay-suot-chieu-dai-lich-su/",
+      "publisher": "Văn Nghệ An Giang",
+      "type": "GOVERNMENT_MEDIA",
+      "publicationDate": null,
+      "accessedAt": "2026-10-29",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Bài viết văn hóa nêu các địa điểm ở Cù Lao Giêng, gồm chùa Bà Vú/Phước Minh, Thành Hoa/Ông Đạo Nằm, Phước Thành/Chùa Đạo Chim và các phủ thờ.",
+      "limitations": "Nguồn tường thuật văn nghệ, không phải hồ sơ địa giới/di tích; đặc biệt chưa xác định được Chùa Phước Minh nằm trong xã hiện hành."
+    },
+    {
+      "id": "SRC-010",
+      "title": "Thông tin du lịch An Giang — tài liệu PDF",
+      "url": "https://media.angiang.gov.vn/SoVHTTDL-Portal/File-Dinh-Kem/thong_tin_du_lich_an_giang.pdf",
+      "publisher": "Sở Văn hóa, Thể thao và Du lịch An Giang",
+      "type": "GOVERNMENT_REPORT",
+      "publicationDate": null,
+      "accessedAt": "2026-10-29",
+      "reliability": "LOW",
+      "accessStatus": "FETCH_ERROR",
+      "claims": "Chỉ lưu dấu vết truy xuất nguồn tiềm năng; không dùng claim trong nội dung lập danh mục.",
+      "limitations": "Mở trực tiếp trả HTTP 502. Kết quả tìm kiếm cũ không được xem là bằng chứng đã kiểm tra."
+    },
+    {
+      "id": "SRC-011",
+      "title": "Chùa Phước Minh / Chùa Bà Vú — thông tin địa điểm",
+      "url": "https://chonthieng.com/dia-diem/chua-phuoc-minh-chua-ba-vu-cho-moi-an-giang/",
+      "publisher": "Chốn Thiêng",
+      "type": "PRESS",
+      "publicationDate": null,
+      "accessedAt": "2026-10-30",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Nêu địa chỉ cũ tại ấp Bình Phú, xã Bình Phước Xuân, huyện Chợ Mới và liên kết Google Maps plus code FHC6+5XF; tọa độ điểm đại diện 10.4703576, 105.562469.",
+      "limitations": "Nguồn du lịch/văn hóa, không phải cơ quan địa giới hoặc đơn vị quản lý chùa; điểm Maps không phải khảo sát cổng vào hay polygon khuôn viên."
+    },
+    {
+      "id": "SRC-012",
+      "title": "Cồn Én — trang đơn vị vận hành",
+      "url": "https://www.dulichconen.com/",
+      "publisher": "The Lugar Group / Công ty TNHH MTV Dương Khang",
+      "type": "TOURISM_OPERATOR",
+      "publicationDate": null,
+      "accessedAt": "2026-10-30",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Nêu địa chỉ cũ tại ấp Tấn Long, xã Tấn Mỹ, huyện Chợ Mới; Google Maps iframe có điểm POI 10.5386951635357, 105.48952517408442; đơn vị vận hành tự công bố diện tích 6,6 ha.",
+      "limitations": "Nguồn đơn vị vận hành; điểm POI không xác định cổng hay perimeter. Diện tích khác 6,7 ha trong tham luận địa phương; địa chỉ hiện hành lấy từ snippet nguồn APC chưa mở được."
+    }
+  ],
+  "destinations": [
+    {
+      "id": "DEST-001",
+      "slug": "nha-tho-cu-lao-gieng",
+      "name": {
+        "vi": "Nhà thờ Cù Lao Giêng",
+        "en": null
+      },
+      "category": "ARCHITECTURE",
+      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 2,
+      "threeDPriority": "HIGH",
+      "threeDRationale": "Đề xuất ưu tiên khảo sát mặt đứng, khối tích và chi tiết kiến trúc; cần xác nhận chủ thể quản lý, quyền chụp/scan và quy tắc tiếp cận.",
+      "historicalSummary": "Báo An Giang nêu địa điểm và tường thuật mốc xây dựng năm 1875; cần hồ sơ nhà thờ hoặc tư liệu di sản để xác minh mốc.",
+      "culturalSignificance": "Được Bộ Văn hóa, Thể thao và Du lịch nêu trong cụm kiến trúc tôn giáo Cù Lao Giêng; tên và bối cảnh hiện diện được báo địa phương ghi nhận.",
+      "openQuestions": "Xin xác nhận địa chỉ/ấp và tọa độ từ giáo xứ hoặc cơ quan địa phương; kiểm tra hồ sơ xây dựng/di tích và mốc 1875; hỏi quyền tham quan, chụp ảnh, scan 3D.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-005"
+      ]
+    },
+    {
+      "id": "DEST-002",
+      "slug": "tu-vien-chua-quan-phong",
+      "name": {
+        "vi": "Tu viện Chúa Quan Phòng",
+        "en": null
+      },
+      "category": "RELIGIOUS_SITE",
+      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 3,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Có tiềm năng khảo sát hình thái kiến trúc và bối cảnh trong cụm nhà thờ–tu viện; không giả định công trình được mở cho khách.",
+      "historicalSummary": "Báo chí địa phương nêu mốc thành lập trong thập niên 1970; Bộ Văn hóa, Thể thao và Du lịch và khảo sát Sở năm 2024 ghi nhận tên tu viện. Mốc lịch sử cần nguồn cơ sở xác nhận.",
+      "culturalSignificance": "Cơ sở tôn giáo nằm trong cụm kiến trúc được nguồn Bộ nêu; có hoạt động liên quan định hướng du lịch tín ngưỡng.",
+      "openQuestions": "Xác minh tên chính thức, địa chỉ, tọa độ, lịch sử và đơn vị quản lý; xin phép trước khi ghi hình hoặc scan; xác nhận giới hạn khu vực công cộng.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-005",
+        "SRC-007"
+      ]
+    },
+    {
+      "id": "DEST-003",
+      "slug": "tu-vien-phanxico",
+      "name": {
+        "vi": "Tu viện Phanxicô (Tu viện Phanxico)",
+        "en": null
+      },
+      "category": "RELIGIOUS_SITE",
+      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 2,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Có thể khảo sát hình thái tu viện và mối liên hệ không gian với nhà thờ; ưu tiên 3D ở mức đề xuất, tùy quyền tiếp cận.",
+      "historicalSummary": "Báo An Giang nêu mốc 1876; Bộ Văn hóa, Thể thao và Du lịch liệt kê tu viện trong cụm kiến trúc Cù Lao Giêng. Năm thành lập cần xác minh bằng hồ sơ dòng tu hoặc tư liệu lưu trữ.",
+      "culturalSignificance": "Một trong các cơ sở tôn giáo được nguồn cấp Bộ nêu trong bối cảnh bảo tồn văn hóa và du lịch tín ngưỡng.",
+      "openQuestions": "Xác nhận cách viết tên chính thức (Phanxicô/Phanxico), địa chỉ/ấp, tọa độ và mốc 1876; xin phép cơ sở về ảnh, scan và phạm vi tham quan.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-005"
+      ]
+    },
+    {
+      "id": "DEST-004",
+      "slug": "dinh-tan-my",
+      "name": {
+        "vi": "Đình Tấn Mỹ",
+        "en": null
+      },
+      "category": "HISTORICAL_SITE",
+      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "LOW",
+      "sourceCount": 1,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Ưu tiên khảo sát mặt bằng, cấu trúc đình và hoạt động lễ hội sau khi xác nhận hiện trạng, lịch sinh hoạt và quyền ghi hình.",
+      "historicalSummary": "Báo An Giang nêu đình và thông tin xếp hạng cấp tỉnh; chưa thu được quyết định gốc trong lượt rà soát.",
+      "culturalSignificance": "Ứng viên điểm đình làng, có thể gắn với lịch sử địa phương; cần hồ sơ di tích và ý kiến cộng đồng để mô tả chính xác.",
+      "openQuestions": "Lấy quyết định xếp hạng/hồ sơ kiểm kê gốc; xác nhận ấp, tọa độ, ban quản lý, lịch lễ và quy tắc chụp/scan.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004"
+      ]
+    },
+    {
+      "id": "DEST-005",
+      "slug": "phu-tho-nguyen-toc",
+      "name": {
+        "vi": "Phủ thờ Nguyễn Tộc (Dinh Ba Quan Thượng Đẳng)",
+        "en": null
+      },
+      "category": "ANCESTRAL_CULTURE",
+      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 2,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Có tiềm năng ghi nhận kiến trúc nhà thờ họ, không gian thờ tự và tư liệu được cộng đồng cho phép; không số hóa vật thờ khi chưa có chấp thuận.",
+      "historicalSummary": "Báo địa phương nêu tên Phủ thờ Nguyễn Tộc/Dinh Ba Quan Thượng Đẳng và thông tin xếp hạng cấp tỉnh; cần quyết định và hồ sơ gốc để xác minh.",
+      "culturalSignificance": "Bộ Văn hóa, Thể thao và Du lịch ghi nhận nghi thức thờ tổ tiên tại Phủ thờ Nguyễn Tộc; cần trao đổi với dòng họ về cách diễn giải và nội dung được phép công bố.",
+      "openQuestions": "Xác minh tên gọi/biến thể, địa chỉ và tọa độ; tìm quyết định xếp hạng gốc; trao đổi với dòng họ về quyền tiếp cận, chụp/scan và thông tin nhạy cảm.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-005"
+      ]
+    },
+    {
+      "id": "DEST-006",
+      "slug": "duong-cong-phu",
+      "name": {
+        "vi": "Dương Công Phủ (Phủ thờ họ Dương)",
+        "en": null
+      },
+      "category": "ANCESTRAL_CULTURE",
+      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 2,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Đề xuất khảo sát kiến trúc và không gian thờ tự sau khi có đồng thuận; cân nhắc bảo vệ đời tư và nghi thức.",
+      "historicalSummary": "Báo An Giang nêu Dương Công Phủ/Phủ thờ họ Dương và thông tin di tích cấp tỉnh; chưa xác nhận bằng quyết định gốc.",
+      "culturalSignificance": "Nguồn Bộ ghi nhận thực hành thờ tổ tiên ở họ Dương; cần xác nhận cách gọi và nội dung với đại diện dòng họ.",
+      "openQuestions": "Xác minh tên chính thức, địa chỉ/ấp, tọa độ, quyết định xếp hạng và đầu mối dòng họ; xin phép trước mọi ghi hình hoặc scan.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-005"
+      ]
+    },
+    {
+      "id": "DEST-007",
+      "slug": "thanh-hoa-tu",
+      "name": {
+        "vi": "Thành Hoa Tự (Chùa Ông Đạo Nằm)",
+        "en": null
+      },
+      "category": "RELIGIOUS_SITE",
+      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 3,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Có thể ghi nhận kiến trúc chùa và không gian sinh hoạt cộng đồng; cần hỏi cơ sở về nghi thức, khu vực hạn chế và quyền scan.",
+      "historicalSummary": "Báo An Giang nêu tên Thành Hoa Tự/Chùa Ông Đạo Nằm và mốc 1953; báo cáo UBND xã ghi nhận sự kiện cộng đồng tại Chùa Thành Hoa năm 2026.",
+      "culturalSignificance": "Tên gọi và vai trò sinh hoạt cộng đồng có xác nhận từ nguồn chính quyền; nguồn văn hóa địa phương ghi biến thể Chùa Ông Đạo Nằm.",
+      "openQuestions": "Xác minh pháp danh/tên chính thức, địa chỉ/ấp, tọa độ và mốc 1953; xác nhận giờ mở cửa, người quản lý và quy tắc ghi hình.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-006",
+        "SRC-009"
+      ]
+    },
+    {
+      "id": "DEST-008",
+      "slug": "chua-phuoc-thanh",
+      "name": {
+        "vi": "Chùa Phước Thành (Chùa Chim)",
+        "en": null
+      },
+      "category": "RELIGIOUS_SITE",
+      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "coordinates": {
+        "latitude": null,
+        "longitude": null,
+        "source": null
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 2,
+      "threeDPriority": "HIGH",
+      "threeDRationale": "Đề xuất ưu tiên nghiên cứu tổ chức không gian tượng và kiến trúc; cần kiểm kê có nguồn, xin phép, và tránh gây ảnh hưởng nghi lễ/khách hành hương.",
+      "historicalSummary": "Báo địa phương nêu tên Chùa Phước Thành/Chùa Chim và mô tả quần thể tượng; chưa có kiểm kê hiện vật hoặc số liệu quy mô độc lập.",
+      "culturalSignificance": "Ứng viên điểm Phật giáo có quần thể điêu khắc được báo chí và bài viết văn hóa địa phương nhắc tới.",
+      "openQuestions": "Xác nhận tên gọi, địa chỉ/ấp, tọa độ, danh mục và xuất xứ tượng; kiểm tra hồ sơ di tích nếu có; xin phép chùa về chụp/scan 3D.",
+      "lastReviewed": "2026-10-29",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-004",
+        "SRC-009"
+      ]
+    },
+    {
+      "id": "DEST-009",
+      "slug": "chua-phuoc-minh",
+      "name": {
+        "vi": "Chùa Phước Minh (Chùa Bà Vú)",
+        "en": null
+      },
+      "category": "RELIGIOUS_SITE",
+      "addressOrArea": "Ấp Bình Phú, xã Bình Phước Xuân, huyện Chợ Mới (địa chỉ cũ theo Chốn Thiêng); toàn bộ Bình Phước Xuân nhập vào xã Cù Lao Giêng theo Nghị quyết 1654; ấp hiện hành chưa xác minh.",
+      "coordinates": {
+        "latitude": 10.4703576,
+        "longitude": 105.562469,
+        "source": "https://chonthieng.com/dia-diem/chua-phuoc-minh-chua-ba-vu-cho-moi-an-giang/"
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 3,
+      "threeDPriority": "UNDECIDED",
+      "threeDRationale": "Chưa đề xuất dựng 3D trước khi xác định chính xác địa điểm, phạm vi xã và đồng thuận của cơ sở.",
+      "historicalSummary": "Bài Văn Nghệ An Giang nêu biến thể Chùa Bà Vú/Phước Minh; chưa có nguồn chính quyền hiện hành hoặc hồ sơ trực tiếp xác nhận.",
+      "culturalSignificance": "Manh mối về một cơ sở tín ngưỡng địa phương; cần xác minh địa danh, cộng đồng thực hành và mối liên hệ với xã hiện hành trước khi đưa vào phạm vi.",
+      "openQuestions": "Xác minh tên ấp hiện hành, tình trạng cơ sở và người quản lý; khảo sát lại điểm ghim/vị trí cổng và polygon khuôn viên; tìm hồ sơ địa giới chính thức; xin phép trước khi tham quan, ghi hình hoặc scan.",
+      "lastReviewed": "2026-10-30",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-001",
+        "SRC-009",
+        "SRC-011"
+      ]
+    },
+    {
+      "id": "DEST-010",
+      "slug": "diem-du-lich-con-en",
+      "name": {
+        "vi": "Điểm du lịch sinh thái Cồn Én",
+        "en": null
+      },
+      "category": "ECO_TOURISM",
+      "addressOrArea": "Ấp Tấn Long, xã Cù Lao Giêng (theo snippet trang du lịch tỉnh, chưa mở được nội dung); nhà vận hành còn ghi địa chỉ cũ xã Tấn Mỹ.",
+      "coordinates": {
+        "latitude": 10.5386951635357,
+        "longitude": 105.48952517408442,
+        "source": "https://www.dulichconen.com/"
+      },
+      "verificationStatus": "IN_REVIEW",
+      "dataCompleteness": "MEDIUM",
+      "sourceCount": 5,
+      "threeDPriority": "MEDIUM",
+      "threeDRationale": "Có tiềm năng tái hiện cảnh quan và hoạt động du lịch; dữ liệu chỉ ở mức đề xuất, cần xác minh hiện trạng, mùa vụ, ranh giới và quyền ghi hình.",
+      "historicalSummary": "Tài liệu tham luận xã nêu Cồn Én có diện tích 6,7 ha; khảo sát du lịch của Sở năm 2024 và bài báo địa phương ghi nhận điểm du lịch này.",
+      "culturalSignificance": "Ứng viên trải nghiệm sinh thái/cảnh quan; thông tin hoạt động, chủ thể vận hành và tiếp cận lấy từ nguồn du lịch cần kiểm tra trực tiếp.",
+      "openQuestions": "Mở lại nội dung APC; xác minh địa chỉ hiện hành, cổng vào, polygon điểm du lịch và hiện trạng; giải quyết chênh lệch 6,6/6,7 ha; hỏi quyền tham quan và ghi hình/scan.",
+      "lastReviewed": "2026-10-30",
+      "scopeStatus": "IN_SCOPE",
+      "sources": [
+        "SRC-003",
+        "SRC-004",
+        "SRC-007",
+        "SRC-008",
+        "SRC-001",
+        "SRC-012"
+      ]
+    }
+  ],
+  "sourceOfTruth": "Notion Destination Research and Research Sources"
+}

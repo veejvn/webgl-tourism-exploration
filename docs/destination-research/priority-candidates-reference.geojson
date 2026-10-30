@@ -1,0 +1,69 @@
+{
+  "type": "FeatureCollection",
+  "name": "priority-candidates-reference",
+  "attribution": "Candidate point locations compiled from their linked source pages; not field-surveyed.",
+  "retrievedOn": "2026-10-30",
+  "referenceBoundary": {
+    "source": "https://www.tinhthanhpho.com/data/wards-91.geojson",
+    "featureCode": "30643",
+    "datasetVersion": "2026.10.8",
+    "pointInPolygon": "Both candidate points fall inside this third-party reference polygon."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "DEST-009",
+      "properties": {
+        "candidate_id": "DEST-009",
+        "name": "Chùa Phước Minh (Chùa Bà Vú)",
+        "address_legacy": "Ấp Bình Phú, xã Bình Phước Xuân, huyện Chợ Mới, An Giang",
+        "current_scope_note": "Bình Phước Xuân was merged into xã Cù Lao Giêng under Resolution 1654/NQ-UBTVQH15; current hamlet not verified.",
+        "coordinate_source": "https://chonthieng.com/dia-diem/chua-phuoc-minh-chua-ba-vu-cho-moi-an-giang/",
+        "coordinate_method": "Google Maps link using plus code FHC6+5XF; representative POI point, not surveyed entrance or site boundary.",
+        "inside_reference_boundary": true,
+        "verification_status": "IN_REVIEW",
+        "scope_status": "IN_SCOPE",
+        "sources": [
+          "https://vanban.chinhphu.vn/?docid=214010&pageid=27160",
+          "https://chonthieng.com/dia-diem/chua-phuoc-minh-chua-ba-vu-cho-moi-an-giang/"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.562469,
+          10.4703576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "DEST-010",
+      "properties": {
+        "candidate_id": "DEST-010",
+        "name": "Điểm du lịch sinh thái Cồn Én",
+        "address_current_snippet": "Ấp Tấn Long, xã Cù Lao Giêng, tỉnh An Giang (official tourism page search-result snippet; page body not opened)",
+        "address_operator_legacy": "Ấp Tấn Long, xã Tấn Mỹ, huyện Chợ Mới, An Giang",
+        "coordinate_source": "https://www.dulichconen.com/",
+        "coordinate_method": "Google Maps iframe on operator website, Place ID 0x310a6b75d89e3a05:0xb4962228d4d7fdfe; representative POI point, not site perimeter.",
+        "inside_reference_boundary": true,
+        "operator_claim_area_ha": 6.6,
+        "local_government_report_area_ha": 6.7,
+        "verification_status": "IN_REVIEW",
+        "scope_status": "IN_SCOPE",
+        "sources": [
+          "https://vanban.chinhphu.vn/?docid=214010&pageid=27160",
+          "https://www.dulichconen.com/",
+          "https://apc.angiang.gov.vn/m/169/2694/Diem-du-lich-Con-En-dam-chat-hoai-niem-o-xa-Cu-Lao-Gieng.html"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48952517408442,
+          10.5386951635357
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+- generic "Google Maps" [ref=e2]:
+  - generic [ref=e3]:
+    - application "Map · Use arrow keys to pan the map. · Get details about a place by pressing its corresponding number key." [ref=e5]
+    - generic [ref=e11]:
+      - generic [ref=e13]:
+        - radiogroup [ref=e14]:
+          - generic [ref=e15]:
+            - radio [checked] [ref=e17]:
+              - img "Best travel modes" [ref=e18]:
+                - generic [aria-hidden] [ref=e20]: 
+            - radio [ref=e22] [cursor=pointer]:
+              - img "Driving" [ref=e23]:
+                - generic [aria-hidden] [ref=e25]: 
+            - radio [ref=e27] [cursor=pointer]:
+              - img "Transit" [ref=e28]:
+                - generic [aria-hidden] [ref=e30]: 
+            - radio [ref=e32] [cursor=pointer]:
+              - img "Walking" [ref=e33]:
+                - generic [aria-hidden] [ref=e35]: 
+            - radio [ref=e37] [cursor=pointer]:
+              - img "Cycling" [ref=e38]:
+                - generic [aria-hidden] [ref=e40]: 
+            - radio [ref=e42] [cursor=pointer]:
+              - img "Flights" [ref=e43]:
+                - generic [aria-hidden] [ref=e45]: 
+        - button "Close directions" [ref=e46] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e47]: 
+      - generic [ref=e48]:
+        - list [ref=e49]:
+          - listitem [ref=e50]:
+            - generic [ref=e51]:
+              - generic [aria-hidden] [ref=e52]: 
+              - generic [aria-hidden] [ref=e53]: 
+            - generic [ref=e54]:
+              - combobox [expanded] [ref=e56]:
+                - textbox "Choose starting point, or click on the map..." [active] [ref=e57]
+                - grid [ref=e58]:
+                  - row [ref=e59]:
+                    - row [ref=e63] [cursor=pointer]:
+                      - gridcell "Your location Your location" [ref=e64]:
+                        - img "Your location" [ref=e67]: 
+                        - generic "Your location" [ref=e70]
+              - button "Search" [ref=e71]:
+                - generic [aria-hidden] [ref=e72]: 
+          - listitem [ref=e74]:
+            - generic [aria-hidden] [ref=e76]: 
+            - generic [ref=e77]:
+              - combobox [ref=e79]:
+                - textbox "Destination Ấp Bình Trung Xã Bình Phước Xuân Huyện Chợ Mới Tỉnh An Giang, 352 bình phước xuân, Ấp bình trung, Cù Lao Giêng, An Giang, Vietnam" [ref=e80]:
+                  - /placeholder: ""
+                  - text: Ấp Bình Trung Xã Bình Phước Xuân Huyện Chợ Mới Tỉnh An Giang, 352 bình phước xuân, Ấp bình trung, Cù Lao Giêng, An Giang, Vietnam
+              - button "Search" [ref=e81]:
+                - generic [aria-hidden] [ref=e82]: 
+        - button "Reverse starting point and destination" [ref=e85] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e86]: 
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - list [ref=e95]:
+          - listitem [ref=e96]:
+            - button "Menu" [ref=e97] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e99]: 
+          - listitem [ref=e100]:
+            - button "Saved" [ref=e101] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e103]: 
+          - listitem [ref=e106]:
+            - button "Recents" [ref=e107] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e109]: 
+          - listitem [ref=e113]:
+            - button "Ấp Bình Trung Xã Bình Phước Xuân Huyện Chợ Mới Tỉnh An Giang" [ref=e114] [cursor=pointer]
+          - listitem [ref=e122]:
+            - button "Get app" [ref=e123] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e125]: 
+        - main "Directions" [ref=e132]:
+          - heading "Delays" [level=2] [ref=e137]
+          - paragraph [ref=e140]:
+            - generic [ref=e141]: Light traffic in this area
+          - paragraph [ref=e145]:
+            - generic [ref=e146]: No known road disruptions. Traffic incidents will show up here.
+      - generic [ref=e147]:
+        - button "Collapse side panel" [ref=e148] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e149]: 
+        - generic [aria-hidden] [ref=e150]: Collapse side panel
+    - generic [ref=e154]:
+      - button "Google apps" [ref=e158] [cursor=pointer]
+      - link "Sign in" [ref=e162] [cursor=pointer]:
+        - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2Fmaps%2Fdir%2F%2F%25E1%25BA%25A4p%2BB%25C3%25ACnh%2BTrung%2BX%25C3%25A3%2BB%25C3%25ACnh%2BPh%25C6%25B0%25E1%25BB%259Bc%2BXu%25C3%25A2n%2BHuy%25E1%25BB%2587n%2BCh%25E1%25BB%25A3%2BM%25E1%25BB%259Bi%2BT%25E1%25BB%2589nh%2BAn%2BGiang%2C%2B352%2Bb%25C3%25ACnh%2Bph%25C6%25B0%25E1%25BB%259Bc%2Bxu%25C3%25A2n%2C%2B%25E1%25BA%25A4p%2Bb%25C3%25ACnh%2Btrung%2C%2BC%25C3%25B9%2BLao%2BGi%25C3%25AAng%2C%2BAn%2BGiang%2C%2BVietnam%2F%4010.0237312%2C105.7718272%2C14z%2Fdata%3D!4m8!4m7!1m0!1m5!1m1!1s0x310a6fce28ffb119%3A0x3a91265a14176c93!2m2!1d105.5532993!2d10.4514826%3Fved%3D1t%253A314688&service=local&ec=GAZAcQ
+    - generic:
+      - generic:
+        - button "Show Your Location" [ref=e165] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e167]: 
+        - generic [ref=e169] [cursor=pointer]:
+          - button "Zoom in" [ref=e170]:
+            - generic [aria-hidden] [ref=e172]: 
+          - button "Zoom out" [ref=e173]:
+            - generic [aria-hidden] [ref=e175]: 
+      - button "Browse Street View images" [ref=e181]
+      - generic [ref=e183]:
+        - generic "Interactive map" [ref=e184]
+        - generic [ref=e188] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e189]: 
+          - generic [ref=e190]: Layers
+        - button "Layers" [ref=e191] [cursor=pointer]
+    - generic [ref=e193]:
+      - contentinfo [ref=e196]:
+        - text: Map data ©2026 Google
+        - button "Global" [ref=e197] [cursor=pointer]
+        - button "Terms" [ref=e198] [cursor=pointer]
+        - button "Privacy" [ref=e199] [cursor=pointer]
+        - button "Send Product Feedback" [ref=e200] [cursor=pointer]
+      - button "1 km" [ref=e202] [cursor=pointer]
