@@ -10,12 +10,27 @@
       "SRC-002",
       "SRC-003"
     ],
-    "officialBoundaryPolygonAvailable": false,
+    "officialBoundaryPolygonAvailable": true,
     "referenceBoundaryPolygonAvailable": true,
     "referenceBoundarySource": "https://www.tinhthanhpho.com/data/wards-91.geojson",
     "referenceBoundaryVersion": "2026.10.8",
     "referenceBoundaryAttribution": "© tinhthanhpho.com, CC BY 4.0",
-    "note": "Đã lưu polygon tham khảo bên thứ ba cho xã Cù Lao Giêng (mã 30643). Đây không phải hồ sơ địa giới chính thức; điểm sát ranh và phạm vi từng địa điểm vẫn cần xác minh."
+    "note": "Đã lấy polygon từ bản đồ hành chính 102 đơn vị cấp xã trên cổng UBND tỉnh An Giang và nạp QGIS; tệp map được cập nhật 2025-08-15. Polygon bên thứ ba vẫn chỉ tham khảo và lệch hình học khoảng 1.436 km2 symmetric difference. Xin cơ quan địa phương xác nhận hồ sơ địa giới hiện hành trước quyết định pháp lý/địa chính; phạm vi khuôn viên địa điểm chưa khảo sát.",
+    "officialBoundarySource": "SRC-013",
+    "officialBoundaryDataUrl": "https://angiang.gov.vn/sites/default/files/other/AnGiang_Xa_NEW_JSON_2.json",
+    "officialBoundaryDataLastModified": "2025-08-15",
+    "officialBoundaryStatus": "Official map polygon published by UBND tỉnh An Giang; not yet confirmed against the current approved boundary dossier. Comparison with third-party reference is recorded in verification log.",
+    "boundaryComparison": {
+      "method": "QGIS 3.44.15; EPSG:4326; WGS 84 ellipsoid; $area/1000000; native:intersection and native:symmetricaldifference",
+      "officialPolygonAreaKm2": 69.15164397834735,
+      "thirdPartyPolygonAreaKm2": 68.71914530577756,
+      "overlapAreaKm2": 68.21744832392548,
+      "officialOnlyAreaKm2": 0.9342130272648758,
+      "thirdPartyOnlyAreaKm2": 0.5016968482689984,
+      "symmetricDifferenceAreaKm2": 1.4359098755338742,
+      "symmetricDifferencePercentOfUnion": 2.061,
+      "bothCandidatePointsInsideBothPolygons": true
+    }
   },
   "summary": {
     "candidateCount": 10,
@@ -24,7 +39,7 @@
     "inReview": 10,
     "verified": 0,
     "missingCoordinates": 8,
-    "registeredSources": 12,
+    "registeredSources": 13,
     "notionViewCount": 7
   },
   "verificationRules": [
@@ -187,8 +202,21 @@
       "accessedAt": "2026-10-30",
       "reliability": "MEDIUM",
       "accessStatus": "PAGE_OPENED",
-      "claims": "Nêu địa chỉ cũ tại ấp Tấn Long, xã Tấn Mỹ, huyện Chợ Mới; Google Maps iframe có điểm POI 10.5386951635357, 105.48952517408442; đơn vị vận hành tự công bố diện tích 6,6 ha.",
-      "limitations": "Nguồn đơn vị vận hành; điểm POI không xác định cổng hay perimeter. Diện tích khác 6,7 ha trong tham luận địa phương; địa chỉ hiện hành lấy từ snippet nguồn APC chưa mở được."
+      "claims": "At the top of the operator website, the current address is Ấp Tấn Long, Xã Cù Lao Giêng, An Giang; the page self-reports 6.6 ha and embeds a Google Maps POI at 10.5386951635357, 105.48952517408442. Older content lower on the same page still mentions xã Tấn Mỹ, huyện Chợ Mới.",
+      "limitations": "Self-published operator source with conflicting older address text. POI is representative only, not a surveyed entrance or site boundary. Area 6.6 ha conflicts with 6.7 ha in the local government report; basis and date are unknown. Confirm all location and access details directly."
+    },
+    {
+      "id": "SRC-013",
+      "title": "Bản đồ hành chính 102 xã, phường, đặc khu tỉnh An Giang — GeoJSON feature Cù Lao Giêng",
+      "url": "https://angiang.gov.vn/sites/default/files/other/AnGiang_Xa_NEW_JSON_2.json",
+      "publisher": "Ủy ban nhân dân tỉnh An Giang",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": null,
+      "accessedAt": "2026-10-30",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Tệp bản đồ cấp tỉnh chứa 102 feature; feature Cù Lao Giêng là MultiPolygon, mã CuLaoGieng/CLG, thuộc cấp xã, thuộc tính diện tích 68,92 km2 và mô tả nhập Tấn Mỹ, Mỹ Hiệp, Bình Phước Xuân. Last-Modified: 2025-08-15.",
+      "limitations": "Lớp được công bố trên bản đồ hành chính tỉnh; GeoJSON không kèm metadata hồ sơ địa giới, tỷ lệ đo hoặc xác nhận đây là bộ hồ sơ địa giới đã phê duyệt. Hình học QGIS tính 69.152 km2, khác thuộc tính diện tích 68.92 km2; sym-difference với polygon bên thứ ba khoảng 1.436 km2. Cần cơ quan địa phương xác nhận ranh hồ sơ hiện hành."
     }
   ],
   "destinations": [
@@ -214,7 +242,7 @@
       "historicalSummary": "Báo An Giang nêu địa điểm và tường thuật mốc xây dựng năm 1875; cần hồ sơ nhà thờ hoặc tư liệu di sản để xác minh mốc.",
       "culturalSignificance": "Được Bộ Văn hóa, Thể thao và Du lịch nêu trong cụm kiến trúc tôn giáo Cù Lao Giêng; tên và bối cảnh hiện diện được báo địa phương ghi nhận.",
       "openQuestions": "Xin xác nhận địa chỉ/ấp và tọa độ từ giáo xứ hoặc cơ quan địa phương; kiểm tra hồ sơ xây dựng/di tích và mốc 1875; hỏi quyền tham quan, chụp ảnh, scan 3D.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -243,7 +271,7 @@
       "historicalSummary": "Báo chí địa phương nêu mốc thành lập trong thập niên 1970; Bộ Văn hóa, Thể thao và Du lịch và khảo sát Sở năm 2024 ghi nhận tên tu viện. Mốc lịch sử cần nguồn cơ sở xác nhận.",
       "culturalSignificance": "Cơ sở tôn giáo nằm trong cụm kiến trúc được nguồn Bộ nêu; có hoạt động liên quan định hướng du lịch tín ngưỡng.",
       "openQuestions": "Xác minh tên chính thức, địa chỉ, tọa độ, lịch sử và đơn vị quản lý; xin phép trước khi ghi hình hoặc scan; xác nhận giới hạn khu vực công cộng.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -273,7 +301,7 @@
       "historicalSummary": "Báo An Giang nêu mốc 1876; Bộ Văn hóa, Thể thao và Du lịch liệt kê tu viện trong cụm kiến trúc Cù Lao Giêng. Năm thành lập cần xác minh bằng hồ sơ dòng tu hoặc tư liệu lưu trữ.",
       "culturalSignificance": "Một trong các cơ sở tôn giáo được nguồn cấp Bộ nêu trong bối cảnh bảo tồn văn hóa và du lịch tín ngưỡng.",
       "openQuestions": "Xác nhận cách viết tên chính thức (Phanxicô/Phanxico), địa chỉ/ấp, tọa độ và mốc 1876; xin phép cơ sở về ảnh, scan và phạm vi tham quan.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -302,7 +330,7 @@
       "historicalSummary": "Báo An Giang nêu đình và thông tin xếp hạng cấp tỉnh; chưa thu được quyết định gốc trong lượt rà soát.",
       "culturalSignificance": "Ứng viên điểm đình làng, có thể gắn với lịch sử địa phương; cần hồ sơ di tích và ý kiến cộng đồng để mô tả chính xác.",
       "openQuestions": "Lấy quyết định xếp hạng/hồ sơ kiểm kê gốc; xác nhận ấp, tọa độ, ban quản lý, lịch lễ và quy tắc chụp/scan.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004"
@@ -330,7 +358,7 @@
       "historicalSummary": "Báo địa phương nêu tên Phủ thờ Nguyễn Tộc/Dinh Ba Quan Thượng Đẳng và thông tin xếp hạng cấp tỉnh; cần quyết định và hồ sơ gốc để xác minh.",
       "culturalSignificance": "Bộ Văn hóa, Thể thao và Du lịch ghi nhận nghi thức thờ tổ tiên tại Phủ thờ Nguyễn Tộc; cần trao đổi với dòng họ về cách diễn giải và nội dung được phép công bố.",
       "openQuestions": "Xác minh tên gọi/biến thể, địa chỉ và tọa độ; tìm quyết định xếp hạng gốc; trao đổi với dòng họ về quyền tiếp cận, chụp/scan và thông tin nhạy cảm.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -359,7 +387,7 @@
       "historicalSummary": "Báo An Giang nêu Dương Công Phủ/Phủ thờ họ Dương và thông tin di tích cấp tỉnh; chưa xác nhận bằng quyết định gốc.",
       "culturalSignificance": "Nguồn Bộ ghi nhận thực hành thờ tổ tiên ở họ Dương; cần xác nhận cách gọi và nội dung với đại diện dòng họ.",
       "openQuestions": "Xác minh tên chính thức, địa chỉ/ấp, tọa độ, quyết định xếp hạng và đầu mối dòng họ; xin phép trước mọi ghi hình hoặc scan.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -388,7 +416,7 @@
       "historicalSummary": "Báo An Giang nêu tên Thành Hoa Tự/Chùa Ông Đạo Nằm và mốc 1953; báo cáo UBND xã ghi nhận sự kiện cộng đồng tại Chùa Thành Hoa năm 2026.",
       "culturalSignificance": "Tên gọi và vai trò sinh hoạt cộng đồng có xác nhận từ nguồn chính quyền; nguồn văn hóa địa phương ghi biến thể Chùa Ông Đạo Nằm.",
       "openQuestions": "Xác minh pháp danh/tên chính thức, địa chỉ/ấp, tọa độ và mốc 1953; xác nhận giờ mở cửa, người quản lý và quy tắc ghi hình.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -418,7 +446,7 @@
       "historicalSummary": "Báo địa phương nêu tên Chùa Phước Thành/Chùa Chim và mô tả quần thể tượng; chưa có kiểm kê hiện vật hoặc số liệu quy mô độc lập.",
       "culturalSignificance": "Ứng viên điểm Phật giáo có quần thể điêu khắc được báo chí và bài viết văn hóa địa phương nhắc tới.",
       "openQuestions": "Xác nhận tên gọi, địa chỉ/ấp, tọa độ, danh mục và xuất xứ tượng; kiểm tra hồ sơ di tích nếu có; xin phép chùa về chụp/scan 3D.",
-      "lastReviewed": "2026-10-29",
+      "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
@@ -441,18 +469,19 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 3,
+      "sourceCount": 4,
       "threeDPriority": "UNDECIDED",
       "threeDRationale": "Chưa đề xuất dựng 3D trước khi xác định chính xác địa điểm, phạm vi xã và đồng thuận của cơ sở.",
       "historicalSummary": "Bài Văn Nghệ An Giang nêu biến thể Chùa Bà Vú/Phước Minh; chưa có nguồn chính quyền hiện hành hoặc hồ sơ trực tiếp xác nhận.",
       "culturalSignificance": "Manh mối về một cơ sở tín ngưỡng địa phương; cần xác minh địa danh, cộng đồng thực hành và mối liên hệ với xã hiện hành trước khi đưa vào phạm vi.",
-      "openQuestions": "Xác minh tên ấp hiện hành, tình trạng cơ sở và người quản lý; khảo sát lại điểm ghim/vị trí cổng và polygon khuôn viên; tìm hồ sơ địa giới chính thức; xin phép trước khi tham quan, ghi hình hoặc scan.",
+      "openQuestions": "Xác nhận tên ấp hiện hành, tình trạng cơ sở, người quản lý và cổng vào; khảo sát perimeter khuôn viên với sự cho phép. Điểm POI nằm trong polygon chính thức bản đồ tỉnh và polygon tham khảo, nhưng hai ranh xã có sai khác khoảng 1.436 km2; xin cơ quan địa phương xác nhận lớp/hồ sơ địa giới được dùng làm căn cứ.",
       "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-001",
         "SRC-009",
-        "SRC-011"
+        "SRC-011",
+        "SRC-013"
       ]
     },
     {
@@ -463,7 +492,7 @@
         "en": null
       },
       "category": "ECO_TOURISM",
-      "addressOrArea": "Ấp Tấn Long, xã Cù Lao Giêng (theo snippet trang du lịch tỉnh, chưa mở được nội dung); nhà vận hành còn ghi địa chỉ cũ xã Tấn Mỹ.",
+      "addressOrArea": "Ấp Tấn Long, xã Cù Lao Giêng, tỉnh An Giang (hiển thị ở đầu trang nhà vận hành và trong kết quả tìm kiếm của trang du lịch tỉnh; cần xác nhận trực tiếp). Nội dung cũ trên trang nhà vận hành vẫn nhắc xã Tấn Mỹ, huyện Chợ Mới.",
       "coordinates": {
         "latitude": 10.5386951635357,
         "longitude": 105.48952517408442,
@@ -471,12 +500,12 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 5,
+      "sourceCount": 7,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Có tiềm năng tái hiện cảnh quan và hoạt động du lịch; dữ liệu chỉ ở mức đề xuất, cần xác minh hiện trạng, mùa vụ, ranh giới và quyền ghi hình.",
-      "historicalSummary": "Tài liệu tham luận xã nêu Cồn Én có diện tích 6,7 ha; khảo sát du lịch của Sở năm 2024 và bài báo địa phương ghi nhận điểm du lịch này.",
+      "historicalSummary": "Nhà vận hành tự công bố diện tích 6,6 ha; tham luận địa phương nêu 6,7 ha. Chưa xác định hai con số đo cùng phạm vi, cách tính hoặc thời điểm.",
       "culturalSignificance": "Ứng viên trải nghiệm sinh thái/cảnh quan; thông tin hoạt động, chủ thể vận hành và tiếp cận lấy từ nguồn du lịch cần kiểm tra trực tiếp.",
-      "openQuestions": "Mở lại nội dung APC; xác minh địa chỉ hiện hành, cổng vào, polygon điểm du lịch và hiện trạng; giải quyết chênh lệch 6,6/6,7 ha; hỏi quyền tham quan và ghi hình/scan.",
+      "openQuestions": "Xác nhận địa chỉ hiện hành, điểm vào, ranh khu du lịch, hiện trạng và người có thẩm quyền cho phép khảo sát; hỏi cách tính/phạm vi/ngày đo của 6,6 ha và 6,7 ha; đề nghị cơ quan địa phương xác nhận hồ sơ ranh xã do hai polygon xã có sai khác; xin phép ghi GPS, perimeter, ảnh và scan 3D.",
       "lastReviewed": "2026-10-30",
       "scopeStatus": "IN_SCOPE",
       "sources": [
@@ -485,7 +514,8 @@
         "SRC-007",
         "SRC-008",
         "SRC-001",
-        "SRC-012"
+        "SRC-012",
+        "SRC-013"
       ]
     }
   ],

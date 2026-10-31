@@ -11,7 +11,10 @@
       "id": "30643",
       "properties": {
         "code": "30643",
-        "name": "Xã Cù Lao Giêng"
+        "name": "Xã Cù Lao Giêng",
+        "boundary_status": "third_party_reference_only",
+        "official_status": false,
+        "symmetric_difference_area_km2": 1.4359098755338742
       },
       "geometry": {
         "type": "Polygon",
@@ -2149,5 +2152,17 @@
         ]
       }
     }
-  ]
+  ],
+  "officialComparison": {
+    "method": "QGIS 3.44.15; EPSG:4326; WGS 84 ellipsoid; $area/1000000; native:intersection and native:symmetricaldifference",
+    "officialPolygonAreaKm2": 69.15164397834735,
+    "thirdPartyPolygonAreaKm2": 68.71914530577756,
+    "overlapAreaKm2": 68.21744832392548,
+    "officialOnlyAreaKm2": 0.9342130272648758,
+    "thirdPartyOnlyAreaKm2": 0.5016968482689984,
+    "symmetricDifferenceAreaKm2": 1.4359098755338742,
+    "symmetricDifferencePercentOfUnion": 2.061,
+    "bothCandidatePointsInsideBothPolygons": true
+  },
+  "reviewStatus": "THIRD_PARTY_REFERENCE_ONLY; not the adopted official boundary polygon"
 }

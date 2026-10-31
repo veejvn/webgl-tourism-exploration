@@ -4,18 +4,19 @@ Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-30** để
 
 ## Phạm vi hành chính
 
-Đơn vị nghiên cứu là **xã Cù Lao Giêng hiện hành, tỉnh An Giang**. Nghị quyết 1654/NQ-UBTVQH15 là căn cứ sắp xếp xã năm 2025; báo cáo địa phương nêu xã được hình thành từ toàn bộ Tấn Mỹ, Mỹ Hiệp và Bình Phước Xuân. UBND xã mô tả xã là cù lao trên sông Tiền, diện tích 68,92 km². Đã lấy được polygon tham khảo bên thứ ba từ tinhthanhpho.com; polygon này không thay thế hồ sơ địa giới chính thức.
+Đơn vị nghiên cứu là **xã Cù Lao Giêng hiện hành, tỉnh An Giang**. Nghị quyết 1654/NQ-UBTVQH15 là căn cứ sắp xếp xã năm 2025. Đã trích polygon MultiPolygon Cù Lao Giêng từ GeoJSON 102 đơn vị trên bản đồ hành chính cổng UBND tỉnh An Giang; tệp nguồn có `Last-Modified: 2025-08-15`. Đây là polygon được công bố trong bản đồ hành chính chính thức của tỉnh, nhưng chưa được đối chiếu với bộ hồ sơ địa giới đã phê duyệt. Polygon tham khảo bên thứ ba vẫn được giữ riêng: QGIS đo chênh đối xứng khoảng 1,436 km² giữa hai lớp.
 
 - [Nghị quyết 1654/NQ-UBTVQH15](https://vanban.chinhphu.vn/?docid=214010&pageid=27160)
 - [Giới thiệu chung — UBND xã Cù Lao Giêng](https://culaogieng.angiang.gov.vn/gioi-thieu-chung)
 - [Tài liệu tham luận của Đảng ủy xã trên cổng Sở VHTT An Giang](https://svhtt.angiang.gov.vn/sites/default/files/2025-10/6.2%20Cac%20Tham%20luan.pdf)
+- [Bản đồ hành chính 102 xã, phường, đặc khu — UBND tỉnh An Giang](https://angiang.gov.vn/vi/ban-do-hanh-chinh-102-xa-phuong-dac-khu-tinh-an-giang) · [GeoJSON của bản đồ](https://angiang.gov.vn/sites/default/files/other/AnGiang_Xa_NEW_JSON_2.json)
 
 ## Tình trạng bản chụp
 
 - 10 ứng viên: 10 `IN_REVIEW`, 0 `SCOPE_UNCLEAR`.
-- Cả 10 hồ sơ được gán `IN_SCOPE`; vị trí đại diện của Chùa Phước Minh và Cồn Én nằm trong polygon tham khảo. Cần dùng nguồn địa giới chính thức và xác minh thực địa trước khi chốt phạm vi khuôn viên.
+- Cả 10 hồ sơ được gán `IN_SCOPE`; hai điểm POI DEST-009/010 nằm trong polygon bản đồ tỉnh và polygon bên thứ ba. Hai polygon xã sai khác hình học khoảng 1,436 km²; cần cơ quan địa phương xác nhận hồ sơ địa giới chuẩn. Không polygon nào mô tả perimeter khuôn viên hai địa điểm.
 - 0 hồ sơ `VERIFIED`; 8/10 ứng viên còn thiếu tọa độ có nguồn.
-- 12 nguồn được đăng ký: 10 trang/PDF mở được, 1 kết quả tìm kiếm chưa mở được trang gốc, 1 lỗi truy xuất. Polygon hành chính là dataset bên thứ ba, được ghi attribution riêng trong tệp GeoJSON.
+- 13 nguồn được đăng ký: 11 trang/PDF/GeoJSON mở được, 1 nguồn chỉ có kết quả tìm kiếm, 1 lỗi truy xuất.
 - Tên tiếng Anh chính thức để trống; không dịch tên địa điểm thành tên chính thức.
 
 ## Tệp
@@ -23,9 +24,13 @@ Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-30** để
 - [destination-catalog.csv](./destination-catalog.csv): bảng phẳng; `source_ids` là danh sách mã nguồn phân tách bằng dấu chấm phẩy.
 - [destinations.json](./destinations.json): bản xuất có metadata, nguồn, trạng thái phạm vi và hồ sơ địa điểm.
 - [verification-log.md](./verification-log.md): nhật ký nguồn, phạm vi và các điểm chưa xác minh.
+- [cu-lao-gieng-boundary-official.geojson](./cu-lao-gieng-boundary-official.geojson): feature Cù Lao Giêng trích từ GeoJSON bản đồ hành chính của UBND tỉnh An Giang; source/date/status được ghi trong metadata và thuộc tính.
 - [cu-lao-gieng-boundary-reference.geojson](./cu-lao-gieng-boundary-reference.geojson): polygon xã Cù Lao Giêng bên thứ ba, mã 30643, dataset version 2026.10.8; không phải hồ sơ địa giới chính thức.
 - [priority-candidates-reference.geojson](./priority-candidates-reference.geojson): hai điểm POI có tọa độ nguồn cho DEST-009 và DEST-010; không phải điểm khảo sát ranh khuôn viên.
-- [cu-lao-gieng-research.qgz](./cu-lao-gieng-research.qgz): project QGIS MCP cục bộ, hai layer EPSG:4326, tham chiếu GeoJSON bằng đường dẫn tương đối.
+- [cu-lao-gieng-boundary-review.gpkg](./cu-lao-gieng-boundary-review.gpkg): GeoPackage có ba layer `Cù Lao Giêng — official provincial map 2025`, `Third-party boundary — reference only`, `DEST-009/010 — sourced POI reference points`.
+- [cu-lao-gieng-boundary-review.geojson](./cu-lao-gieng-boundary-review.geojson): GeoJSON FeatureCollection gộp 1 polygon bản đồ tỉnh, 1 polygon tham khảo và 2 điểm POI; `dataset_layer` phân biệt vai trò.
+- [field-verification-template.csv](./field-verification-template.csv): mẫu trống để ghi địa chỉ, điểm vào, perimeter, diện tích/cách tính, ngày khảo sát và từng loại cho phép; chưa có quan sát thực địa nào được ghi.
+- [cu-lao-gieng-research.qgz](./cu-lao-gieng-research.qgz): project QGIS MCP cục bộ với ba layer EPSG:4326; lớp bên thứ ba tắt mặc định để không che polygon tỉnh.
 
 ## Trạng thái
 
