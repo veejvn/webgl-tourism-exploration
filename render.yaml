@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: free
     branch: main
-    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm --filter api exec prisma generate && pnpm --filter api... build
+    buildCommand: pnpm install --frozen-lockfile --prod=false && pnpm --filter api exec prisma generate && pnpm --filter api... build
     startCommand: pnpm --filter api start:prod
     healthCheckPath: /
     envVars:
@@ -15,4 +15,4 @@ services:
       - key: DATABASE_URL
         sync: false
       - key: CORS_ORIGINS
-        sync: false
+        value: https://webgl-tourism-exploration-hoangveworkspace-gmailcoms-projects.vercel.app
