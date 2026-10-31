@@ -66,13 +66,13 @@ Hai endpoint đọc dữ liệu hiện hành không gắn `AuthGuard`, vì vậy
 
 ### `GET /destinations`
 
-Trả danh sách destination; service include `landmarks` cho từng destination. Không thấy query/filter/pagination được triển khai trong controller.
+Trả danh sách destination có `verificationStatus = VERIFIED` và `publicationStatus = PUBLISHED`; service include `landmarks` cho từng destination. Danh sách có thể rỗng khi chưa có hồ sơ đủ điều kiện. Không có query/filter/pagination trong controller.
 
 ### `GET /destinations/:id`
 
-Trả một destination theo id, kèm landmarks; nếu không tồn tại trả `404 Not Found`.
+Trả một destination theo id, kèm landmarks, khi đã `VERIFIED` và `PUBLISHED`. ID không tồn tại hoặc hồ sơ chưa đủ điều kiện đều trả `404 Not Found`.
 
-Các trường hiện có theo Prisma/DTO: `id`, `title`, `description`, `latitude`, `longitude`, `coverImage`, `modelUrl` tùy chọn, `createdAt`, `updatedAt`; `landmarks` là danh sách tùy chọn trong DTO. Landmark có `destinationId`, nội dung, tọa độ, `modelUrl` tùy chọn và timestamps.
+Các trường hiện có theo Prisma/DTO: `id`, `title`, `description`, `latitude`, `longitude`, `coverImage`, `modelUrl` và `sourceUrl` tùy chọn, `verificationStatus`, `publicationStatus`, `createdAt`, `updatedAt`; `landmarks` là danh sách tùy chọn trong DTO. Hai trạng thái là chuỗi trong schema, mặc định `UNVERIFIED` và `DRAFT`; hiện chưa có endpoint duyệt/xuất bản. Landmark có `destinationId`, nội dung, tọa độ, `modelUrl` tùy chọn và timestamps. Cần đồng bộ schema database trước khi chạy API dùng client mới; tác vụ này chưa thực hiện `prisma db push` trên database.
 
 ## Auth header và endpoint chưa có
 

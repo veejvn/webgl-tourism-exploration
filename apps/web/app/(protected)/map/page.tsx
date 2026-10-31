@@ -21,7 +21,7 @@ export default function MapPage() {
   const [selectedDest, setSelectedDest] = useState<DestinationDTO | null>(null);
   
   const { data: destinations, isLoading, error } = useDestinations();
-  const { user, logout, isAuthenticated } = useAuth();
+  const { user, logout } = useAuth();
 
   // 1. Initialize Mapbox Map once on mount
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function MapPage() {
 
       {isLoading && (
         <div className="absolute inset-0 z-20 flex items-center justify-center bg-gray-900/80 backdrop-blur-xs">
-          <p className="text-white text-lg font-semibold animate-pulse">Đang tải dữ liệu bản đồ An Giang...</p>
+          <p className="text-white text-lg font-semibold animate-pulse">Đang tải địa điểm...</p>
         </div>
       )}
 
@@ -125,9 +125,15 @@ export default function MapPage() {
           Bản đồ Di sản Du lịch 3D
         </h1>
         <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-          Khám phá vẻ đẹp di sản An Giang trong không gian 3D tương tác thời gian thực. Chọn một điểm di tích để trải nghiệm.
+          Khám phá các địa điểm đã được công bố. Chọn một địa điểm để xem không gian 3D minh họa.
         </p>
       </div>
+
+      {!isLoading && destinations?.length === 0 && (
+        <div className="absolute bottom-6 left-6 right-6 z-10 mx-auto max-w-sm rounded-xl border border-gray-800 bg-gray-900/90 p-4 text-center text-sm text-gray-200 shadow-xl backdrop-blur-md">
+          Chưa có địa điểm nào được công bố để khám phá.
+        </div>
+      )}
 
       {selectedDest && (
         <div className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-96 z-10 p-5 bg-gray-900/95 border border-gray-800 rounded-2xl shadow-2xl backdrop-blur-md transition-all duration-300">
@@ -148,13 +154,7 @@ export default function MapPage() {
           </p>
           <div className="flex gap-2 mt-4">
             <Button
-              onClick={() => {
-                if (!isAuthenticated) {
-                  router.push(`/login?redirect=${encodeURIComponent(`/explore?id=${selectedDest.id}`)}`);
-                } else {
-                  router.push(`/explore?id=${selectedDest.id}`);
-                }
-              }}
+              onClick={() => router.push(`/explore?id=${selectedDest.id}`)}
               className="flex-1 py-2 px-4 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium text-xs rounded-xl shadow-lg shadow-blue-500/20 active:scale-95 transition-transform"
             >
               🚀 Khám phá 3D

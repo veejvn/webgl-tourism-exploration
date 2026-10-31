@@ -1,6 +1,6 @@
 {
   "datasetName": "Cù Lao Giêng — Destination Research",
-  "generatedAt": "2026-10-30",
+  "generatedAt": "2026-10-31",
   "purpose": "Bản chụp nghiên cứu để rà soát; không phải danh mục sản phẩm hoặc dữ liệu vận hành.",
   "administrativeScope": {
     "currentUnit": "Xã Cù Lao Giêng, tỉnh An Giang",
@@ -39,7 +39,7 @@
     "inReview": 10,
     "verified": 0,
     "missingCoordinates": 8,
-    "registeredSources": 13,
+    "registeredSources": 15,
     "notionViewCount": 7
   },
   "verificationRules": [
@@ -173,11 +173,11 @@
       "publisher": "Sở Văn hóa, Thể thao và Du lịch An Giang",
       "type": "GOVERNMENT_REPORT",
       "publicationDate": null,
-      "accessedAt": "2026-10-29",
-      "reliability": "LOW",
-      "accessStatus": "FETCH_ERROR",
-      "claims": "Chỉ lưu dấu vết truy xuất nguồn tiềm năng; không dùng claim trong nội dung lập danh mục.",
-      "limitations": "Mở trực tiếp trả HTTP 502. Kết quả tìm kiếm cũ không được xem là bằng chứng đã kiểm tra."
+      "accessedAt": "2026-10-31",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Đã mở trực tiếp PDF (1.572 dòng trích xuất). Tr. 72: nhà thờ Cù Lao Giêng ở ấp Tấn Bình; tr. 76: Tu viện Phanxicô ở ấp Tân Bình; tr. 80: Đình Tân Mỹ ở ấp Tân Thạnh (địa điểm sau di dời); tr. 81: Phủ thờ Nguyễn Tộc ở ấp Bình Quới; tr. 77: Thành Hoa Tự ở ấp Tân Lợi; tr. 78: Chùa Phước Thành ở ấp Bình Quới.",
+      "limitations": "Truy cập trước đó HTTP 502, có thể lỗi không liên tục; ngày 2026-10-31 bộ đọc web mở được PDF. Tài liệu khoảng 2020, ghi địa chỉ lịch sử; không chứng minh tên ấp hiện hành, tọa độ WGS84, cổng vào hoặc ranh khuôn viên. Giữ nguyên biến thể Tân/Tấn của nguồn và cần đối chiếu."
     },
     {
       "id": "SRC-011",
@@ -217,6 +217,32 @@
       "accessStatus": "PAGE_OPENED",
       "claims": "Tệp bản đồ cấp tỉnh chứa 102 feature; feature Cù Lao Giêng là MultiPolygon, mã CuLaoGieng/CLG, thuộc cấp xã, thuộc tính diện tích 68,92 km2 và mô tả nhập Tấn Mỹ, Mỹ Hiệp, Bình Phước Xuân. Last-Modified: 2025-08-15.",
       "limitations": "Lớp được công bố trên bản đồ hành chính tỉnh; GeoJSON không kèm metadata hồ sơ địa giới, tỷ lệ đo hoặc xác nhận đây là bộ hồ sơ địa giới đã phê duyệt. Hình học QGIS tính 69.152 km2, khác thuộc tính diện tích 68.92 km2; sym-difference với polygon bên thứ ba khoảng 1.436 km2. Cần cơ quan địa phương xác nhận ranh hồ sơ hiện hành."
+    },
+    {
+      "id": "SRC-014",
+      "title": "Thông tư 17/2017/TT-BTNMT — danh mục địa danh phục vụ lập bản đồ An Giang, Công báo 593–594",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/CongBao/2017/8/24422/18770-1-593-594.pdf",
+      "publisher": "Bộ Tài nguyên và Môi trường; Công báo Chính phủ",
+      "type": "LEGAL_DOCUMENT",
+      "publicationDate": "2017-07-26",
+      "accessedAt": "2026-10-31",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Tr. 90 hàng phủ thờ Nguyễn Tộc: 10°27′30″B 105°31′55″Đ; tr. 102 hàng phủ thờ Dương Công Phủ: 10°29′07″B 105°33′25″Đ; tr. 107 hàng đình Tấn Mỹ: 10°28′40″B 105°31′14″Đ, nhà thờ Cù Lào Giêng: 10°30′30″B 105°29′46″Đ, Cồn Én tự nhiên: 10°32′33″B 105°30′31″Đ. Tr. 3–4 định nghĩa tọa độ tương đối từ bản đồ địa hình quốc gia VN-2000 tỷ lệ 1:25.000.",
+      "limitations": "Tọa độ tương đối/trung tâm ký hiệu bản đồ; không phải vị trí cổng, GNSS hiện trường hoặc perimeter. Datum VN-2000, không tự nhập vào WGS84/GeoJSON. Đơn vị hành chính 2017 trước sáp nhập. Bảng PDF trích xuất dạng phẳng; số hàng/tên/mảnh bản đồ đã đối chiếu, cần kiểm tra trực quan nếu dùng định vị chính xác."
+    },
+    {
+      "id": "SRC-015",
+      "title": "Xã anh hùng Tấn Mỹ đạt chuẩn nông thôn mới nâng cao — Báo An Giang",
+      "url": "https://baoangiang.com.vn/xa-anh-hung-tan-my-dat-chuan-nong-thon-moi-nang-cao-a301483.html",
+      "publisher": "Báo An Giang Online",
+      "type": "PRESS",
+      "publicationDate": null,
+      "accessedAt": "2026-10-31",
+      "reliability": "MEDIUM",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Bài viết trước sáp nhập mô tả dự án The Lugar An Giang Resort and Spa tại bãi bồi/trầm thủy cồn Tấn Long, ấp Tấn Long, quy mô 6,6 ha.",
+      "limitations": "Chưa chứng minh dự án The Lugar và điểm du lịch Cồn Én hiện tại có cùng footprint, giai đoạn hoặc cách tính diện tích; không phải hồ sơ đất/perimeter."
     }
   ],
   "destinations": [
@@ -228,7 +254,7 @@
         "en": null
       },
       "category": "ARCHITECTURE",
-      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Tấn Bình, xã Tấn Mỹ (SRC-010, tr. 72); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -236,17 +262,19 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 2,
+      "sourceCount": 4,
       "threeDPriority": "HIGH",
       "threeDRationale": "Đề xuất ưu tiên khảo sát mặt đứng, khối tích và chi tiết kiến trúc; cần xác nhận chủ thể quản lý, quyền chụp/scan và quy tắc tiếp cận.",
       "historicalSummary": "Báo An Giang nêu địa điểm và tường thuật mốc xây dựng năm 1875; cần hồ sơ nhà thờ hoặc tư liệu di sản để xác minh mốc.",
       "culturalSignificance": "Được Bộ Văn hóa, Thể thao và Du lịch nêu trong cụm kiến trúc tôn giáo Cù Lao Giêng; tên và bối cảnh hiện diện được báo địa phương ghi nhận.",
-      "openQuestions": "Xin xác nhận địa chỉ/ấp và tọa độ từ giáo xứ hoặc cơ quan địa phương; kiểm tra hồ sơ xây dựng/di tích và mốc 1875; hỏi quyền tham quan, chụp ảnh, scan 3D.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xin xác nhận địa chỉ/ấp và tọa độ từ giáo xứ hoặc cơ quan địa phương; kiểm tra hồ sơ xây dựng/di tích và mốc 1875; hỏi quyền tham quan, chụp ảnh, scan 3D. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử. Tọa độ địa danh DMS lịch sử: 10°30′30″B 105°29′46″Đ (tr. 107, nguồn ghi Cù Lào Giêng) (SRC-014). Đây là vị trí tương đối/trung tâm ký hiệu bản đồ địa hình VN-2000 1:25.000, không phải WGS84 đã chuyển hệ, cổng vào hay perimeter; cần xác minh hiện trường trước khi dùng.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
-        "SRC-005"
+        "SRC-005",
+        "SRC-010",
+        "SRC-014"
       ]
     },
     {
@@ -287,7 +315,7 @@
         "en": null
       },
       "category": "RELIGIOUS_SITE",
-      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Tân Bình, xã Tân Mỹ (đúng cách viết SRC-010, tr. 76); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -295,17 +323,18 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 2,
+      "sourceCount": 3,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Có thể khảo sát hình thái tu viện và mối liên hệ không gian với nhà thờ; ưu tiên 3D ở mức đề xuất, tùy quyền tiếp cận.",
       "historicalSummary": "Báo An Giang nêu mốc 1876; Bộ Văn hóa, Thể thao và Du lịch liệt kê tu viện trong cụm kiến trúc Cù Lao Giêng. Năm thành lập cần xác minh bằng hồ sơ dòng tu hoặc tư liệu lưu trữ.",
       "culturalSignificance": "Một trong các cơ sở tôn giáo được nguồn cấp Bộ nêu trong bối cảnh bảo tồn văn hóa và du lịch tín ngưỡng.",
-      "openQuestions": "Xác nhận cách viết tên chính thức (Phanxicô/Phanxico), địa chỉ/ấp, tọa độ và mốc 1876; xin phép cơ sở về ảnh, scan và phạm vi tham quan.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác nhận cách viết tên chính thức (Phanxicô/Phanxico), địa chỉ/ấp, tọa độ và mốc 1876; xin phép cơ sở về ảnh, scan và phạm vi tham quan. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
-        "SRC-005"
+        "SRC-005",
+        "SRC-010"
       ]
     },
     {
@@ -316,7 +345,7 @@
         "en": null
       },
       "category": "HISTORICAL_SITE",
-      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Tân Thạnh, xã Tân Mỹ (địa điểm sau di dời năm 1867; SRC-010, tr. 80); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -324,16 +353,18 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "LOW",
-      "sourceCount": 1,
+      "sourceCount": 3,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Ưu tiên khảo sát mặt bằng, cấu trúc đình và hoạt động lễ hội sau khi xác nhận hiện trạng, lịch sinh hoạt và quyền ghi hình.",
       "historicalSummary": "Báo An Giang nêu đình và thông tin xếp hạng cấp tỉnh; chưa thu được quyết định gốc trong lượt rà soát.",
       "culturalSignificance": "Ứng viên điểm đình làng, có thể gắn với lịch sử địa phương; cần hồ sơ di tích và ý kiến cộng đồng để mô tả chính xác.",
-      "openQuestions": "Lấy quyết định xếp hạng/hồ sơ kiểm kê gốc; xác nhận ấp, tọa độ, ban quản lý, lịch lễ và quy tắc chụp/scan.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Lấy quyết định xếp hạng/hồ sơ kiểm kê gốc; xác nhận ấp, tọa độ, ban quản lý, lịch lễ và quy tắc chụp/scan. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử. Tọa độ địa danh DMS lịch sử: 10°28′40″B 105°31′14″Đ (tr. 107) (SRC-014). Đây là vị trí tương đối/trung tâm ký hiệu bản đồ địa hình VN-2000 1:25.000, không phải WGS84 đã chuyển hệ, cổng vào hay perimeter; cần xác minh hiện trường trước khi dùng.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
-        "SRC-004"
+        "SRC-004",
+        "SRC-010",
+        "SRC-014"
       ]
     },
     {
@@ -344,7 +375,7 @@
         "en": null
       },
       "category": "ANCESTRAL_CULTURE",
-      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Bình Quới, xã Bình Phước Xuân (SRC-010, tr. 81); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -352,17 +383,19 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 2,
+      "sourceCount": 4,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Có tiềm năng ghi nhận kiến trúc nhà thờ họ, không gian thờ tự và tư liệu được cộng đồng cho phép; không số hóa vật thờ khi chưa có chấp thuận.",
       "historicalSummary": "Báo địa phương nêu tên Phủ thờ Nguyễn Tộc/Dinh Ba Quan Thượng Đẳng và thông tin xếp hạng cấp tỉnh; cần quyết định và hồ sơ gốc để xác minh.",
       "culturalSignificance": "Bộ Văn hóa, Thể thao và Du lịch ghi nhận nghi thức thờ tổ tiên tại Phủ thờ Nguyễn Tộc; cần trao đổi với dòng họ về cách diễn giải và nội dung được phép công bố.",
-      "openQuestions": "Xác minh tên gọi/biến thể, địa chỉ và tọa độ; tìm quyết định xếp hạng gốc; trao đổi với dòng họ về quyền tiếp cận, chụp/scan và thông tin nhạy cảm.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác minh tên gọi/biến thể, địa chỉ và tọa độ; tìm quyết định xếp hạng gốc; trao đổi với dòng họ về quyền tiếp cận, chụp/scan và thông tin nhạy cảm. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử. Tọa độ địa danh DMS lịch sử: 10°27′30″B 105°31′55″Đ (tr. 90) (SRC-014). Đây là vị trí tương đối/trung tâm ký hiệu bản đồ địa hình VN-2000 1:25.000, không phải WGS84 đã chuyển hệ, cổng vào hay perimeter; cần xác minh hiện trường trước khi dùng.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
-        "SRC-005"
+        "SRC-005",
+        "SRC-010",
+        "SRC-014"
       ]
     },
     {
@@ -381,17 +414,18 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 2,
+      "sourceCount": 3,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Đề xuất khảo sát kiến trúc và không gian thờ tự sau khi có đồng thuận; cân nhắc bảo vệ đời tư và nghi thức.",
       "historicalSummary": "Báo An Giang nêu Dương Công Phủ/Phủ thờ họ Dương và thông tin di tích cấp tỉnh; chưa xác nhận bằng quyết định gốc.",
       "culturalSignificance": "Nguồn Bộ ghi nhận thực hành thờ tổ tiên ở họ Dương; cần xác nhận cách gọi và nội dung với đại diện dòng họ.",
-      "openQuestions": "Xác minh tên chính thức, địa chỉ/ấp, tọa độ, quyết định xếp hạng và đầu mối dòng họ; xin phép trước mọi ghi hình hoặc scan.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác minh tên chính thức, địa chỉ/ấp, tọa độ, quyết định xếp hạng và đầu mối dòng họ; xin phép trước mọi ghi hình hoặc scan. Tọa độ địa danh DMS lịch sử: 10°29′07″B 105°33′25″Đ (tr. 102) (SRC-014). Đây là vị trí tương đối/trung tâm ký hiệu bản đồ địa hình VN-2000 1:25.000, không phải WGS84 đã chuyển hệ, cổng vào hay perimeter; cần xác minh hiện trường trước khi dùng.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
-        "SRC-005"
+        "SRC-005",
+        "SRC-014"
       ]
     },
     {
@@ -402,7 +436,7 @@
         "en": null
       },
       "category": "RELIGIOUS_SITE",
-      "addressOrArea": "Xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Tân Lợi, xã Tân Mỹ (đúng cách viết SRC-010, tr. 77); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -410,18 +444,19 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 3,
+      "sourceCount": 4,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Có thể ghi nhận kiến trúc chùa và không gian sinh hoạt cộng đồng; cần hỏi cơ sở về nghi thức, khu vực hạn chế và quyền scan.",
       "historicalSummary": "Báo An Giang nêu tên Thành Hoa Tự/Chùa Ông Đạo Nằm và mốc 1953; báo cáo UBND xã ghi nhận sự kiện cộng đồng tại Chùa Thành Hoa năm 2026.",
       "culturalSignificance": "Tên gọi và vai trò sinh hoạt cộng đồng có xác nhận từ nguồn chính quyền; nguồn văn hóa địa phương ghi biến thể Chùa Ông Đạo Nằm.",
-      "openQuestions": "Xác minh pháp danh/tên chính thức, địa chỉ/ấp, tọa độ và mốc 1953; xác nhận giờ mở cửa, người quản lý và quy tắc ghi hình.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác minh pháp danh/tên chính thức, địa chỉ/ấp, tọa độ và mốc 1953; xác nhận giờ mở cửa, người quản lý và quy tắc ghi hình. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
         "SRC-006",
-        "SRC-009"
+        "SRC-009",
+        "SRC-010"
       ]
     },
     {
@@ -432,7 +467,7 @@
         "en": null
       },
       "category": "RELIGIOUS_SITE",
-      "addressOrArea": "Địa bàn xã Cù Lao Giêng; địa chỉ/ấp cụ thể chưa xác minh",
+      "addressOrArea": "Địa chỉ LỊCH SỬ theo tài liệu khoảng 2020: ấp Bình Quới, xã Bình Phước Xuân (SRC-010, tr. 78); thuộc xã Cù Lao Giêng hiện hành theo phạm vi sáp nhập. Tên ấp hiện hành chưa xác minh.",
       "coordinates": {
         "latitude": null,
         "longitude": null,
@@ -440,17 +475,18 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 2,
+      "sourceCount": 3,
       "threeDPriority": "HIGH",
       "threeDRationale": "Đề xuất ưu tiên nghiên cứu tổ chức không gian tượng và kiến trúc; cần kiểm kê có nguồn, xin phép, và tránh gây ảnh hưởng nghi lễ/khách hành hương.",
       "historicalSummary": "Báo địa phương nêu tên Chùa Phước Thành/Chùa Chim và mô tả quần thể tượng; chưa có kiểm kê hiện vật hoặc số liệu quy mô độc lập.",
       "culturalSignificance": "Ứng viên điểm Phật giáo có quần thể điêu khắc được báo chí và bài viết văn hóa địa phương nhắc tới.",
-      "openQuestions": "Xác nhận tên gọi, địa chỉ/ấp, tọa độ, danh mục và xuất xứ tượng; kiểm tra hồ sơ di tích nếu có; xin phép chùa về chụp/scan 3D.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác nhận tên gọi, địa chỉ/ấp, tọa độ, danh mục và xuất xứ tượng; kiểm tra hồ sơ di tích nếu có; xin phép chùa về chụp/scan 3D. Đối chiếu tên ấp hiện hành và biến thể Tân/Tấn với địa phương; địa chỉ trên chỉ là dữ liệu lịch sử.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-004",
-        "SRC-009"
+        "SRC-009",
+        "SRC-010"
       ]
     },
     {
@@ -500,13 +536,13 @@
       },
       "verificationStatus": "IN_REVIEW",
       "dataCompleteness": "MEDIUM",
-      "sourceCount": 7,
+      "sourceCount": 9,
       "threeDPriority": "MEDIUM",
       "threeDRationale": "Có tiềm năng tái hiện cảnh quan và hoạt động du lịch; dữ liệu chỉ ở mức đề xuất, cần xác minh hiện trạng, mùa vụ, ranh giới và quyền ghi hình.",
-      "historicalSummary": "Nhà vận hành tự công bố diện tích 6,6 ha; tham luận địa phương nêu 6,7 ha. Chưa xác định hai con số đo cùng phạm vi, cách tính hoặc thời điểm.",
+      "historicalSummary": "Nhà vận hành hiện tự công bố khu du lịch Cồn Én 6,6 ha (SRC-012); tham luận Đảng ủy xã nêu 6,7 ha (SRC-003, tr. 211). Bài Báo An Giang trước đây mô tả dự án The Lugar An Giang Resort and Spa trên cồn Tấn Long 6,6 ha (SRC-015); chưa chứng minh cùng giai đoạn hoặc footprint. Cồn Én tự nhiên có tọa độ trung tâm địa danh riêng trong Công báo 2017 (SRC-014, tr. 107), không phải POI khu du lịch.",
       "culturalSignificance": "Ứng viên trải nghiệm sinh thái/cảnh quan; thông tin hoạt động, chủ thể vận hành và tiếp cận lấy từ nguồn du lịch cần kiểm tra trực tiếp.",
-      "openQuestions": "Xác nhận địa chỉ hiện hành, điểm vào, ranh khu du lịch, hiện trạng và người có thẩm quyền cho phép khảo sát; hỏi cách tính/phạm vi/ngày đo của 6,6 ha và 6,7 ha; đề nghị cơ quan địa phương xác nhận hồ sơ ranh xã do hai polygon xã có sai khác; xin phép ghi GPS, perimeter, ảnh và scan 3D.",
-      "lastReviewed": "2026-10-30",
+      "openQuestions": "Xác nhận địa chỉ hiện hành, điểm vào, ranh khu du lịch, hiện trạng và người có thẩm quyền cho phép khảo sát; hỏi cách tính/phạm vi/ngày đo của 6,6 ha và 6,7 ha; đề nghị cơ quan địa phương xác nhận hồ sơ ranh xã do hai polygon xã có sai khác; xin phép ghi GPS, perimeter, ảnh và scan 3D. Phân biệt cồn tự nhiên với điểm du lịch; xác minh dự án The Lugar cũ và Cồn Én hiện tại có cùng footprint không.",
+      "lastReviewed": "2026-10-31",
       "scopeStatus": "IN_SCOPE",
       "sources": [
         "SRC-003",
@@ -515,7 +551,9 @@
         "SRC-008",
         "SRC-001",
         "SRC-012",
-        "SRC-013"
+        "SRC-013",
+        "SRC-014",
+        "SRC-015"
       ]
     }
   ],

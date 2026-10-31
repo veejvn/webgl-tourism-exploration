@@ -1,8 +1,16 @@
 # Verification Log — Cù Lao Giêng Destination Research
 
-Ngày cập nhật: **2026-10-30** (Asia/Bangkok)
+Ngày cập nhật: **2026-10-31** (Asia/Bangkok)
 Phạm vi: nghiên cứu bàn giấy cho xã Cù Lao Giêng hiện hành.
-Kết quả hiện tại: **10 ứng viên; 10 IN_SCOPE; 10 IN_REVIEW; 0 VERIFIED; 8/10 thiếu tọa độ có nguồn.**
+Kết quả hiện tại: **10 ứng viên; 10 IN_SCOPE; 10 IN_REVIEW; 0 VERIFIED; 8/10 thiếu tọa độ WGS84 phù hợp để dùng trong sản phẩm.**
+
+## Bổ sung nguồn địa danh và địa chỉ lịch sử — 2026-10-31
+
+- Đã mở trực tiếp [PDF Thông tin du lịch An Giang](https://media.angiang.gov.vn/SoVHTTDL-Portal/File-Dinh-Kem/thong_tin_du_lich_an_giang.pdf) (SRC-010) bằng bộ đọc web và đọc nội dung các trang 72–82. Truy cập PDF trước đó từng trả HTTP 502, vì vậy ghi nhận khả năng lỗi không liên tục; ngày tài liệu chính xác chưa xác minh, phần được dẫn dựa trên nguồn/khảo sát khoảng 2020. Tài liệu ghi địa chỉ **lịch sử**: DEST-001 ấp Tấn Bình (tr. 72); DEST-003 ấp Tân Bình (tr. 76); DEST-004 ấp Tân Thạnh, là vị trí sau lần dời năm 1867, không phải địa điểm thành lập ban đầu ở ấp Bình Tấn (tr. 80); DEST-005 ấp Bình Quới (tr. 81); DEST-007 ấp Tân Lợi (tr. 77); DEST-008 ấp Bình Quới (tr. 78). Giữ nguyên cách viết Tân/Tấn trong PDF; tên ấp hiện hành cần địa phương xác nhận.
+- [Thông tư 17/2017/TT-BTNMT trong Công báo Chính phủ](https://congbaocdn.chinhphu.vn/CongBaoCP/CongBao/2017/8/24422/18770-1-593-594.pdf) (SRC-014; ban hành 26/07/2017, hiệu lực 15/09/2017) cho tọa độ **DMS của địa danh**, không phải tọa độ WGS84 đã chuyển hệ: DEST-001 nhà thờ Cù Lào Giêng 10°30′30″B, 105°29′46″Đ (tr. 107); DEST-004 đình Tấn Mỹ 10°28′40″B, 105°31′14″Đ (tr. 107); DEST-005 phủ thờ Nguyễn Tộc 10°27′30″B, 105°31′55″Đ (tr. 90); DEST-006 phủ thờ Dương Công Phủ 10°29′07″B, 105°33′25″Đ (tr. 102). Tr. 3–4 của Công báo xác định đây là tọa độ vị trí tương đối/trung tâm ký hiệu trên bản đồ địa hình quốc gia VN-2000 tỷ lệ 1:25.000. Trích xuất bảng PDF dạng phẳng đã đối chiếu số hàng, tên và mảnh bản đồ; cần kiểm tra trực quan trước ứng dụng đòi hỏi độ chính xác cao.
+- Phép lọc điểm trong polygon bằng QGIS MCP ở chế độ đọc cho cả bốn tọa độ DMS trên đều nằm trong polygon tỉnh công bố và polygon tham khảo khi dùng các trị số độ-phút-giây như tọa độ địa lý để kiểm tra bao chứa thô. Phép này **không** chuyển hệ từ VN-2000 sang WGS84, không xác định cổng vào hay ranh khuôn viên. Các trường WGS84 `latitude`, `longitude`, `coordinate_source` của DEST-001/004/005/006 vẫn để trống; tổng cộng vẫn 8/10 ứng viên thiếu tọa độ WGS84 có nguồn phù hợp.
+- Công báo tr. 107 ghi **Cồn Én tự nhiên** tại 10°32′33″B, 105°30′31″Đ; không đồng nhất với POI điểm du lịch Cồn Én của nhà vận hành. Nhà vận hành ghi 6,6 ha (SRC-012); [tham luận địa phương](https://svhtt.angiang.gov.vn/sites/default/files/2025-10/6.2%20Cac%20Tham%20luan.pdf) ghi 6,7 ha (SRC-003, tr. 211); [Báo An Giang](https://baoangiang.com.vn/xa-anh-hung-tan-my-dat-chuan-nong-thon-moi-nang-cao-a301483.html) mô tả dự án The Lugar An Giang Resort and Spa trước đây trên cồn Tấn Long có quy mô 6,6 ha (SRC-015). Chưa rõ các số liệu có cùng giai đoạn, phạm vi và phương pháp đo hay không; không dùng chúng để vẽ perimeter.
+- Chưa tìm thấy tọa độ trong Công báo cho DEST-002/003/007/008. [Sở Nội vụ An Giang](https://snv.angiang.gov.vn/ban-giao-dua-vao-quan-ly-su-dung-bo-ho-so-ban-do-dia-gioi-hanh-chinh-cap-huyen-cap-xa-tren-dia-ban) mô tả bàn giao hồ sơ địa giới năm 2023, trước sắp xếp 2025. Chưa lấy được hồ sơ địa giới hiện hành đã phê duyệt của xã Cù Lao Giêng; chênh polygon 1,4359 km² vẫn chưa được giải quyết.
 
 ## Đợt xác minh vị trí và phạm vi — 2026-10-30
 
@@ -64,10 +72,12 @@ Nghị quyết 1654/NQ-UBTVQH15 ban hành ngày 2025-06-16 là văn bản sắp 
 | SRC-007 | [Khảo sát du lịch ba xã Cù Lao — Sở VHTT An Giang](https://svhtt.angiang.gov.vn/so-van-hoa-thao-va-du-lich-trien-khai-cong-tac-khao-sat-tinh-hinh-phat-trien-du-lich-ba-xa-cu-lao) | PAGE_OPENED | Nguồn trước sắp xếp 2025; nêu Tấn Mỹ, Tu viện Chúa Quan Phòng, Cồn Én. |
 | SRC-008 | [Điểm du lịch Cồn Én — Trung tâm Xúc tiến du lịch An Giang](https://apc.angiang.gov.vn/m/169/2694/Diem-du-lich-Con-En-dam-chat-hoai-niem-o-xa-Cu-Lao-Gieng.html) | SEARCH_RESULT_ONLY | Dùng snippet làm manh mối ấp Tấn Long; trang gốc chỉ trả vỏ JavaScript. |
 | SRC-009 | [Dòng văn nghệ chảy suốt chiều dài lịch sử — Văn Nghệ An Giang](https://vannghe.angiang.gov.vn/dong-van-nghe-chay-suot-chieu-dai-lich-su/) | PAGE_OPENED | Manh mối biến thể tên, gồm Phước Minh/Bà Vú; không đủ chứng minh địa giới hiện hành. |
-| SRC-010 | [Thông tin du lịch An Giang — PDF](https://media.angiang.gov.vn/SoVHTTDL-Portal/File-Dinh-Kem/thong_tin_du_lich_an_giang.pdf) | FETCH_ERROR | HTTP 502; không dùng nội dung từ kết quả tìm kiếm làm bằng chứng. |
+| SRC-010 | [Thông tin du lịch An Giang — PDF](https://media.angiang.gov.vn/SoVHTTDL-Portal/File-Dinh-Kem/thong_tin_du_lich_an_giang.pdf) | PAGE_OPENED | Đã đọc trực tiếp tr. 72–82 ngày 2026-10-31; trước đó HTTP 502 và lỗi có thể không liên tục. Địa chỉ ấp trong tài liệu là lịch sử, cần xác nhận hiện hành. |
 | SRC-011 | [Chùa Phước Minh / Chùa Bà Vú — Chốn Thiêng](https://chonthieng.com/dia-diem/chua-phuoc-minh-chua-ba-vu-cho-moi-an-giang/) | PAGE_OPENED | Địa chỉ cũ và liên kết Google Maps plus code; không phải nguồn địa giới hoặc xác nhận của người quản lý. |
 | SRC-012 | [Cồn Én — trang đơn vị vận hành](https://www.dulichconen.com/) | PAGE_OPENED | Đầu trang ghi địa chỉ hiện hành ấp Tấn Long, xã Cù Lao Giêng; cùng trang vẫn có khối nội dung cũ ghi xã Tấn Mỹ, huyện Chợ Mới. Nêu 6,6 ha và nhúng điểm POI; không phải perimeter khảo sát. |
 | SRC-013 | [Bản đồ hành chính 102 xã, phường, đặc khu — UBND tỉnh An Giang](https://angiang.gov.vn/vi/ban-do-hanh-chinh-102-xa-phuong-dac-khu-tinh-an-giang) · [GeoJSON](https://angiang.gov.vn/sites/default/files/other/AnGiang_Xa_NEW_JSON_2.json) | PAGE_OPENED | Lớp polygon Cù Lao Giêng công bố trên bản đồ tỉnh; thuộc tính diện tích 68,92 km². Hình học khác polygon tham khảo khoảng 1,436 km² đối xứng; cần xác nhận hồ sơ địa giới. |
+| SRC-014 | [Thông tư 17/2017/TT-BTNMT — Công báo Chính phủ](https://congbaocdn.chinhphu.vn/CongBaoCP/CongBao/2017/8/24422/18770-1-593-594.pdf) | PAGE_OPENED | Tr. 90/102/107 có DMS của bốn địa danh; tr. 3–4 nêu bản đồ VN-2000 1:25.000 và ý nghĩa tọa độ tương đối. Không phải cổng hay perimeter; không tự điền vào trường WGS84. |
+| SRC-015 | [The Lugar 6,6 ha — Báo An Giang](https://baoangiang.com.vn/xa-anh-hung-tan-my-dat-chuan-nong-thon-moi-nang-cao-a301483.html) | PAGE_OPENED | Bài báo giai đoạn trước nêu dự án The Lugar tại cồn Tấn Long 6,6 ha; chưa chứng minh footprint trùng khu du lịch Cồn Én hiện tại. |
 
 ## Danh mục ứng viên ở snapshot 2026-10-29
 
@@ -86,11 +96,11 @@ Nghị quyết 1654/NQ-UBTVQH15 ban hành ngày 2025-06-16 là văn bản sắp 
 
 ## Nguyên tắc tọa độ và xác minh
 
-Không tọa độ nào được ước lượng từ tên địa danh hoặc ảnh. Hai điểm mới là tọa độ POI có nguồn, chưa phải ranh khuôn viên khảo sát. Tám ứng viên còn lại chưa có tọa độ có nguồn. Muốn nâng lên `VERIFIED`, cần nguồn trực tiếp cho danh tính/địa chỉ, tọa độ có thể truy vết, bằng chứng phạm vi chính thức hoặc thực địa, và xử lý xong mâu thuẫn lớn. Chưa có hồ sơ nào đạt ngưỡng này.
+Không tọa độ nào được ước lượng từ tên địa danh hoặc ảnh. Hai điểm POI DEST-009/010 có nguồn nhưng chưa phải ranh khuôn viên khảo sát. Tám ứng viên còn lại chưa có tọa độ WGS84 phù hợp cho dữ liệu sản phẩm; bốn ứng viên trong số này chỉ có DMS vị trí tương đối từ Công báo 2017, lưu ở câu hỏi nghiên cứu. Muốn nâng lên `VERIFIED`, cần nguồn trực tiếp cho danh tính/địa chỉ, tọa độ có thể truy vết, bằng chứng phạm vi chính thức hoặc thực địa, và xử lý xong mâu thuẫn lớn. Chưa có hồ sơ nào đạt ngưỡng này.
 
 ## Truy xuất chưa thành công
 
-- PDF `thong_tin_du_lich_an_giang.pdf` trả HTTP 502.
+- PDF `thong_tin_du_lich_an_giang.pdf` từng trả HTTP 502; đã mở được ngày 2026-10-31, cần tính đến lỗi truy cập không liên tục.
 - Trang Cồn Én của Trung tâm Xúc tiến du lịch chỉ tải vỏ trang; snippet tìm kiếm chỉ là manh mối.
 - PDF Nghị quyết 1654 mở được nhưng công cụ không đọc được nội dung văn bản; diễn giải thành phần xã dựa thêm vào báo cáo chính quyền địa phương.
 - Một số trang cổng tỉnh được tìm thấy nhưng timeout khi mở, nên không đưa vào số nguồn hỗ trợ danh mục.

@@ -2,6 +2,18 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Map and Destinations Features', () => {
   test.beforeEach(async ({ page }) => {
+    await page.route('**/destinations', (route) => route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify([{
+        id: 'published-destination',
+        title: 'Địa điểm thử nghiệm',
+        description: 'Nội dung dùng trong kiểm thử',
+        latitude: 10.5,
+        longitude: 105.5,
+        coverImage: '',
+      }]),
+    }));
     // Start waiting for the API response BEFORE triggering the navigation to prevent race conditions
     const responsePromise = page.waitForResponse(/\/destinations/);
     await page.goto('/map');
@@ -18,10 +30,21 @@ test.describe('Map and Destinations Features', () => {
   });
 
   test('should load destination markers from API and plot on map', async ({ page }) => {
-    // The seed data has 8 destinations (An Giang destinations)
     // Mapbox markers are standard DOM nodes created dynamically with emoji "📍"
     const markers = page.locator('text=📍');
-    await expect(markers).toHaveCount(8);
+    await expect(markers).toHaveCount(1);
+  });
+
+  test('should show an empty state when no destinations are published', async ({ page }) => {
+    await page.route('**/destinations', (route) => route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: '[]',
+    }));
+    await page.reload();
+
+    await expect(page.getByText('Chưa có địa điểm nào được công bố để khám phá.')).toBeVisible();
+    await expect(page.locator('text=📍')).toHaveCount(0);
   });
 
   test('should display detailed card when a destination marker is clicked', async ({ page }) => {
@@ -43,6 +66,15 @@ test.describe('Map and Destinations Features', () => {
     
     await expect(exploreBtn).toBeVisible();
     await expect(zoomBtn).toBeVisible();
+  });
+
+  test('should let a guest open the selected destination in 3D', async ({ page }) => {
+    await page.evaluate(() => localStorage.clear());
+    await page.locator('text=📍').first().dispatchEvent('click');
+    await page.getByRole('button', { name: /Khám phá 3D/ }).click();
+
+    await expect(page).toHaveURL(/\/explore\?id=.+/, { timeout: 10000 });
+    await expect(page.getByText('Không gian 3D')).toBeVisible();
   });
 
   test('should close detailed card when close button is clicked', async ({ page }) => {

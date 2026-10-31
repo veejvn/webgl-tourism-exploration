@@ -29,11 +29,11 @@ flowchart LR
 ### Frontend
 
 - Route hiện có: `/`, `/login`, `/register`, `/map`, `/explore`.
-- `/map` lấy dữ liệu qua `useDestinations` → `destinationsApi` → Axios → `GET /destinations`; destination có thể mở panel và điều hướng sang `/explore?id=...`.
+- `/map` lấy dữ liệu qua `useDestinations` → `destinationsApi` → Axios → `GET /destinations`; destination đủ điều kiện có thể mở panel và điều hướng sang `/explore?id=...`. Danh sách rỗng có thông báo riêng.
 - `NEXT_PUBLIC_API_URL` cấu hình API base URL; Mapbox token đọc từ `NEXT_PUBLIC_MAPBOX_TOKEN`.
 - `/explore` tải `WorldScene` động với SSR tắt. Scene dùng bầu trời, grid, sàn, hình khối mẫu, player capsule và OrbitControls.
 - PlayerController cập nhật tọa độ vào Zustand; chưa có persistence hoặc đồng bộ API tiến trình.
-- Query destination `id` hiện dùng cho tiêu đề; `WorldScene` không nhận destination data và không tải scene theo id.
+- Query destination `id` hiện dùng cho tiêu đề; `WorldScene` không nhận destination data và không tải scene theo id. Tiêu đề ghi rõ đây là cảnh 3D minh họa.
 - Trang `/` hiện là placeholder “Hello World”.
 
 ### Authentication và quyền truy cập
@@ -41,8 +41,8 @@ flowchart LR
 - `POST /auth/register` và `POST /auth/login` trả thông tin user đã rút gọn cùng JWT.
 - Frontend lưu token trong localStorage và Axios gửi `Authorization: Bearer`.
 - JWT được ký HS256 bằng Node `crypto`, TTL mặc định 24 giờ; `JWT_SECRET` bắt buộc có khi khởi động API.
-- AuthHydration hiện chỉ chuyển khách chưa đăng nhập khỏi `/explore`; map vẫn truy cập công khai. Có `AuthGuard` ở API nhưng chưa được áp dụng lên endpoint hiện tại.
-- Target nghiệp vụ cho phép anonymous exploration và lưu tiến trình cục bộ; hiện `/explore` yêu cầu đăng nhập và chưa có progress storage. Đây là gap cần xử lý khi triển khai.
+- AuthHydration cho khách chưa đăng nhập mở `/map` và `/explore`; người đã đăng nhập truy cập `/login` hoặc `/register` được chuyển về `/map`. Có `AuthGuard` ở API nhưng chưa được áp dụng lên endpoint hiện tại.
+- Khách ẩn danh xem được cảnh minh họa; tiến trình cục bộ và đồng bộ tài khoản chưa được triển khai.
 
 ### API và dữ liệu
 
@@ -50,7 +50,7 @@ flowchart LR
 - Controller hiện có: auth register/login; destination list/detail.
 - `UsersModule` hiện chỉ có service, chưa có users controller.
 - Prisma provider mặc định PostgreSQL; khi `USE_SQLITE=true` chọn SQLite service lưu trong `apps/api/dev.db` và seed dữ liệu mẫu khi danh sách destination còn trống.
-- Compose khai báo PostGIS và Redis. Schema có User, Destination, Landmark; tọa độ là Float. Không thấy PostGIS geometry/query hoặc Redis client tích hợp.
+- Compose khai báo PostGIS và Redis. Schema có User, Destination, Landmark; tọa độ là Float. Destination có `sourceUrl` tùy chọn, `verificationStatus` mặc định `UNVERIFIED` và `publicationStatus` mặc định `DRAFT` trong cả schema PostgreSQL/SQLite. API công khai chỉ đọc hồ sơ `VERIFIED` và `PUBLISHED`. Chưa đồng bộ schema vào database hoặc có API biên tập/duyệt. Không thấy PostGIS geometry/query hoặc Redis client tích hợp.
 - Chi tiết schema hiện tại và ERD khái niệm mục tiêu: [Product Scope & Domain](./PRODUCT_SCOPE_AND_DOMAIN.md).
 
 ## 2. Runtime Flow có trong code
@@ -64,7 +64,7 @@ MapPage
   → Axios GET /destinations
   → DestinationsController.findAll()
   → DestinationsService.findAll()
-  → Prisma destination.findMany(include: landmarks)
+  → Prisma destination.findMany(where: VERIFIED + PUBLISHED, include: landmarks)
 ```
 
 ### Auth

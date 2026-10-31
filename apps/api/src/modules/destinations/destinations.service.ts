@@ -10,6 +10,10 @@ export class DestinationsService {
 
   async findAll(): Promise<DestinationDTO[]> {
     const destinations = await this.prisma.destination.findMany({
+      where: {
+        verificationStatus: 'VERIFIED',
+        publicationStatus: 'PUBLISHED',
+      },
       include: {
         landmarks: true,
       },
@@ -18,8 +22,12 @@ export class DestinationsService {
   }
 
   async findOne(id: string): Promise<DestinationDTO | null> {
-    const destination = await this.prisma.destination.findUnique({
-      where: { id },
+    const destination = await this.prisma.destination.findFirst({
+      where: {
+        id,
+        verificationStatus: 'VERIFIED',
+        publicationStatus: 'PUBLISHED',
+      },
       include: {
         landmarks: true,
       },

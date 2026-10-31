@@ -48,7 +48,7 @@ function ExploreContent() {
               Không gian 3D
             </span>
             <h1 className="text-sm font-bold text-white leading-tight">
-              Khám phá di sản: {destinationName === 'Hanoi' ? 'Hà Nội' : destinationName === 'Hue' ? 'Huế' : destinationName === 'Hoian' ? 'Hội An' : destinationName}
+              Cảnh 3D minh họa: {destinationName === 'Hanoi' ? 'Hà Nội' : destinationName === 'Hue' ? 'Huế' : destinationName === 'Hoian' ? 'Hội An' : destinationName}
             </h1>
           </div>
         </div>

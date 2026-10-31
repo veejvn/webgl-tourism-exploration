@@ -1,16 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Route Protection and Auth Hydration', () => {
-  test('should redirect unauthenticated users from /explore to /login', async ({ page }) => {
+  test('should let unauthenticated users open /explore with a destination id', async ({ page }) => {
     // Go to home page to clear localStorage
     await page.goto('/');
     await page.evaluate(() => localStorage.clear());
 
-    // Try accessing a protected route: /explore
-    await page.goto('/explore');
+    await page.goto('/explore?id=hue');
 
-    // Should be intercepted by client hydration and redirected to login page with correct redirect param
-    await expect(page).toHaveURL(/\/login\?redirect=(%2F|\/)explore/, { timeout: 10000 });
+    await expect(page).toHaveURL(/\/explore\?id=hue$/, { timeout: 10000 });
+    await expect(page.getByRole('heading', { name: 'Cảnh 3D minh họa: Huế' })).toBeVisible();
   });
 
   test('should redirect authenticated users away from /login and /register to /map', async ({ page, context }) => {

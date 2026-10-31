@@ -24,16 +24,19 @@ model User {
 }
 
 model Destination {
-  id          String     @id @default(uuid())
-  title       String
-  description String
-  latitude    Float
-  longitude   Float
-  coverImage  String
-  modelUrl    String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  landmarks   Landmark[]
+  id                 String     @id @default(uuid())
+  title              String
+  description        String
+  latitude           Float
+  longitude          Float
+  coverImage         String
+  modelUrl           String?
+  sourceUrl          String?
+  verificationStatus String     @default("UNVERIFIED")
+  publicationStatus  String     @default("DRAFT")
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  landmarks          Landmark[]
 }
 
 model Landmark {

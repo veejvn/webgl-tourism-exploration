@@ -1,6 +1,6 @@
 # Cù Lao Giêng — Destination Research
 
-Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-30** để con người rà soát. Đây không phải danh mục du lịch đã xác minh, dữ liệu sản phẩm, API contract hay nội dung để nhập vào ứng dụng.
+Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-31** để con người rà soát. Đây không phải danh mục du lịch đã xác minh, dữ liệu sản phẩm, API contract hay nội dung để nhập vào ứng dụng.
 
 ## Phạm vi hành chính
 
@@ -15,8 +15,8 @@ Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-30** để
 
 - 10 ứng viên: 10 `IN_REVIEW`, 0 `SCOPE_UNCLEAR`.
 - Cả 10 hồ sơ được gán `IN_SCOPE`; hai điểm POI DEST-009/010 nằm trong polygon bản đồ tỉnh và polygon bên thứ ba. Hai polygon xã sai khác hình học khoảng 1,436 km²; cần cơ quan địa phương xác nhận hồ sơ địa giới chuẩn. Không polygon nào mô tả perimeter khuôn viên hai địa điểm.
-- 0 hồ sơ `VERIFIED`; 8/10 ứng viên còn thiếu tọa độ có nguồn.
-- 13 nguồn được đăng ký: 11 trang/PDF/GeoJSON mở được, 1 nguồn chỉ có kết quả tìm kiếm, 1 lỗi truy xuất.
+- 0 hồ sơ `VERIFIED`; 8/10 ứng viên còn thiếu tọa độ WGS84 có nguồn phù hợp. Công báo năm 2017 có vị trí địa danh tương đối VN-2000 cho 4 ứng viên trong nhóm này; chưa chuyển chúng thành điểm WGS84, cổng vào hoặc perimeter.
+- 15 nguồn được đăng ký: 14 trang/PDF/GeoJSON mở được, 1 nguồn chỉ có kết quả tìm kiếm. PDF SRC-010 mở được ngày 2026-10-31 nhưng vẫn có lúc trả HTTP 502.
 - Tên tiếng Anh chính thức để trống; không dịch tên địa điểm thành tên chính thức.
 
 ## Tệp
@@ -29,7 +29,7 @@ Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-30** để
 - [priority-candidates-reference.geojson](./priority-candidates-reference.geojson): hai điểm POI có tọa độ nguồn cho DEST-009 và DEST-010; không phải điểm khảo sát ranh khuôn viên.
 - [cu-lao-gieng-boundary-review.gpkg](./cu-lao-gieng-boundary-review.gpkg): GeoPackage có ba layer `Cù Lao Giêng — official provincial map 2025`, `Third-party boundary — reference only`, `DEST-009/010 — sourced POI reference points`.
 - [cu-lao-gieng-boundary-review.geojson](./cu-lao-gieng-boundary-review.geojson): GeoJSON FeatureCollection gộp 1 polygon bản đồ tỉnh, 1 polygon tham khảo và 2 điểm POI; `dataset_layer` phân biệt vai trò.
-- [field-verification-template.csv](./field-verification-template.csv): mẫu trống để ghi địa chỉ, điểm vào, perimeter, diện tích/cách tính, ngày khảo sát và từng loại cho phép; chưa có quan sát thực địa nào được ghi.
+- [field-verification-template.csv](./field-verification-template.csv): hai dòng DEST-009/010 đã điền ID và tên; các trường địa chỉ, điểm vào, perimeter, diện tích/cách tính, ngày khảo sát và từng loại cho phép để trống. Chưa có quan sát thực địa nào được ghi.
 - [cu-lao-gieng-research.qgz](./cu-lao-gieng-research.qgz): project QGIS MCP cục bộ với ba layer EPSG:4326; lớp bên thứ ba tắt mặc định để không che polygon tỉnh.
 
 ## Trạng thái

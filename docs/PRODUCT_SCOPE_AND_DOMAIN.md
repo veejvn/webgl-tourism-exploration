@@ -20,13 +20,13 @@ Phạm vi địa lý là toàn khu vực Cù Lao Giêng. Danh mục địa đi�
 
 | Hạng mục | Mức hiện tại | Bằng chứng / giới hạn |
 |---|---|---|
-| Bản đồ | Đã triển khai một phần trong mã | Mapbox hiển thị destination lấy từ `GET /destinations`; có marker, thẻ chi tiết và điều hướng. Token đọc từ `NEXT_PUBLIC_MAPBOX_TOKEN`. |
-| Danh sách địa điểm | Đã có API đọc | Prisma `Destination` và `Landmark`; seed có 8 điểm đến cùng 7 landmark thuộc dataset mẫu An Giang/khu vực lân cận. Chưa phải danh mục Cù Lao Giêng đã xác minh. |
+| Bản đồ | Đã triển khai một phần trong mã | Mapbox hiển thị destination công khai lấy từ `GET /destinations`; có marker, thẻ chi tiết, điều hướng và thông báo khi danh sách rỗng. Token đọc từ `NEXT_PUBLIC_MAPBOX_TOKEN`. |
+| Danh sách địa điểm | Có API đọc với cổng xuất bản | Prisma `Destination` và `Landmark`; service chỉ trả destination `VERIFIED` và `PUBLISHED`. Seed có 8 điểm đến cùng 7 landmark thuộc dataset mẫu An Giang/khu vực lân cận, mặc định `UNVERIFIED`/`DRAFT`, nên không xuất hiện trong API công khai sau khi đồng bộ schema. Chưa phải danh mục Cù Lao Giêng đã xác minh. |
 | Đăng ký/đăng nhập | Có luồng frontend/backend trong mã | API register/login, JWT HS256 và hash mật khẩu scrypt; frontend giữ token trong localStorage. |
-| Bảo vệ truy cập | Một phần, chưa khớp mục tiêu | Frontend chuyển khách chưa đăng nhập khỏi `/explore`; API `AuthGuard` tồn tại nhưng chưa được gắn vào các endpoint hiện có. |
+| Bảo vệ truy cập | Một phần | Khách chưa đăng nhập có thể mở `/map` và `/explore`; API `AuthGuard` tồn tại nhưng chưa được gắn vào các endpoint hiện có. |
 | Scene 3D | Demo cơ bản | Một `WorldScene` dùng hình khối mẫu và một nhân vật capsule điều khiển WASD/Shift. Query `id` đổi tiêu đề nhưng chưa chọn scene theo destination. |
 | Trang chủ | Chưa triển khai | `apps/web/app/page.tsx` chỉ render “Hello World”. |
-| Nội dung biên tập, nguồn tư liệu, bản dịch và xuất bản | Chưa thấy triển khai | Prisma chưa có model nội dung, translation, source/citation hoặc trạng thái xuất bản. |
+| Nội dung biên tập, nguồn tư liệu, bản dịch và xuất bản | Cổng dữ liệu tối thiểu | Destination có URL nguồn tùy chọn và hai chuỗi trạng thái xác minh/xuất bản. Chưa có model nội dung, translation, source/citation theo claim, API duyệt hay CMS. |
 | CMS Admin/Editor | Chưa thấy triển khai | Chưa có trang/module/API quản trị; role hiện tại không có `EDITOR`. |
 | Tiến trình, hành trình, đề xuất cộng đồng | Chưa thấy triển khai | Không có model/API tương ứng; Zustand player store chỉ giữ tọa độ trong bộ nhớ. |
 | AI Guide, NPC, nhiệm vụ/huy hiệu | Chưa triển khai | Có nút AI mẫu và prompt constant; chưa có luồng gọi dịch vụ AI hoặc domain module. |
@@ -106,11 +106,11 @@ Một modular monolith là **hướng tổ chức mục tiêu để xem xét**, 
 PostgreSQL schema và SQLite schema gồm ba model:
 
 - `User`: id, email duy nhất, password hash, name, role, avatar tùy chọn, timestamps.
-- `Destination`: id, title, description, latitude/longitude dạng Float, coverImage, modelUrl tùy chọn, timestamps.
+- `Destination`: id, title, description, latitude/longitude dạng Float, coverImage, modelUrl và sourceUrl tùy chọn, verificationStatus mặc định UNVERIFIED, publicationStatus mặc định DRAFT, timestamps.
 - `Landmark`: nội dung và tọa độ, `destinationId` là foreign key tới Destination; xóa Destination thì cascade Landmark.
 - Một Destination có nhiều Landmark. User hiện chưa có relation tới progress, submissions hoặc itinerary.
 - Role PostgreSQL là `VISITOR`, `USER`, `ADMIN`; schema SQLite lưu role dạng String.
-- Không thấy model translation/source/version/publishing hoặc migration file trong `apps/api/prisma/migrations`.
+- Chưa có model translation/source/version, workflow xuất bản hoặc migration file trong `apps/api/prisma/migrations`; hai trạng thái Destination hiện là trường String, chưa có endpoint thay đổi trạng thái.
 
 ```mermaid
 erDiagram
@@ -132,6 +132,9 @@ erDiagram
     float longitude
     string coverImage
     string modelUrl
+    string sourceUrl
+    string verificationStatus
+    string publicationStatus
     datetime createdAt
     datetime updatedAt
   }
@@ -178,7 +181,7 @@ Các ràng buộc chính của target: một scene đang hoạt động tối đ
 - Chưa chốt retention, quyền riêng tư và mức định danh cho VisitorProgress ẩn danh.
 - Chưa chốt quy trình kiểm duyệt, audit log và quyền Admin/Editor chi tiết.
 - Chưa chốt công nghệ CMS, lưu trữ media/scene, hoặc cách lưu dữ liệu không gian.
-- Chính sách người dùng mục tiêu cho phép anonymous exploration; frontend hiện redirect khách khỏi `/explore`. Đây là gap sản phẩm cần xử lý khi triển khai, không phải thay đổi trong nhiệm vụ tài liệu này.
+- Khách ẩn danh đã mở được `/explore`, nhưng tiến trình ẩn danh chưa được lưu; scene theo destination vẫn là demo.
 
 ## 8. Roadmap đề xuất — không có deadline cam kết
 

@@ -34,6 +34,9 @@ export interface DestinationDTO {
   longitude: number;
   coverImage: string;
   modelUrl?: string | null;
+  sourceUrl?: string | null;
+  verificationStatus: string;
+  publicationStatus: string;
   createdAt: Date;
   updatedAt: Date;
   landmarks?: LandmarkDTO[];
