@@ -16,7 +16,7 @@ Tập dữ liệu này là **bản chụp nghiên cứu ngày 2026-10-31** để
 - 10 ứng viên: 10 `IN_REVIEW`, 0 `SCOPE_UNCLEAR`.
 - Cả 10 hồ sơ được gán `IN_SCOPE`; hai điểm POI DEST-009/010 nằm trong polygon bản đồ tỉnh và polygon bên thứ ba. Hai polygon xã sai khác hình học khoảng 1,436 km²; cần cơ quan địa phương xác nhận hồ sơ địa giới chuẩn. Không polygon nào mô tả perimeter khuôn viên hai địa điểm.
 - 0 hồ sơ `VERIFIED`; 8/10 ứng viên còn thiếu tọa độ WGS84 có nguồn phù hợp. Công báo năm 2017 có vị trí địa danh tương đối VN-2000 cho 4 ứng viên trong nhóm này; chưa chuyển chúng thành điểm WGS84, cổng vào hoặc perimeter.
-- 15 nguồn được đăng ký: 14 trang/PDF/GeoJSON mở được, 1 nguồn chỉ có kết quả tìm kiếm. PDF SRC-010 mở được ngày 2026-10-31 nhưng vẫn có lúc trả HTTP 502.
+- 16 nguồn được đăng ký: 15 trang/PDF/GeoJSON hoặc trang chỉ mục mở được, 1 nguồn chỉ có kết quả tìm kiếm. PDF SRC-010 mở được ngày 2026-10-31 nhưng vẫn có lúc trả HTTP 502. SRC-016 chỉ xác nhận nhiệm vụ lập mới hồ sơ địa giới được giao dự toán, chưa cung cấp polygon phê duyệt.
 - Tên tiếng Anh chính thức để trống; không dịch tên địa điểm thành tên chính thức.
 
 ## Tệp

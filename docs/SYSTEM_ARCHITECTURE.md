@@ -49,8 +49,8 @@ flowchart LR
 - `AppModule` đăng ký Prisma, Auth, Users và Destinations.
 - Controller hiện có: auth register/login; destination list/detail.
 - `UsersModule` hiện chỉ có service, chưa có users controller.
-- Prisma provider mặc định PostgreSQL; khi `USE_SQLITE=true` chọn SQLite service lưu trong `apps/api/dev.db` và seed dữ liệu mẫu khi danh sách destination còn trống.
-- Compose khai báo PostGIS và Redis. Schema có User, Destination, Landmark; tọa độ là Float. Destination có `sourceUrl` tùy chọn, `verificationStatus` mặc định `UNVERIFIED` và `publicationStatus` mặc định `DRAFT` trong cả schema PostgreSQL/SQLite. API công khai chỉ đọc hồ sơ `VERIFIED` và `PUBLISHED`. Chưa đồng bộ schema vào database hoặc có API biên tập/duyệt. Không thấy PostGIS geometry/query hoặc Redis client tích hợp.
+- Prisma provider mặc định PostgreSQL; khi `USE_SQLITE=true` chọn SQLite service lưu trong `apps/api/dev.db` (hoặc tên file `SQLITE_DATABASE_FILE` trong `apps/api`) và seed dữ liệu mẫu khi danh sách destination còn trống. Prisma Client cần được sinh lại sau mỗi lần đổi provider; Playwright E2E dùng `apps/api/e2e.db` riêng.
+- Compose khai báo PostGIS và Redis. Schema có User, Destination, Landmark; tọa độ là Float. Destination có `sourceUrl` tùy chọn, `verificationStatus` mặc định `UNVERIFIED` và `publicationStatus` mặc định `DRAFT` trong cả schema PostgreSQL/SQLite. API công khai chỉ đọc hồ sơ `VERIFIED` và `PUBLISHED`. Mỗi database đích cần được sao lưu và đồng bộ schema riêng; chưa có API biên tập/duyệt. Không thấy PostGIS geometry/query hoặc Redis client tích hợp.
 - Chi tiết schema hiện tại và ERD khái niệm mục tiêu: [Product Scope & Domain](./PRODUCT_SCOPE_AND_DOMAIN.md).
 
 ## 2. Runtime Flow có trong code

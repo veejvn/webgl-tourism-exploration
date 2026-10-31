@@ -4,6 +4,11 @@ Ngày cập nhật: **2026-10-31** (Asia/Bangkok)
 Phạm vi: nghiên cứu bàn giấy cho xã Cù Lao Giêng hiện hành.
 Kết quả hiện tại: **10 ứng viên; 10 IN_SCOPE; 10 IN_REVIEW; 0 VERIFIED; 8/10 thiếu tọa độ WGS84 phù hợp để dùng trong sản phẩm.**
 
+## Truy tìm hồ sơ địa giới hiện hành — 2026-10-31
+
+- [Danh mục văn bản chuyên môn Sở Nội vụ An Giang](https://snv.angiang.gov.vn/van-ban?field_co_quan_ban_hanh_value=All&field_linh_value=All&field_loai_van_ban_value=All&field_nam_value=All&field_trich_yeu_value=&order=field_trich_yeu&page=0&sort=asc) liệt kê Quyết định 17566/QĐ-SNV ngày 12/06/2026 về giao dự toán cho nhiệm vụ **lập mới hồ sơ, bản đồ địa giới đơn vị hành chính các cấp tỉnh An Giang** (SRC-016). Đây là chứng cứ về nhiệm vụ/kinh phí, không chứng minh hồ sơ hoàn thành hay polygon đã phê duyệt. [PDF đính kèm](https://snv.angiang.gov.vn/sites/default/files/2026-06/175660001.pdf) mở được metadata ba trang nhưng không trích xuất được nội dung. Chưa tìm thấy lớp Cù Lao Giêng theo hồ sơ đã phê duyệt; giữ chênh 1,4359 km² và nhãn polygon bên thứ ba “tham khảo”.
+- QGIS MCP ngày 2026-10-31 vẫn mở project EPSG:4326 với ba layer: polygon bản đồ tỉnh, hai POI tham chiếu và polygon bên thứ ba tắt mặc định. Không thêm perimeter hoặc nâng trạng thái xác minh.
+
 ## Bổ sung nguồn địa danh và địa chỉ lịch sử — 2026-10-31
 
 - Đã mở trực tiếp [PDF Thông tin du lịch An Giang](https://media.angiang.gov.vn/SoVHTTDL-Portal/File-Dinh-Kem/thong_tin_du_lich_an_giang.pdf) (SRC-010) bằng bộ đọc web và đọc nội dung các trang 72–82. Truy cập PDF trước đó từng trả HTTP 502, vì vậy ghi nhận khả năng lỗi không liên tục; ngày tài liệu chính xác chưa xác minh, phần được dẫn dựa trên nguồn/khảo sát khoảng 2020. Tài liệu ghi địa chỉ **lịch sử**: DEST-001 ấp Tấn Bình (tr. 72); DEST-003 ấp Tân Bình (tr. 76); DEST-004 ấp Tân Thạnh, là vị trí sau lần dời năm 1867, không phải địa điểm thành lập ban đầu ở ấp Bình Tấn (tr. 80); DEST-005 ấp Bình Quới (tr. 81); DEST-007 ấp Tân Lợi (tr. 77); DEST-008 ấp Bình Quới (tr. 78). Giữ nguyên cách viết Tân/Tấn trong PDF; tên ấp hiện hành cần địa phương xác nhận.
@@ -78,6 +83,7 @@ Nghị quyết 1654/NQ-UBTVQH15 ban hành ngày 2025-06-16 là văn bản sắp 
 | SRC-013 | [Bản đồ hành chính 102 xã, phường, đặc khu — UBND tỉnh An Giang](https://angiang.gov.vn/vi/ban-do-hanh-chinh-102-xa-phuong-dac-khu-tinh-an-giang) · [GeoJSON](https://angiang.gov.vn/sites/default/files/other/AnGiang_Xa_NEW_JSON_2.json) | PAGE_OPENED | Lớp polygon Cù Lao Giêng công bố trên bản đồ tỉnh; thuộc tính diện tích 68,92 km². Hình học khác polygon tham khảo khoảng 1,436 km² đối xứng; cần xác nhận hồ sơ địa giới. |
 | SRC-014 | [Thông tư 17/2017/TT-BTNMT — Công báo Chính phủ](https://congbaocdn.chinhphu.vn/CongBaoCP/CongBao/2017/8/24422/18770-1-593-594.pdf) | PAGE_OPENED | Tr. 90/102/107 có DMS của bốn địa danh; tr. 3–4 nêu bản đồ VN-2000 1:25.000 và ý nghĩa tọa độ tương đối. Không phải cổng hay perimeter; không tự điền vào trường WGS84. |
 | SRC-015 | [The Lugar 6,6 ha — Báo An Giang](https://baoangiang.com.vn/xa-anh-hung-tan-my-dat-chuan-nong-thon-moi-nang-cao-a301483.html) | PAGE_OPENED | Bài báo giai đoạn trước nêu dự án The Lugar tại cồn Tấn Long 6,6 ha; chưa chứng minh footprint trùng khu du lịch Cồn Én hiện tại. |
+| SRC-016 | [Quyết định 17566/QĐ-SNV — danh mục Sở Nội vụ](https://snv.angiang.gov.vn/van-ban?field_co_quan_ban_hanh_value=All&field_linh_value=All&field_loai_van_ban_value=All&field_nam_value=All&field_trich_yeu_value=&order=field_trich_yeu&page=0&sort=asc) | PAGE_OPENED | Giao dự toán lập mới hồ sơ/bản đồ địa giới; không phải polygon phê duyệt. PDF đính kèm chưa trích xuất nội dung. |
 
 ## Danh mục ứng viên ở snapshot 2026-10-29
 

@@ -39,7 +39,7 @@
     "inReview": 10,
     "verified": 0,
     "missingCoordinates": 8,
-    "registeredSources": 15,
+    "registeredSources": 16,
     "notionViewCount": 7
   },
   "verificationRules": [
@@ -243,6 +243,19 @@
       "accessStatus": "PAGE_OPENED",
       "claims": "Bài viết trước sáp nhập mô tả dự án The Lugar An Giang Resort and Spa tại bãi bồi/trầm thủy cồn Tấn Long, ấp Tấn Long, quy mô 6,6 ha.",
       "limitations": "Chưa chứng minh dự án The Lugar và điểm du lịch Cồn Én hiện tại có cùng footprint, giai đoạn hoặc cách tính diện tích; không phải hồ sơ đất/perimeter."
+    },
+    {
+      "id": "SRC-016",
+      "title": "Quyết định 17566/QĐ-SNV về dự toán lập mới hồ sơ, bản đồ địa giới hành chính An Giang",
+      "url": "https://snv.angiang.gov.vn/van-ban?field_co_quan_ban_hanh_value=All&field_linh_value=All&field_loai_van_ban_value=All&field_nam_value=All&field_trich_yeu_value=&order=field_trich_yeu&page=0&sort=asc",
+      "publisher": "Sở Nội vụ tỉnh An Giang",
+      "type": "GOVERNMENT_PAGE",
+      "publicationDate": "2026-06-12",
+      "accessedAt": "2026-10-31",
+      "reliability": "HIGH",
+      "accessStatus": "PAGE_OPENED",
+      "claims": "Trang văn bản chuyên môn của Sở Nội vụ liệt kê Quyết định 17566/QĐ-SNV ngày 12/06/2026 về công khai giao dự toán cho nhiệm vụ lập mới hồ sơ, bản đồ địa giới đơn vị hành chính các cấp tỉnh An Giang.",
+      "limitations": "Đây là quyết định giao dự toán/nhiệm vụ, không phải hồ sơ địa giới hoàn thành hoặc polygon được phê duyệt. Trang danh sách đã mở; PDF đính kèm 175660001.pdf có ba trang nhưng bộ đọc không trích xuất được nội dung. Không chứng minh trạng thái thực hiện sau ngày ban hành."
     }
   ],
   "destinations": [

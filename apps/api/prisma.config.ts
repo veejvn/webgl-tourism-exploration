@@ -4,6 +4,7 @@ import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
 const USE_SQLITE = process.env.USE_SQLITE === 'true';
+const sqliteDatabaseFile = process.env.SQLITE_DATABASE_FILE;
 
 export default defineConfig({
   schema: USE_SQLITE ? "prisma/schema.sqlite.prisma" : "prisma/schema.prisma",
@@ -12,6 +13,8 @@ export default defineConfig({
     seed: "ts-node prisma/seed.ts"
   },
   datasource: {
-    url: USE_SQLITE ? "file:./dev.db" : process.env["DATABASE_URL"],
+    url: USE_SQLITE
+      ? `file:./${sqliteDatabaseFile ?? 'dev.db'}`
+      : process.env["DATABASE_URL"],
   },
 });

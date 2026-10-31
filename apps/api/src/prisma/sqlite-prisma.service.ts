@@ -7,10 +7,14 @@ import * as path from 'path';
 export class SqlitePrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
     const cwd = process.cwd();
-    const dbPath =
+    const apiRoot =
       cwd.endsWith('apps/api') || cwd.endsWith('apps\\api')
-        ? path.resolve(cwd, 'dev.db')
-        : path.resolve(cwd, 'apps/api/dev.db');
+        ? cwd
+        : path.resolve(cwd, 'apps/api');
+    const dbPath = path.resolve(
+      apiRoot,
+      process.env.SQLITE_DATABASE_FILE ?? 'dev.db',
+    );
     const adapter = new PrismaBetterSqlite3({
       url: `file:${dbPath}`,
     });
